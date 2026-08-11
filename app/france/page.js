@@ -24,7 +24,7 @@ export default function FrancePage() {
         <div className="franceVisual">
           <div className="parisStamp"><span>PAR</span><strong>48.8566° N</strong><small>02.3522° E</small></div>
           <div className="eiffelMark"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief"><p>ARRIVAL BRIEF</p><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd></div><div><dt>Expected speed</dt><dd>4G / 5G</dd></div><div><dt>Setup</dt><dd>Install before departure</dd></div></dl></aside>
+          <aside className="heroArrivalBrief"><header><p>ARRIVAL BRIEF</p><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>4G / 5G</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
           <span className="routeLabel">CDG → Connected</span>
         </div>
         <HeroPlanStrip country="France" plans={francePlans} />
@@ -32,7 +32,7 @@ export default function FrancePage() {
 
       <FrancePlans />
 
-      <section className="franceEssentials">
+      <section className="franceEssentials" id="country-essentials">
         <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2>Using a travel eSIM in France</h2></div>
         <dl><div><dt>Networks</dt><dd>Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks.</dd></div><div><dt>Coverage</dt><dd>4G is widely available; 5G availability depends on location and the selected plan.</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>

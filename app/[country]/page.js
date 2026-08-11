@@ -39,7 +39,7 @@ export default async function CountryPage({ params }) {
         <div className="franceVisual genericCountryVisual" data-code={destination.code}>
           <div className="parisStamp"><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
           <div className="countrySignal"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief"><p>ARRIVAL BRIEF</p><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd></div><div><dt>Setup</dt><dd>Install before departure</dd></div></dl></aside>
+          <aside className="heroArrivalBrief"><header><p>ARRIVAL BRIEF</p><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
           <span className="routeLabel">{destination.airport} → Connected</span>
         </div>
         <HeroPlanStrip country={destination.name} plans={destination.plans} />
@@ -47,7 +47,7 @@ export default async function CountryPage({ params }) {
 
       <FrancePlans country={destination.name} plans={destination.plans} />
 
-      <section className="franceEssentials">
+      <section className="franceEssentials" id="country-essentials">
         <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2>Using a travel eSIM in {destination.name}</h2></div>
         <dl><div><dt>Networks</dt><dd>{destination.networks}</dd></div><div><dt>Coverage</dt><dd>{destination.coverage}</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>

@@ -36,7 +36,7 @@ export function HeroPlanStrip({ country, plans }) {
             <span className="heroPlanRank">0{index + 1}</span>
             <div><b><i />{plan.brand}</b><small>{plan.product}</small></div>
             <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
-            <strong>${plan.price.toFixed(2)}</strong><em aria-hidden="true">↗</em>
+            <strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Read more <em aria-hidden="true">↗</em></span>
           </a>
         ))}
       </div>
