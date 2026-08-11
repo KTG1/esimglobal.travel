@@ -13,7 +13,7 @@ export default function FrancePage() {
       <SiteHeader />
       <nav className="breadcrumbs" aria-label="Breadcrumb"><a href="/">Global eSIMs</a><span>/</span><a href="/#compare">Europe</a><span>/</span><span>France</span></nav>
 
-      <section className="franceHero">
+      <section className="franceHero franceDestinationHero">
         <div className="franceHeroCopy">
           <div className="franceFlag" aria-label="Flag of France"><i /><i /><i /></div>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>
