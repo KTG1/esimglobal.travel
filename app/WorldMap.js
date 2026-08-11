@@ -30,6 +30,15 @@ const brandFacts = {
   Holafly: { network: "4G / 5G", delivery: "Instant QR", activation: "On network", extra: "Unlimited data" },
   Nomad: { network: "4G / 5G", delivery: "Instant eSIM", activation: "On network", extra: "Add-on data" },
 };
+function rankOffers(region, country) {
+  const offers = [...(brandOffers[region] || [])];
+  if (!country || !offers.length) return offers;
+  const lowestPrice = Math.min(...offers.map((offer) => offer.price));
+  return offers.sort((a, b) => {
+    const rank = (offer) => offer.brand === "Saily" ? 0 : offer.price === lowestPrice ? 1 : offer.data === "Unlimited" ? 2 : 3;
+    return rank(a) - rank(b) || a.price - b.price;
+  });
+}
 
 const mapCountries = world.locations
   .map((location) => {
@@ -44,6 +53,7 @@ export default function WorldMap() {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [search, setSearch] = useState("");
   const [selectedOffer, setSelectedOffer] = useState(null);
+  const [hoveredOffer, setHoveredOffer] = useState(null);
 
   const visibleCountries = useMemo(() => {
     if (!selectedRegion) return [];
@@ -51,21 +61,52 @@ export default function WorldMap() {
     return mapCountries
       .filter((country) => country.continent === selectedRegion)
       .filter((country) => !query || country.name.toLowerCase().includes(query))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }, [search, selectedRegion]);
+      .sort((a, b) => {
+        if (selectedCountry?.code === a.code) return -1;
+        if (selectedCountry?.code === b.code) return 1;
+        return a.name.localeCompare(b.name);
+      });
+  }, [search, selectedCountry, selectedRegion]);
+
+  const rankedOffers = useMemo(
+    () => selectedRegion ? rankOffers(selectedRegion, selectedCountry) : [],
+    [selectedCountry, selectedRegion],
+  );
 
   function chooseRegion(region) {
     setSelectedRegion(region);
     setSelectedCountry(null);
     setSearch("");
     setSelectedOffer(region ? brandOffers[region][0] || null : null);
+    setHoveredOffer(null);
   }
 
   function chooseCountry(country) {
-    if (country.continent !== selectedRegion) setSelectedOffer(brandOffers[country.continent][0] || null);
+    setSelectedOffer(rankOffers(country.continent, country)[0] || null);
     setSelectedRegion(country.continent);
     setSelectedCountry(country);
     setSearch("");
+    setHoveredOffer(null);
+  }
+
+  function comparisonCopy(offer) {
+    if (!offer) return "Choose an option to compare its value, allowance, and trip length.";
+    const destination = selectedCountry?.name || regionLabels[selectedRegion];
+    const alternatives = rankedOffers.filter((item) => item.brand !== offer.brand).sort((a, b) => a.price - b.price);
+    const cheapest = [...rankedOffers].sort((a, b) => a.price - b.price)[0];
+    const nearest = alternatives[0];
+    if (offer.brand === "Saily") {
+      const difference = cheapest && cheapest.brand !== offer.brand ? offer.price - cheapest.price : 0;
+      return `Balanced pick for ${destination}: ${offer.data} for ${offer.days} days with web protection${difference > 0 ? `, for $${difference.toFixed(2)} more than the lowest-priced option` : " at the lowest listed price"}.`;
+    }
+    if (offer.price === cheapest?.price) {
+      const saving = nearest ? nearest.price - offer.price : 0;
+      return `Lowest listed price for ${destination}: ${offer.data} for ${offer.days} days${saving > 0 ? `, saving $${saving.toFixed(2)} versus the next option` : ""}.`;
+    }
+    if (offer.data === "Unlimited") {
+      return `Unlimited-data choice for ${destination}: best suited to heavy use, at $${(offer.price - cheapest.price).toFixed(2)} more than the lowest-priced option.`;
+    }
+    return `${offer.data} for ${offer.days} days in ${destination}, priced at $${offer.price.toFixed(2)}. Compare allowance and included features before choosing.`;
   }
 
   function countryPrice(country) {
@@ -125,22 +166,32 @@ export default function WorldMap() {
             <div className="mapPlanOverlay" aria-label={`Best eSIM options for ${regionLabels[selectedRegion]}`}>
               <p>Best regional eSIMs <span>Preview pricing</span></p>
               <div>
-                {brandOffers[selectedRegion].map((offer) => (
+                {rankedOffers.map((offer, index) => (
                   <button
                     key={offer.brand}
                     type="button"
                     className={selectedOffer?.brand === offer.brand ? "selected" : ""}
                     style={{ "--brand-color": offer.color }}
                     onClick={() => setSelectedOffer(offer)}
+                    onMouseEnter={() => setHoveredOffer(offer)}
+                    onMouseLeave={() => setHoveredOffer(null)}
+                    onFocus={() => setHoveredOffer(offer)}
+                    onBlur={() => setHoveredOffer(null)}
                     aria-pressed={selectedOffer?.brand === offer.brand}
                   >
-                    <span className="brandName"><i />{offer.brand}</span>
+                    <span className="brandName"><i />{offer.brand}{selectedCountry && <em>{index === 0 ? "Best match" : `#${index + 1}`}</em>}</span>
                     <strong>${offer.price.toFixed(2)}</strong>
                     <small>{offer.product} · {offer.data} · {offer.days}d</small>
                   </button>
                 ))}
-                {!brandOffers[selectedRegion].length && <p className="noOffers">No consumer regional plans found.</p>}
+                {!rankedOffers.length && <p className="noOffers">No consumer regional plans found.</p>}
               </div>
+              {!!rankedOffers.length && (
+                <div className="offerNarration" role="status" aria-live="polite">
+                  <span>Comparison note</span>
+                  <p>{comparisonCopy(hoveredOffer || selectedOffer)}</p>
+                </div>
+              )}
             </div>
           )}
           <svg
@@ -220,20 +271,24 @@ export default function WorldMap() {
             </div>
 
             <div className="manifestPlans" aria-label="Regional eSIM plan options">
-              {brandOffers[selectedRegion].map((offer) => (
+              {rankedOffers.map((offer) => (
                 <button
                   key={offer.brand}
                   type="button"
                   className={selectedOffer?.brand === offer.brand ? "selected" : ""}
                   style={{ "--brand-color": offer.color }}
                   onClick={() => setSelectedOffer(offer)}
+                  onMouseEnter={() => setHoveredOffer(offer)}
+                  onMouseLeave={() => setHoveredOffer(null)}
+                  onFocus={() => setHoveredOffer(offer)}
+                  onBlur={() => setHoveredOffer(null)}
                   aria-pressed={selectedOffer?.brand === offer.brand}
                 >
                   <span><strong><i />{offer.brand}</strong><small>{offer.product} · {offer.data} / {offer.days}d</small></span>
                   <b>${offer.price.toFixed(2)}</b>
                 </button>
               ))}
-              {!brandOffers[selectedRegion].length && <p className="noOffers">No comparable consumer offers</p>}
+              {!rankedOffers.length && <p className="noOffers">No comparable consumer offers</p>}
               <p>{selectedRegion === "EU" ? "Verified provider pricing" : "Marketplace preview · verify before purchase"}</p>
             </div>
 
