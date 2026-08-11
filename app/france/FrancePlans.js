@@ -48,11 +48,28 @@ export default function FrancePlans({ country = "France", plans = francePlans })
   const [data, setData] = useState(0);
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(999);
+  const bestPlan = plans.find((plan) => plan.brand === "Saily") || plans[0];
 
   const filteredPlans = useMemo(() => plans.filter((plan) => plan.data >= data && plan.days >= days && plan.price <= price), [data, days, price]);
 
   return (
     <>
+      <section className="bestPickPanel" aria-labelledby="best-pick-title" style={{ "--plan-color": bestPlan.color }}>
+        <div className="bestPickLead">
+          <div className="bestPickSeal"><span>EDITOR’S CHOICE</span><b>01</b></div>
+          <p className="eyebrow">BEST OVERALL FOR MOST TRAVELERS</p>
+          <h2 id="best-pick-title">Our best {country} eSIM pick: <em>Saily</em></h2>
+          <p>Saily stands out in this comparison because it balances a practical data allowance, long validity and a competitive preview price without forcing most travelers into an unlimited plan.</p>
+          <a href="#plans">See the Saily plan <span aria-hidden="true">↓</span></a>
+        </div>
+        <div className="bestPickReasons">
+          <header><span>Why it leads</span><strong>${bestPlan.price.toFixed(2)}</strong></header>
+          <article><span>01</span><div><h3>Useful allowance</h3><p>{bestPlan.dataLabel} is a sensible fit for maps, messages and everyday browsing.</p></div><i aria-hidden="true">↗</i></article>
+          <article><span>02</span><div><h3>Trip-friendly validity</h3><p>{bestPlan.days} days gives travelers flexibility without rushing to use the plan.</p></div><i aria-hidden="true">↗</i></article>
+          <article><span>03</span><div><h3>Balanced connectivity</h3><p>{bestPlan.network} availability and straightforward digital delivery cover the essentials.</p></div><i aria-hidden="true">↗</i></article>
+          <small>Editorial recommendation based on the example plan attributes displayed on this page. Verify current provider terms and pricing.</small>
+        </div>
+      </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
         <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title">Popular {country} eSIM plans</h2></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
         <div className="featuredPlanGrid">
