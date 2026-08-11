@@ -1,98 +1,188 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import world from "@svg-maps/world";
+import { continents, countries } from "countries-list";
 
-const regions = {
-  "North America": ["Canada", "Mexico", "United States", "Costa Rica", "Dominican Republic", "Jamaica"],
-  "South America": ["Argentina", "Brazil", "Chile", "Colombia", "Ecuador", "Peru", "Uruguay"],
-  Europe: ["France", "Germany", "Greece", "Italy", "Netherlands", "Portugal", "Spain", "Switzerland", "Türkiye", "United Kingdom"],
-  Africa: ["Egypt", "Kenya", "Morocco", "Nigeria", "South Africa", "Tanzania", "Tunisia"],
-  Asia: ["China", "India", "Indonesia", "Japan", "Malaysia", "Singapore", "South Korea", "Thailand", "United Arab Emirates", "Vietnam"],
-  Oceania: ["Australia", "Fiji", "New Zealand"],
+const regionOrder = ["NA", "SA", "EU", "AF", "AS", "OC", "AN"];
+const regionLabels = { ...continents, AN: "Antarctica" };
+const regionViewBoxes = {
+  NA: "0 20 480 390",
+  SA: "170 245 330 415",
+  EU: "380 170 270 240",
+  AF: "360 245 350 410",
+  AS: "480 65 530 430",
+  OC: "690 300 320 330",
+  AN: "0 510 1010 156",
 };
 
-const pins = [
-  { name: "North America", x: 18, y: 31, short: "N. America" },
-  { name: "South America", x: 31, y: 66, short: "S. America" },
-  { name: "Europe", x: 52, y: 27, short: "Europe" },
-  { name: "Africa", x: 53, y: 54, short: "Africa" },
-  { name: "Asia", x: 70, y: 35, short: "Asia" },
-  { name: "Oceania", x: 83, y: 73, short: "Oceania" },
-];
+const mapCountries = world.locations
+  .map((location) => {
+    const code = location.id.toUpperCase();
+    const details = countries[code];
+    return details ? { ...location, code, ...details } : null;
+  })
+  .filter(Boolean);
 
 export default function WorldMap() {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const visibleCountries = useMemo(() => {
+    if (!selectedRegion) return [];
+    const query = search.trim().toLowerCase();
+    return mapCountries
+      .filter((country) => country.continent === selectedRegion)
+      .filter((country) => !query || country.name.toLowerCase().includes(query))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [search, selectedRegion]);
 
   function chooseRegion(region) {
     setSelectedRegion(region);
     setSelectedCountry(null);
+    setSearch("");
+  }
+
+  function chooseCountry(country) {
+    setSelectedRegion(country.continent);
+    setSelectedCountry(country);
+    setSearch("");
+  }
+
+  function handleCountryKey(event, country) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      chooseCountry(country);
+    }
   }
 
   return (
     <section className="destinationFinder" aria-labelledby="destination-title">
-      <div className="finderHeader">
+      <div className="finderTopline">
         <div>
-          <p className="finderStep">Choose your destination</p>
+          <p className="finderStep">Global coverage explorer</p>
           <h2 id="destination-title">
-            {selectedRegion ? selectedRegion : "Where are you landing?"}
+            {selectedCountry?.name || (selectedRegion ? regionLabels[selectedRegion] : "Where are you landing?")}
           </h2>
         </div>
-        {selectedRegion && (
-          <button className="resetMap" type="button" onClick={() => chooseRegion(null)}>
-            View all continents
-          </button>
-        )}
+        <p className="coverageCount">
+          <strong>{mapCountries.length}</strong>
+          <span>mapped destinations</span>
+        </p>
       </div>
 
-      <div className={`mapLayout ${selectedRegion ? "hasSelection" : ""}`}>
-        <div className="mapStage" aria-label="Select a continent from the world map">
-          <svg className="worldSilhouette" viewBox="0 0 1000 500" aria-hidden="true">
-            <path d="M80 115 137 65l102 10 45 54-20 47-45 2-28 44-72-8-49-47Z" />
-            <path d="m237 239 70 22 36 63-22 91-37 55-25-103-43-58Z" />
-            <path d="m423 117 83-43 92 20 41 55-67 37-40-22-55 18-66-22Z" />
-            <path d="m475 210 87-15 60 64-30 103-55 76-40-117-44-51Z" />
-            <path d="m596 113 115-57 151 36 82 83-74 61-98-24-54 44-73-29-49-60Z" />
-            <path d="m783 331 96-29 78 54-42 82-108-13-49-52Z" />
-          </svg>
+      <nav className="continentTabs" aria-label="Filter the map by continent">
+        <button
+          type="button"
+          className={!selectedRegion ? "active" : ""}
+          onClick={() => chooseRegion(null)}
+          aria-pressed={!selectedRegion}
+        >
+          World
+        </button>
+        {regionOrder.map((region) => (
+          <button
+            key={region}
+            type="button"
+            className={selectedRegion === region ? "active" : ""}
+            onClick={() => chooseRegion(region)}
+            aria-pressed={selectedRegion === region}
+          >
+            {regionLabels[region]}
+          </button>
+        ))}
+      </nav>
 
-          {pins.map((pin) => (
-            <button
-              className={`mapPin ${selectedRegion === pin.name ? "active" : ""}`}
-              key={pin.name}
-              type="button"
-              style={{ left: `${pin.x}%`, top: `${pin.y}%` }}
-              onClick={() => chooseRegion(pin.name)}
-              aria-pressed={selectedRegion === pin.name}
-            >
-              <span>{pin.short}</span>
-            </button>
-          ))}
+      <div className={`mapWorkspace ${selectedRegion ? "isExploring" : ""}`}>
+        <div className="mapCanvas">
+          <svg
+            className="countryMap"
+            viewBox={selectedRegion ? regionViewBoxes[selectedRegion] : world.viewBox}
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-label="Interactive world map. Select a country or choose a continent above."
+          >
+            <g>
+              {mapCountries.map((country) => {
+                const isSelected = selectedCountry?.code === country.code;
+                const isInRegion = selectedRegion === country.continent;
+                const isMuted = selectedRegion && !isInRegion;
+                return (
+                  <path
+                    key={country.id}
+                    d={country.path}
+                    className={`mapCountry${isInRegion ? " inRegion" : ""}${isSelected ? " selected" : ""}${isMuted ? " muted" : ""}`}
+                    role="button"
+                    tabIndex={selectedRegion && !isInRegion ? -1 : 0}
+                    aria-label={`${country.name}, ${regionLabels[country.continent]}`}
+                    aria-pressed={isSelected}
+                    onClick={() => chooseCountry(country)}
+                    onKeyDown={(event) => handleCountryKey(event, country)}
+                  >
+                    <title>{country.name}</title>
+                  </path>
+                );
+              })}
+            </g>
+          </svg>
+          <div className="mapLegend" aria-hidden="true">
+            <span><i className="legendAvailable" /> Selectable</span>
+            <span><i className="legendSelected" /> Selected</span>
+          </div>
+          {!selectedRegion && (
+            <p className="mapInstruction">Choose a continent above or select any country on the map.</p>
+          )}
         </div>
 
         {selectedRegion && (
-          <div className="countryPanel" aria-live="polite">
-            <p className="countryPrompt">Now choose a country</p>
+          <aside className="countryManifest" aria-live="polite">
+            <div className="manifestHeader">
+              <div>
+                <p className="finderStep">Destination manifest</p>
+                <h3>{regionLabels[selectedRegion]}</h3>
+              </div>
+              <span>{visibleCountries.length}</span>
+            </div>
+
+            <label className="countrySearch">
+              <span className="srOnly">Search countries in {regionLabels[selectedRegion]}</span>
+              <input
+                type="search"
+                placeholder="Search countries"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+              <span aria-hidden="true">⌕</span>
+            </label>
+
             <div className="countryList">
-              {regions[selectedRegion].map((country) => (
+              {visibleCountries.map((country) => (
                 <button
-                  key={country}
+                  key={country.code}
                   type="button"
-                  className={selectedCountry === country ? "selected" : ""}
-                  onClick={() => setSelectedCountry(country)}
-                  aria-pressed={selectedCountry === country}
+                  className={selectedCountry?.code === country.code ? "selected" : ""}
+                  onClick={() => chooseCountry(country)}
+                  aria-pressed={selectedCountry?.code === country.code}
                 >
-                  <span>{country}</span>
-                  <span aria-hidden="true">{selectedCountry === country ? "✓" : "↗"}</span>
+                  <span className="countryCode">{country.code}</span>
+                  <span>{country.name}</span>
+                  <span className="countryArrow" aria-hidden="true">
+                    {selectedCountry?.code === country.code ? "✓" : "↗"}
+                  </span>
                 </button>
               ))}
+              {!visibleCountries.length && <p className="noCountries">No matching destination.</p>}
             </div>
+
             {selectedCountry && (
-              <p className="selectionNote">
-                <strong>{selectedCountry}</strong> selected. Plans will be available at launch.
-              </p>
+              <div className="countryTicket">
+                <span>Selected destination</span>
+                <strong>{selectedCountry.name}</strong>
+                <small>{selectedCountry.capital ? `Capital: ${selectedCountry.capital}` : "Coverage details coming soon"}</small>
+              </div>
             )}
-          </div>
+          </aside>
         )}
       </div>
     </section>
