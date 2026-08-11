@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 
 export const francePlans = [
-  { brand: "Saily", product: "France", data: 5, dataLabel: "5 GB", days: 30, price: 12.99, network: "5G", color: "#3626a7", note: "Balanced pick" },
+  { brand: "Saily", product: "France", data: 5, dataLabel: "5 GB", days: 30, price: 11.99, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Best overall" },
   { brand: "Airalo", product: "Bonbon Mobile", data: 10, dataLabel: "10 GB", days: 30, price: 23, network: "5G", color: "#ff6b4a", note: "Popular data plan" },
   { brand: "Holafly", product: "France Unlimited", data: 999, dataLabel: "Unlimited", days: 7, price: 27.5, network: "5G", color: "#7b2dff", note: "Unlimited pick" },
   { brand: "Nomad", product: "France", data: 10, dataLabel: "10 GB", days: 30, price: 15, network: "5G", color: "#6f5cff", note: "Best price per GB" },
@@ -49,6 +49,21 @@ export default function FrancePlans({ country = "France", plans = francePlans })
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(999);
   const bestPlan = plans.find((plan) => plan.brand === "Saily") || plans[0];
+  const isFrance = country === "France";
+  const bestPickIntro = isFrance
+    ? "Saily is our best overall France eSIM because it combines nationwide usability, automatic arrival activation, hotspot sharing and built-in security tools with a flexible 30-day data plan."
+    : `Saily stands out in this comparison because it balances a practical data allowance, long validity and a competitive preview price without forcing most travelers into an unlimited plan.`;
+  const bestReasons = isFrance ? [
+    { title: "France-wide travel coverage", text: "The plan is designed for use across France, including major cities. Connection quality and 3G, 4G, LTE or 5G speed depend on the available local partner network." },
+    { title: "Automatic activation on arrival", text: "Buy and install before departure; the plan activates when the eSIM first connects in France. Standard plans must be activated within 30 days of purchase." },
+    { title: "Practical 5 GB / 30-day fit", text: "A good middle ground for Google Maps, train bookings, translation, messaging and regular browsing. At $11.99, the preview cost is about $2.40 per GB." },
+    { title: "Hotspot and easy top-ups", text: "Hotspot sharing is supported, and additional data can be purchased in the app. A new plan can activate when the current allowance runs out." },
+    { title: "Travel security extras", text: "Saily includes optional ad blocking and web protection, which can reduce intrusive ads, trackers and access to known malicious websites." },
+  ] : [
+    { title: "Useful allowance", text: `${bestPlan.dataLabel} is a sensible fit for maps, messages and everyday browsing.` },
+    { title: "Trip-friendly validity", text: `${bestPlan.days} days gives travelers flexibility without rushing to use the plan.` },
+    { title: "Balanced connectivity", text: `${bestPlan.network} availability and straightforward digital delivery cover the essentials.` },
+  ];
 
   const filteredPlans = useMemo(() => plans.filter((plan) => plan.data >= data && plan.days >= days && plan.price <= price), [data, days, price]);
 
@@ -59,15 +74,13 @@ export default function FrancePlans({ country = "France", plans = francePlans })
           <div className="bestPickSeal"><span>EDITOR’S CHOICE</span><b>01</b></div>
           <p className="eyebrow">BEST OVERALL FOR MOST TRAVELERS</p>
           <h2 id="best-pick-title">Our best {country} eSIM pick: <em>Saily</em></h2>
-          <p>Saily stands out in this comparison because it balances a practical data allowance, long validity and a competitive preview price without forcing most travelers into an unlimited plan.</p>
+          <p>{bestPickIntro}</p>
           <a href="#plans">See the Saily plan <span aria-hidden="true">↓</span></a>
         </div>
         <div className="bestPickReasons">
           <header><span>Why it leads</span><strong>${bestPlan.price.toFixed(2)}</strong></header>
-          <article><span>01</span><div><h3>Useful allowance</h3><p>{bestPlan.dataLabel} is a sensible fit for maps, messages and everyday browsing.</p></div><i aria-hidden="true">↗</i></article>
-          <article><span>02</span><div><h3>Trip-friendly validity</h3><p>{bestPlan.days} days gives travelers flexibility without rushing to use the plan.</p></div><i aria-hidden="true">↗</i></article>
-          <article><span>03</span><div><h3>Balanced connectivity</h3><p>{bestPlan.network} availability and straightforward digital delivery cover the essentials.</p></div><i aria-hidden="true">↗</i></article>
-          <small>Editorial recommendation based on the example plan attributes displayed on this page. Verify current provider terms and pricing.</small>
+          {bestReasons.map((reason, index) => <article key={reason.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{reason.title}</h3><p>{reason.text}</p></div><i aria-hidden="true">↗</i></article>)}
+          <small>Editorial recommendation based on the displayed plan attributes. Verify current provider terms and pricing. {isFrance && <a href="https://saily.com/esim-france/" target="_blank" rel="noreferrer">Provider specifications ↗</a>}</small>
         </div>
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
