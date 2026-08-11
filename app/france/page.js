@@ -34,6 +34,22 @@ export default function FrancePage() {
         <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2>Using a travel eSIM in France</h2></div>
         <dl><div><dt>Networks</dt><dd>Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks.</dd></div><div><dt>Coverage</dt><dd>4G is widely available; 5G availability depends on location and the selected plan.</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>
+
+      <section className="franceFaq" aria-labelledby="france-faq-title">
+        <header>
+          <div><p className="eyebrow">FRANCE ESIM FAQ</p><h2 id="france-faq-title">Questions before you connect</h2></div>
+          <span>07 practical answers</span>
+        </header>
+        <div className="faqList">
+          <details open><summary><span>01</span>What is the best eSIM for France?<i aria-hidden="true">+</i></summary><p>The best France eSIM depends on your trip length, expected data use, budget and required features. Compare network coverage, allowance, validity, hotspot rules and support—not only the headline price.</p></details>
+          <details><summary><span>02</span>How much data do I need for a trip to France?<i aria-hidden="true">+</i></summary><p>Light navigation and messaging may use 1–3 GB per week. Regular social media, video, calls or hotspot use can require 5–10 GB or an unlimited plan. Check any fair-use or speed policy attached to unlimited data.</p></details>
+          <details><summary><span>03</span>When should I install and activate my France eSIM?<i aria-hidden="true">+</i></summary><p>Install the eSIM over Wi-Fi before departure, but confirm when its validity begins. Many travel plans activate after connecting to a supported French network; others may begin at installation or purchase.</p></details>
+          <details><summary><span>04</span>Can I keep using WhatsApp with my regular number?<i aria-hidden="true">+</i></summary><p>Yes. Installing a travel eSIM does not normally change the phone number connected to WhatsApp. Use the eSIM for mobile data and keep your primary SIM enabled for messages if needed.</p></details>
+          <details><summary><span>05</span>Do France eSIM plans include calls and SMS?<i aria-hidden="true">+</i></summary><p>Many travel eSIMs are data-only. Calls and messages can still work through apps such as WhatsApp, FaceTime or Signal. Choose a plan with a phone number only when traditional calls or SMS are required.</p></details>
+          <details><summary><span>06</span>Can I share France eSIM data through a hotspot?<i aria-hidden="true">+</i></summary><p>Hotspot sharing depends on the provider and product. Fixed-data plans often permit tethering, while unlimited plans may apply a daily sharing limit. Verify the plan terms before purchase.</p></details>
+          <details><summary><span>07</span>Will one France eSIM work elsewhere in Europe?<i aria-hidden="true">+</i></summary><p>A France-only plan may stop working after you cross the border. If your itinerary includes multiple countries, choose a Europe regional eSIM and check that every destination is included in its coverage list.</p></details>
+        </div>
+      </section>
       <SiteFooter />
     </main>
   );
