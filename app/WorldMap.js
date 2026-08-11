@@ -15,6 +15,15 @@ const regionViewBoxes = {
   OC: "690 300 320 330",
   AN: "0 510 1010 156",
 };
+const regionPlans = {
+  NA: [{ name: "Quick trip", data: "1 GB", days: 7, price: 4.5 }, { name: "Best value", data: "5 GB", days: 30, price: 16 }, { name: "Always on", data: "10 GB", days: 30, price: 27 }],
+  SA: [{ name: "Quick trip", data: "1 GB", days: 7, price: 5.5 }, { name: "Best value", data: "5 GB", days: 30, price: 18 }, { name: "Always on", data: "10 GB", days: 30, price: 31 }],
+  EU: [{ name: "Quick trip", data: "1 GB", days: 7, price: 4 }, { name: "Best value", data: "5 GB", days: 30, price: 14 }, { name: "Always on", data: "10 GB", days: 30, price: 24 }],
+  AF: [{ name: "Quick trip", data: "1 GB", days: 7, price: 6 }, { name: "Best value", data: "5 GB", days: 30, price: 20 }, { name: "Always on", data: "10 GB", days: 30, price: 34 }],
+  AS: [{ name: "Quick trip", data: "1 GB", days: 7, price: 4.5 }, { name: "Best value", data: "5 GB", days: 30, price: 15 }, { name: "Always on", data: "10 GB", days: 30, price: 25 }],
+  OC: [{ name: "Quick trip", data: "1 GB", days: 7, price: 5 }, { name: "Best value", data: "5 GB", days: 30, price: 17 }, { name: "Always on", data: "10 GB", days: 30, price: 29 }],
+  AN: [{ name: "Expedition", data: "1 GB", days: 7, price: 19 }, { name: "Field work", data: "3 GB", days: 30, price: 42 }, { name: "Extended", data: "5 GB", days: 30, price: 59 }],
+};
 
 const mapCountries = world.locations
   .map((location) => {
@@ -28,6 +37,7 @@ export default function WorldMap() {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [search, setSearch] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const visibleCountries = useMemo(() => {
     if (!selectedRegion) return [];
@@ -42,12 +52,20 @@ export default function WorldMap() {
     setSelectedRegion(region);
     setSelectedCountry(null);
     setSearch("");
+    setSelectedPlan(region ? regionPlans[region][1] : null);
   }
 
   function chooseCountry(country) {
+    if (country.continent !== selectedRegion) setSelectedPlan(regionPlans[country.continent][1]);
     setSelectedRegion(country.continent);
     setSelectedCountry(country);
     setSearch("");
+  }
+
+  function countryPrice(country) {
+    const base = regionPlans[country.continent][0].price;
+    const adjustment = ((country.code.charCodeAt(0) + country.code.charCodeAt(1)) % 3) * 0.5;
+    return (base + adjustment).toFixed(2);
   }
 
   function handleCountryKey(event, country) {
@@ -96,6 +114,26 @@ export default function WorldMap() {
 
       <div className={`mapWorkspace ${selectedRegion ? "isExploring" : ""}`}>
         <div className="mapCanvas">
+          {selectedRegion && (
+            <div className="mapPlanOverlay" aria-label={`Best eSIM options for ${regionLabels[selectedRegion]}`}>
+              <p>Best regional eSIMs <span>Preview pricing</span></p>
+              <div>
+                {regionPlans[selectedRegion].map((plan) => (
+                  <button
+                    key={plan.name}
+                    type="button"
+                    className={selectedPlan?.name === plan.name ? "selected" : ""}
+                    onClick={() => setSelectedPlan(plan)}
+                    aria-pressed={selectedPlan?.name === plan.name}
+                  >
+                    <span>{plan.name}</span>
+                    <strong>${plan.price.toFixed(2)}</strong>
+                    <small>{plan.data} · {plan.days} days</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <svg
             className="countryMap"
             viewBox={selectedRegion ? regionViewBoxes[selectedRegion] : world.viewBox}
@@ -145,6 +183,22 @@ export default function WorldMap() {
               <span>{visibleCountries.length}</span>
             </div>
 
+            <div className="manifestPlans" aria-label="Regional eSIM plan options">
+              {regionPlans[selectedRegion].map((plan) => (
+                <button
+                  key={plan.name}
+                  type="button"
+                  className={selectedPlan?.name === plan.name ? "selected" : ""}
+                  onClick={() => setSelectedPlan(plan)}
+                  aria-pressed={selectedPlan?.name === plan.name}
+                >
+                  <span><strong>{plan.data}</strong><small>{plan.days} days</small></span>
+                  <b>${plan.price.toFixed(2)}</b>
+                </button>
+              ))}
+              <p>Preview pricing · taxes may vary</p>
+            </div>
+
             <label className="countrySearch">
               <span className="srOnly">Search countries in {regionLabels[selectedRegion]}</span>
               <input
@@ -167,6 +221,7 @@ export default function WorldMap() {
                 >
                   <span className="countryCode">{country.code}</span>
                   <span>{country.name}</span>
+                  <span className="countryPrice">from <b>${countryPrice(country)}</b></span>
                   <span className="countryArrow" aria-hidden="true">
                     {selectedCountry?.code === country.code ? "✓" : "↗"}
                   </span>
@@ -179,7 +234,7 @@ export default function WorldMap() {
               <div className="countryTicket">
                 <span>Selected destination</span>
                 <strong>{selectedCountry.name}</strong>
-                <small>{selectedCountry.capital ? `Capital: ${selectedCountry.capital}` : "Coverage details coming soon"}</small>
+                <small>{selectedPlan ? `${selectedPlan.data} · ${selectedPlan.days} days · $${selectedPlan.price.toFixed(2)}` : `Plans from $${countryPrice(selectedCountry)}`}</small>
               </div>
             )}
           </aside>
