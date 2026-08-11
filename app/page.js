@@ -1,4 +1,5 @@
 import WorldMap from "./WorldMap";
+import EsimGuide from "./EsimGuide";
 
 function BrandLogo({ inverted = false }) {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
           Compare prepaid travel eSIM providers, data allowances, validity and prices for countries worldwide. Find the best international eSIM for your trip and connect as soon as you land—without roaming fees or a physical SIM card.
         </p>
         <WorldMap />
+        <EsimGuide />
         <p className="intro">
           Explore local, regional and global eSIM data plans from established providers. Choose your destination to compare coverage, 4G and 5G availability, plan duration and price side by side.
         </p>
