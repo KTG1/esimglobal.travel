@@ -42,10 +42,33 @@ main {
 .status { display: flex; align-items: center; gap: 9px; }
 .status i { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 5px rgba(255,91,53,.13); }
 
-.hero { position: relative; align-self: center; max-width: 860px; padding: 12vh 0; }
+.hero { position: relative; align-self: center; width: 100%; max-width: 1180px; padding: 12vh 0; }
 .eyebrow { margin: 0 0 22px; color: var(--ocean); font: 700 11px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .14em; }
 h1 { max-width: 780px; margin: 0; font: 400 clamp(64px, 11vw, 150px)/.86 Georgia, "Times New Roman", serif; letter-spacing: -.075em; }
 .intro { max-width: 620px; margin: 34px 0 0; font-size: clamp(18px, 2.2vw, 25px); line-height: 1.45; letter-spacing: -.025em; }
+
+.destinationFinder { margin-top: 54px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(248,252,255,.56); backdrop-filter: blur(9px); }
+.finderHeader { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 24px 0 18px; }
+.finderStep, .countryPrompt { margin: 0 0 7px; color: var(--ocean); font: 700 10px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+.finderHeader h2 { margin: 0; font: 400 clamp(28px, 4vw, 46px)/1 Georgia, "Times New Roman", serif; letter-spacing: -.04em; }
+.resetMap { border: 0; padding: 8px 0; color: var(--ink); background: transparent; font: 700 10px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--ink); }
+
+.mapLayout { display: grid; grid-template-columns: 1fr; min-height: 330px; transition: grid-template-columns .4s ease; }
+.mapLayout.hasSelection { grid-template-columns: minmax(0, 1.6fr) minmax(280px, .8fr); }
+.mapStage { position: relative; min-height: 330px; overflow: hidden; }
+.worldSilhouette { position: absolute; inset: 5% 1% 0; width: 98%; height: 90%; fill: rgba(22,132,214,.095); stroke: rgba(22,132,214,.4); stroke-width: 2; stroke-linejoin: round; }
+.mapPin { position: absolute; z-index: 1; transform: translate(-50%, -50%); display: grid; place-items: center; width: 15px; height: 15px; padding: 0; border: 3px solid var(--paper); border-radius: 50%; background: var(--ocean); box-shadow: 0 0 0 1px var(--ocean); cursor: pointer; transition: transform .2s ease, background .2s ease; }
+.mapPin span { position: absolute; top: 18px; padding: 4px 6px; color: var(--ink); background: rgba(248,252,255,.84); white-space: nowrap; font: 700 9px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .04em; text-transform: uppercase; }
+.mapPin:hover, .mapPin.active { transform: translate(-50%, -50%) scale(1.4); background: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+.mapPin:hover span, .mapPin.active span { transform: scale(.715); }
+
+.countryPanel { padding: 21px 0 21px 26px; border-left: 1px solid var(--line); animation: revealPanel .3s ease both; }
+.countryList { display: grid; max-height: 270px; overflow: auto; scrollbar-width: thin; }
+.countryList button { display: flex; justify-content: space-between; gap: 12px; width: 100%; padding: 10px 4px; border: 0; border-bottom: 1px solid rgba(184,216,238,.7); color: var(--ink); background: transparent; font: 500 14px/1.2 "Avenir Next", Avenir, sans-serif; text-align: left; cursor: pointer; }
+.countryList button:hover, .countryList button.selected { color: var(--ocean); padding-left: 9px; }
+.selectionNote { margin: 14px 0 0; color: #537088; font-size: 12px; line-height: 1.45; }
+.selectionNote strong { color: var(--ink); }
+@keyframes revealPanel { from { opacity: 0; transform: translateX(12px); } }
 
 .availability { display: flex; gap: clamp(28px, 6vw, 76px); margin-top: 58px; padding-top: 20px; border-top: 1px solid var(--line); }
 .availability div { display: grid; gap: 4px; }
@@ -67,6 +90,12 @@ footer { padding-top: 24px; border-top: 1px solid var(--line); color: #537088; }
   h1 { font-size: clamp(58px, 21vw, 96px); }
   .availability { gap: 22px; justify-content: space-between; }
   .availability span { font-size: 9px; }
+  .finderHeader { align-items: start; }
+  .resetMap { max-width: 90px; }
+  .mapLayout.hasSelection { grid-template-columns: 1fr; }
+  .mapStage { min-height: 245px; }
+  .countryPanel { padding: 20px 0; border-top: 1px solid var(--line); border-left: 0; }
+  .mapPin span { font-size: 7px; }
   footer span:last-child { display: none; }
 }
 

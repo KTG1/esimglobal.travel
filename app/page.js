@@ -1,3 +1,5 @@
+import WorldMap from "./WorldMap";
+
 export default function Home() {
   return (
     <main>
@@ -18,6 +20,7 @@ export default function Home() {
 
         <p className="eyebrow">ESIMGLOBAL.TRAVEL / ARRIVING SOON</p>
         <h1>Land connected.</h1>
+        <WorldMap />
         <p className="intro">
           Mobile data for the places you are going—ready before you leave.
           No roaming surprises, no plastic SIM cards, no airport queues.
