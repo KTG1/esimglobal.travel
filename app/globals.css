@@ -221,23 +221,36 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .countryPage { gap: 0; }
 .breadcrumbs { display: flex; gap: 9px; margin: 24px 0; color: #7893a7; font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
 .breadcrumbs a { color: var(--ocean); text-decoration: none; }
-.franceHero { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); min-height: 570px; overflow: hidden; color: white; background: var(--ink); }
+.franceHero { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); overflow: hidden; color: white; background: var(--ink); }
 .franceHero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,35,149,.35) 0 33%, transparent 33% 66%, rgba(237,41,57,.24) 66%); opacity: .5; }
-.franceHeroCopy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(42px, 7vw, 90px); }
-.franceFlag { display: flex; width: 54px; height: 36px; margin-bottom: 28px; overflow: hidden; border: 3px solid white; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+.franceHeroCopy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 350px; padding: clamp(24px, 3.4vw, 44px); }
+.franceFlag { display: flex; width: 48px; height: 32px; margin-bottom: 14px; overflow: hidden; border: 3px solid white; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
 .franceFlag i { flex: 1; background: #002395; }.franceFlag i:nth-child(2) { background: white; }.franceFlag i:nth-child(3) { background: #ed2939; }
 .franceHero .eyebrow { color: #7dc7ff; }
-.franceHero h1 { max-width: 790px; color: white; font-size: clamp(60px, 8vw, 110px); }
-.franceHeroCopy > p:not(.eyebrow) { max-width: 700px; margin: 28px 0 0; color: #c0d2df; font-size: 18px; line-height: 1.55; }
-.franceHeroCopy > a { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 34px; padding: 14px 16px; border: 1px solid #47647a; color: white; font: 700 9px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+.franceHero h1 { max-width: 790px; color: white; font-size: clamp(44px, 5vw, 66px); }
+.franceHeroCopy > p:not(.eyebrow) { max-width: 680px; margin: 12px 0 0; color: #c0d2df; font-size: 14px; line-height: 1.42; }
+.franceHeroCopy > a { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 14px; padding: 10px 12px; border: 1px solid #47647a; color: white; background: rgba(4,35,60,.5); font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .franceHeroCopy > a span { color: var(--signal); font-size: 16px; }
-.franceVisual { position: relative; min-height: 570px; overflow: hidden; border-left: 1px solid #365269; background: radial-gradient(circle at 40% 45%, rgba(125,199,255,.2), transparent 37%); }
+.franceVisual { position: relative; min-height: 350px; overflow: hidden; border-left: 1px solid #365269; background: radial-gradient(circle at 40% 45%, rgba(125,199,255,.2), transparent 37%); }
 .franceVisual::after { content: "FR"; position: absolute; right: -45px; bottom: -35px; color: rgba(255,255,255,.055); font: 400 360px/.8 Georgia, serif; letter-spacing: -.12em; }
-.countryEmojiFlag { display: grid; width: 62px; height: 44px; place-items: center; margin-bottom: 28px; border: 1px solid #47647a; background: rgba(255,255,255,.07); font-size: 28px; box-shadow: 8px 8px 0 rgba(0,0,0,.18); }
+.countryEmojiFlag { display: grid; width: 54px; height: 38px; place-items: center; margin-bottom: 14px; border: 1px solid #47647a; background: rgba(255,255,255,.07); font-size: 24px; box-shadow: 7px 7px 0 rgba(0,0,0,.18); }
 .genericCountryVisual::after { content: attr(data-code); }
 .countrySignal { position: absolute; left: 50%; top: 50%; z-index: 1; display: flex; align-items: flex-end; gap: 12px; width: 250px; height: 240px; transform: translate(-50%,-48%); }
 .countrySignal i { display: block; flex: 1; border: 1px solid rgba(125,199,255,.75); background: linear-gradient(180deg, rgba(125,199,255,.82), rgba(40,139,216,.12)); box-shadow: 0 0 36px rgba(40,139,216,.14); }
 .countrySignal i:nth-child(1) { height: 24%; }.countrySignal i:nth-child(2) { height: 46%; }.countrySignal i:nth-child(3) { height: 70%; }.countrySignal i:nth-child(4) { height: 100%; background: linear-gradient(180deg, var(--signal), rgba(255,93,61,.18)); border-color: var(--signal); }
+.heroPlanBoard { position: relative; z-index: 4; grid-column: 1 / -1; display: grid; grid-template-columns: 190px minmax(0, 1fr); border-top: 1px solid #47647a; background: #092b46; box-shadow: 0 -20px 50px rgba(0,0,0,.16); }
+.heroPlanBoardLabel { display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 18px 20px; border-right: 1px solid #47647a; background: #061f34; }
+.heroPlanBoardLabel span, .heroPlanRank { color: var(--signal); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; }
+.heroPlanBoardLabel strong { color: white; font: 500 18px/1.1 Georgia, serif; }
+.heroPlanBoardLabel small { color: #789bb5; font: 500 7px/1.35 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }
+.heroPlanRail { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.heroPlanRail > a { position: relative; display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; gap: 11px 9px; min-width: 0; padding: 16px 14px; border-right: 1px solid #365269; color: white; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.heroPlanRail > a:last-child { border-right: 0; }.heroPlanRail > a:hover { z-index: 1; background: #103d60; transform: translateY(-3px); }
+.heroPlanRail > a::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--plan-color); transform: scaleY(.28); transform-origin: bottom; transition: transform .18s ease; }.heroPlanRail > a:hover::before { transform: scaleY(1); }
+.heroPlanRail > a > div { min-width: 0; }.heroPlanRail b { display: flex; align-items: center; gap: 5px; font: 600 11px/1.1 "Avenir Next", Avenir, sans-serif; }.heroPlanRail b i { width: 6px; height: 6px; border-radius: 50%; background: var(--plan-color); }
+.heroPlanRail div > small { display: block; overflow: hidden; margin-top: 4px; color: #86a7bf; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.heroPlanRail > a > strong { align-self: start; font: 500 19px/1 Georgia, serif; }.heroPlanRail > a > em { align-self: end; color: var(--signal); font-style: normal; }
+.heroPlanRail dl { grid-column: 2 / 3; display: flex; gap: 12px; margin: 0; }.heroPlanRail dl div { display: grid; gap: 2px; }.heroPlanRail dt { color: #6f92ac; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.heroPlanRail dd { margin: 0; font-size: 9px; }
 .parisStamp { position: absolute; z-index: 2; top: 44px; right: 44px; display: grid; min-width: 150px; padding: 14px; border: 1px solid #55748b; color: #9eb8ca; font: 700 9px/1.4 "SFMono-Regular", Consolas, monospace; text-align: right; }
 .parisStamp span { color: var(--signal); font-size: 22px; }.parisStamp strong { color: white; }
 .eiffelMark { position: absolute; z-index: 1; left: 50%; bottom: 54px; width: 260px; height: 400px; transform: translateX(-50%); }
@@ -300,6 +313,9 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .guideComparison article:last-child { border-bottom: 0; }
   .franceHero { grid-template-columns: 1fr; }
   .franceVisual { min-height: 360px; border-top: 1px solid #365269; border-left: 0; }
+  .heroPlanBoard { grid-template-columns: 1fr; }
+  .heroPlanBoardLabel { display: grid; grid-template-columns: auto 1fr auto; align-items: center; border-right: 0; border-bottom: 1px solid #47647a; }
+  .heroPlanRail { overflow-x: auto; grid-template-columns: repeat(5, minmax(190px, 1fr)); }
   .featuredPlanGrid { grid-template-columns: 1fr; }
   .planResults article { grid-template-columns: 1fr 1fr 1fr; }
   .planResults .providerName { grid-column: 1 / 3; }
@@ -354,6 +370,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .franceHero h1 { font-size: 58px; }
   .franceHeroCopy > p:not(.eyebrow) { font-size: 16px; }
   .franceVisual { min-height: 300px; }
+  .heroPlanBoard { margin-top: 0; }
+  .heroPlanBoardLabel { grid-template-columns: 1fr auto; padding: 14px 16px; }.heroPlanBoardLabel span { grid-column: 1 / -1; }.heroPlanBoardLabel small { text-align: right; }
   .eiffelMark { height: 280px; transform: translateX(-50%) scale(.72); transform-origin: bottom; }
   .featuredFrancePlans, .francePlanExplorer, .franceEssentials { margin-top: 58px; }
   .featuredFrancePlans > header, .francePlanExplorer > header { align-items: start; flex-direction: column; }

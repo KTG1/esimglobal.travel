@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
-import FrancePlans from "../france/FrancePlans";
+import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { SiteFooter, SiteHeader } from "../SiteChrome";
 
 export function generateStaticParams() {
@@ -41,6 +41,7 @@ export default async function CountryPage({ params }) {
           <div className="countrySignal"><i /><i /><i /><i /></div>
           <span className="routeLabel">{destination.airport} → Connected</span>
         </div>
+        <HeroPlanStrip country={destination.name} plans={destination.plans} />
       </section>
 
       <FrancePlans country={destination.name} plans={destination.plans} />

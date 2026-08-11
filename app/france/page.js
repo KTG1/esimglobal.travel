@@ -1,4 +1,4 @@
-import FrancePlans from "./FrancePlans";
+import FrancePlans, { francePlans, HeroPlanStrip } from "./FrancePlans";
 import { SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata = {
@@ -26,6 +26,7 @@ export default function FrancePage() {
           <div className="eiffelMark"><i /><i /><i /><i /></div>
           <span className="routeLabel">CDG → Connected</span>
         </div>
+        <HeroPlanStrip country="France" plans={francePlans} />
       </section>
 
       <FrancePlans />

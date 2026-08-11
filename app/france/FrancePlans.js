@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-const defaultPlans = [
+export const francePlans = [
   { brand: "Saily", product: "France", data: 5, dataLabel: "5 GB", days: 30, price: 12.99, network: "5G", color: "#3626a7", note: "Balanced pick" },
   { brand: "Airalo", product: "Bonbon Mobile", data: 10, dataLabel: "10 GB", days: 30, price: 23, network: "5G", color: "#ff6b4a", note: "Popular data plan" },
   { brand: "Holafly", product: "France Unlimited", data: 999, dataLabel: "Unlimited", days: 7, price: 27.5, network: "5G", color: "#7b2dff", note: "Unlimited pick" },
@@ -26,7 +26,25 @@ function FilterGroup({ title, options, value, onChange }) {
   );
 }
 
-export default function FrancePlans({ country = "France", plans = defaultPlans }) {
+export function HeroPlanStrip({ country, plans }) {
+  return (
+    <div className="heroPlanBoard" aria-label={`Top five eSIM options for ${country}`}>
+      <div className="heroPlanBoardLabel"><span>LIVE SHORTLIST</span><strong>Top 5 for {country}</strong><small>Preview prices · verify before purchase</small></div>
+      <div className="heroPlanRail">
+        {plans.slice(0, 5).map((plan, index) => (
+          <a href="#plans" key={`${plan.brand}-${plan.product}-${index}`} style={{ "--plan-color": plan.color }}>
+            <span className="heroPlanRank">0{index + 1}</span>
+            <div><b><i />{plan.brand}</b><small>{plan.product}</small></div>
+            <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
+            <strong>${plan.price.toFixed(2)}</strong><em aria-hidden="true">↗</em>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function FrancePlans({ country = "France", plans = francePlans }) {
   const [data, setData] = useState(0);
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(999);
