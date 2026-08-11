@@ -31,7 +31,7 @@ export function SiteFooter() {
       </div>
       <div className="footerNav">
         <div><h2>Explore</h2><a href="/#compare">Compare eSIM plans</a><a href="/#how-it-works">How travel eSIMs work</a><a href="/#compare">Global coverage</a></div>
-        <div><h2>Popular regions</h2><a href="/france/">France eSIMs</a><a href="/#compare">Europe eSIMs</a><a href="/#compare">Asia eSIMs</a></div>
+        <div><h2>Popular countries</h2><a href="/france/">France eSIMs</a><a href="/italy/">Italy eSIMs</a><a href="/spain/">Spain eSIMs</a><a href="/turkey/">Türkiye eSIMs</a><a href="/japan/">Japan eSIMs</a><a href="/united-states/">United States eSIMs</a></div>
         <div><h2>Marketplace</h2><span>Independent comparisons</span><span>Provider terms apply</span><span>Prices shown in USD</span></div>
       </div>
       <div className="footerBase"><span>© {new Date().getFullYear()} eSIM Global Travel</span><span>Compare before you connect.</span><span>Istanbul · Worldwide</span></div>

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-const plans = [
+const defaultPlans = [
   { brand: "Saily", product: "France", data: 5, dataLabel: "5 GB", days: 30, price: 12.99, network: "5G", color: "#3626a7", note: "Balanced pick" },
   { brand: "Airalo", product: "Bonbon Mobile", data: 10, dataLabel: "10 GB", days: 30, price: 23, network: "5G", color: "#ff6b4a", note: "Popular data plan" },
   { brand: "Holafly", product: "France Unlimited", data: 999, dataLabel: "Unlimited", days: 7, price: 27.5, network: "5G", color: "#7b2dff", note: "Unlimited pick" },
@@ -26,7 +26,7 @@ function FilterGroup({ title, options, value, onChange }) {
   );
 }
 
-export default function FrancePlans() {
+export default function FrancePlans({ country = "France", plans = defaultPlans }) {
   const [data, setData] = useState(0);
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(999);
@@ -36,7 +36,7 @@ export default function FrancePlans() {
   return (
     <>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
-        <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title">Popular France eSIM plans</h2></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
+        <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title">Popular {country} eSIM plans</h2></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
         <div className="featuredPlanGrid">
           {plans.slice(0, 3).map((plan, index) => (
             <article key={plan.brand} style={{ "--plan-color": plan.color }}>
@@ -52,7 +52,7 @@ export default function FrancePlans() {
       </section>
 
       <section className="francePlanExplorer" id="plans" aria-labelledby="plans-title">
-        <header><div><p className="eyebrow">FILTER AND COMPARE</p><h2 id="plans-title">Find a France eSIM for your trip</h2></div><span>{filteredPlans.length} matching plans</span></header>
+        <header><div><p className="eyebrow">FILTER AND COMPARE</p><h2 id="plans-title">Find a {country} eSIM for your trip</h2></div><span>{filteredPlans.length} matching plans</span></header>
         <div className="planFilters">
           <FilterGroup title="Total data" options={filterOptions.data} value={data} onChange={setData} />
           <FilterGroup title="Validity" options={filterOptions.days} value={days} onChange={setDays} />
