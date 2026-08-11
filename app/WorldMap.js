@@ -328,6 +328,7 @@ export default function WorldMap() {
                 <span>Selected destination</span>
                 <strong>{selectedCountry.name}</strong>
                 <small>{selectedOffer ? `${selectedOffer.brand} ${selectedOffer.product} · ${selectedOffer.data} · ${selectedOffer.days} days · $${selectedOffer.price.toFixed(2)}` : "No comparable consumer plan found"}</small>
+                {selectedCountry.code === "FR" && <a href="/france/">Open the complete France comparison <b aria-hidden="true">↗</b></a>}
               </div>
             )}
           </aside>
