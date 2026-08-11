@@ -124,7 +124,7 @@ export default function WorldMap() {
   }
 
   return (
-    <section className="destinationFinder" aria-labelledby="destination-title">
+    <section className="destinationFinder" id="compare" aria-labelledby="destination-title">
       <div className="finderTopline">
         <div>
           <p className="finderStep">Global coverage explorer</p>
