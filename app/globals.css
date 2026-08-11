@@ -152,7 +152,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .guideHeading h2 { max-width: 760px; margin: 0; font: 400 clamp(40px, 5.5vw, 72px)/.98 Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
 .guideHeading > p { margin: 0 0 5px; color: #537088; font-size: 15px; line-height: 1.55; }
 .guideSwitcher { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(0, 1.45fr); border: 1px solid var(--line); background: rgba(248,252,255,.66); box-shadow: 0 22px 60px rgba(18,43,69,.07); }
-.guideTabs { display: grid; align-content: stretch; border-right: 1px solid var(--line); }
+.guideTabs { display: grid; grid-template-rows: repeat(5, 1fr); align-content: stretch; border-right: 1px solid var(--line); }
 .guideTabs button { position: relative; display: grid; grid-template-columns: 34px 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 3px 8px; min-height: 78px; padding: 14px 16px; border: 0; border-bottom: 1px solid var(--line); color: var(--ink); background: rgba(234,246,255,.42); text-align: left; cursor: pointer; }
 .guideTabs button:last-child { border-bottom: 0; }
 .guideTabs button > span { grid-row: 1 / 3; color: #7290a7; font: 500 12px/1 "SFMono-Regular", Consolas, monospace; }
@@ -163,8 +163,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .guideTabs button:hover, .guideTabs button.active { background: var(--paper); }
 .guideTabs button.active::before { transform: scaleY(1); }
 .guideTabs button.active > span { color: var(--signal); }
-.guidePanels { position: relative; min-height: 390px; overflow: hidden; }
-.guidePanel { position: relative; min-height: 390px; padding: clamp(28px, 5vw, 58px); animation: guideReveal .3s ease both; }
+.guidePanels { position: relative; min-height: 600px; overflow: hidden; }
+.guidePanel { position: relative; min-height: 600px; padding: clamp(28px, 4vw, 48px); animation: guideReveal .3s ease both; }
 .guidePanelNumber { position: absolute; right: -12px; top: -35px; color: rgba(22,132,214,.07); font: 400 clamp(150px, 23vw, 270px)/1 Georgia, serif; letter-spacing: -.1em; pointer-events: none; }
 .guideKicker { position: relative; margin: 0 0 12px; color: var(--ocean); font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
 .guidePanel h3 { position: relative; max-width: 680px; margin: 0; font: 400 clamp(30px, 4vw, 48px)/1.05 Georgia, serif; letter-spacing: -.04em; }
@@ -172,6 +172,19 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .guidePanel ul { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; padding: 0; list-style: none; }
 .guidePanel li { display: flex; align-items: center; gap: 7px; padding: 10px; border: 1px solid var(--line); color: #304f68; background: rgba(255,255,255,.55); font-size: 10px; line-height: 1.25; }
 .guidePanel li span { color: var(--signal); font-weight: 800; }
+.guideComparison { position: relative; margin-top: 22px; border: 1px solid var(--line); background: rgba(234,246,255,.55); }
+.guideComparison > header { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 11px; border-bottom: 1px solid var(--line); }
+.guideComparison > header strong { color: var(--ocean); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.guideComparison > header span { color: #7893a7; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .05em; text-transform: uppercase; }
+.guideComparison > div { display: grid; grid-template-columns: repeat(3, 1fr); }
+.guideComparison article { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 3px 9px; min-width: 0; padding: 12px 10px; border-right: 1px solid var(--line); }
+.guideComparison article:last-child { border-right: 0; }
+.comparisonRank { grid-row: 1 / 3; color: var(--comparison-color); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; }
+.guideComparison article > div { display: grid; min-width: 0; gap: 3px; }
+.guideComparison article > div strong { display: flex; align-items: center; gap: 5px; font: 500 13px/1 Georgia, serif; }
+.guideComparison article > div strong i { width: 6px; height: 6px; border-radius: 50%; background: var(--comparison-color); }
+.guideComparison article > div b { font: 500 11px/1.2 "Avenir Next", Avenir, sans-serif; }
+.guideComparison article small { overflow: hidden; color: #6b8397; font-size: 8px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 .guidePanel aside { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 13px; margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
 .guidePanel aside strong { color: var(--signal); font: 700 8px/1.3 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .guidePanel aside p { margin: 0; color: #537088; font-size: 11px; line-height: 1.45; }
@@ -211,6 +224,9 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .mapCanvas { min-height: 400px; }
   .guideSwitcher { grid-template-columns: 230px 1fr; }
   .guidePanel ul { grid-template-columns: 1fr; }
+  .guideComparison > div { grid-template-columns: 1fr; }
+  .guideComparison article { border-right: 0; border-bottom: 1px solid var(--line); }
+  .guideComparison article:last-child { border-bottom: 0; }
   .siteFooter { grid-template-columns: 1fr; }
 }
 
@@ -246,14 +262,14 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .guideHeading { grid-template-columns: 1fr; gap: 16px; }
   .guideHeading h2 { font-size: 42px; }
   .guideSwitcher { grid-template-columns: 1fr; }
-  .guideTabs { grid-template-columns: repeat(5, minmax(74px, 1fr)); overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .guideTabs { grid-template-columns: repeat(5, minmax(74px, 1fr)); grid-template-rows: 1fr; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); }
   .guideTabs button { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 84px; padding: 11px; border-right: 1px solid var(--line); border-bottom: 0; }
   .guideTabs button > span { grid-row: auto; }
   .guideTabs button strong { font-size: 9px; }
   .guideTabs button small, .guideTabs button i { display: none; }
   .guideTabs button::before { inset: auto 0 0; width: auto; height: 3px; transform: scaleX(0); }
   .guideTabs button.active::before { transform: scaleX(1); }
-  .guidePanel { min-height: 490px; padding: 28px 20px; }
+  .guidePanel { min-height: 760px; padding: 28px 20px; }
   .guidePanel h3 { font-size: 34px; }
   .guidePanel aside { grid-template-columns: 1fr; }
   .siteFooter { margin-inline: -10px; padding: 34px 24px; }
