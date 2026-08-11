@@ -1,5 +1,6 @@
 import FrancePlans, { francePlans, HeroPlanStrip } from "./FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
+import { sitePath } from "../sitePath";
 
 export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
@@ -13,7 +14,7 @@ export default function FrancePage() {
       <SiteHeader />
       <CountryBreadcrumbs region="Europe" country="France" />
 
-      <section className="franceHero franceDestinationHero">
+      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.png")}")` }}>
         <div className="franceHeroCopy">
           <div className="franceFlag" aria-label="Flag of France"><i /><i /><i /></div>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>

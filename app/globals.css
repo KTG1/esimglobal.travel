@@ -232,7 +232,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .countryPopover { min-width: 230px; }
 .franceHero { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); overflow: hidden; color: white; background: var(--ink); }
 .franceHero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,35,149,.35) 0 33%, transparent 33% 66%, rgba(237,41,57,.24) 66%); opacity: .5; }
-.franceDestinationHero { background: #071f35 url("/images/france-esim-hero.png") center / cover no-repeat; }
+.franceDestinationHero { background-color: #071f35; background-position: center; background-size: cover; background-repeat: no-repeat; }
 .franceDestinationHero::before { z-index: 0; background: linear-gradient(90deg, rgba(4,27,49,.97) 0%, rgba(5,32,55,.92) 45%, rgba(5,27,46,.58) 72%, rgba(5,22,38,.3) 100%); opacity: 1; }
 .franceDestinationHero .franceHeroCopy { background: linear-gradient(90deg, rgba(2,31,62,.68), rgba(3,32,55,.2)); }
 .franceDestinationHero .franceVisual { background: transparent; }
