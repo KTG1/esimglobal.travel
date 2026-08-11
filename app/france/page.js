@@ -1,5 +1,5 @@
 import FrancePlans, { francePlans, HeroPlanStrip } from "./FrancePlans";
-import { SiteFooter, SiteHeader } from "../SiteChrome";
+import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
@@ -11,7 +11,7 @@ export default function FrancePage() {
   return (
     <main className="countryPage">
       <SiteHeader />
-      <nav className="breadcrumbs" aria-label="Breadcrumb"><a href="/">Global eSIMs</a><span>/</span><a href="/#compare">Europe</a><span>/</span><span>France</span></nav>
+      <CountryBreadcrumbs region="Europe" country="France" />
 
       <section className="franceHero franceDestinationHero">
         <div className="franceHeroCopy">
@@ -21,9 +21,10 @@ export default function FrancePage() {
           <p>Compare prepaid France eSIM plans from leading travel providers. Review mobile data, validity, 4G and 5G coverage, included features and price before you fly.</p>
           <a href="#plans">Compare France plans <span aria-hidden="true">↓</span></a>
         </div>
-        <div className="franceVisual" aria-hidden="true">
+        <div className="franceVisual">
           <div className="parisStamp"><span>PAR</span><strong>48.8566° N</strong><small>02.3522° E</small></div>
           <div className="eiffelMark"><i /><i /><i /><i /></div>
+          <aside className="heroArrivalBrief"><p>ARRIVAL BRIEF</p><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd></div><div><dt>Expected speed</dt><dd>4G / 5G</dd></div><div><dt>Setup</dt><dd>Install before departure</dd></div></dl></aside>
           <span className="routeLabel">CDG → Connected</span>
         </div>
         <HeroPlanStrip country="France" plans={francePlans} />

@@ -21,6 +21,25 @@ export function SiteHeader() {
   );
 }
 
+const destinationGroups = {
+  Europe: [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }],
+  Asia: [{ name: "Japan", href: "/japan/" }, { name: "Türkiye", href: "/turkey/" }],
+  "Europe & Asia": [{ name: "Türkiye", href: "/turkey/" }, { name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Japan", href: "/japan/" }],
+  "North America": [{ name: "United States", href: "/united-states/" }],
+};
+
+export function CountryBreadcrumbs({ region, country }) {
+  const regionalDestinations = destinationGroups[region] || [];
+  const allDestinations = [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }, { name: "Japan", href: "/japan/" }, { name: "United States", href: "/united-states/" }];
+  return (
+    <nav className="breadcrumbs breadcrumbMenu" aria-label="Breadcrumb">
+      <a href="/">Global eSIMs</a><span>/</span>
+      <details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={item.href} key={item.href}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details><span>/</span>
+      <details><summary className="currentCrumb">{country}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{allDestinations.map((item) => <a href={item.href} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details>
+    </nav>
+  );
+}
+
 export function SiteFooter() {
   return (
     <footer className="siteFooter" id="about">

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
-import { SiteFooter, SiteHeader } from "../SiteChrome";
+import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export function generateStaticParams() {
   return countrySlugs.map((country) => ({ country }));
@@ -27,7 +27,7 @@ export default async function CountryPage({ params }) {
   return (
     <main className="countryPage">
       <SiteHeader />
-      <nav className="breadcrumbs" aria-label="Breadcrumb"><a href="/">Global eSIMs</a><span>/</span><a href="/#compare">{destination.region}</a><span>/</span><span>{destination.name}</span></nav>
+      <CountryBreadcrumbs region={destination.region} country={destination.name} />
       <section className="franceHero countryHero">
         <div className="franceHeroCopy">
           <span className="countryEmojiFlag" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>
@@ -36,9 +36,10 @@ export default async function CountryPage({ params }) {
           <p>Compare prepaid {destination.name} eSIM plans from leading travel providers. Review mobile data, validity, network coverage, included features and price before you fly.</p>
           <a href="#plans">Compare {destination.name} plans <span aria-hidden="true">↓</span></a>
         </div>
-        <div className="franceVisual genericCountryVisual" data-code={destination.code} aria-hidden="true">
+        <div className="franceVisual genericCountryVisual" data-code={destination.code}>
           <div className="parisStamp"><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
           <div className="countrySignal"><i /><i /><i /><i /></div>
+          <aside className="heroArrivalBrief"><p>ARRIVAL BRIEF</p><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd></div><div><dt>Setup</dt><dd>Install before departure</dd></div></dl></aside>
           <span className="routeLabel">{destination.airport} → Connected</span>
         </div>
         <HeroPlanStrip country={destination.name} plans={destination.plans} />
