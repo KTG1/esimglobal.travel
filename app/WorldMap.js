@@ -24,6 +24,12 @@ const brandOffers = {
   OC: [{ brand: "Saily", product: "Oceania", data: "5 GB", days: 30, price: 19.99, color: "#3626a7" }, { brand: "Nomad", product: "Oceania", data: "5 GB", days: 30, price: 16, color: "#6f5cff" }, { brand: "Airalo", product: "Island Hopper", data: "3 GB", days: 30, price: 12, color: "#ff6b4a" }],
   AN: [],
 };
+const brandFacts = {
+  Saily: { network: "3G / 4G / 5G", delivery: "Instant QR", activation: "On arrival", extra: "Web protection" },
+  Airalo: { network: "3G / 4G / 5G", delivery: "Instant eSIM", activation: "On network", extra: "Top-ups available" },
+  Holafly: { network: "4G / 5G", delivery: "Instant QR", activation: "On network", extra: "Unlimited data" },
+  Nomad: { network: "4G / 5G", delivery: "Instant eSIM", activation: "On network", extra: "Add-on data" },
+};
 
 const mapCountries = world.locations
   .map((location) => {
@@ -167,6 +173,33 @@ export default function WorldMap() {
               })}
             </g>
           </svg>
+          {selectedOffer && (
+            <article
+              className="mapPlanPassport"
+              style={{ "--brand-color": selectedOffer.color }}
+              aria-label={`${selectedOffer.brand} ${selectedOffer.product} plan details`}
+            >
+              <header>
+                <div>
+                  <span><i /> Selected eSIM</span>
+                  <h3>{selectedOffer.brand} <small>{selectedOffer.product}</small></h3>
+                </div>
+                <strong>${selectedOffer.price.toFixed(2)}</strong>
+              </header>
+              <dl>
+                <div><dt>Allowance</dt><dd>{selectedOffer.data}</dd></div>
+                <div><dt>Validity</dt><dd>{selectedOffer.days} days</dd></div>
+                <div><dt>Network</dt><dd>{brandFacts[selectedOffer.brand].network}</dd></div>
+                <div><dt>Delivery</dt><dd>{brandFacts[selectedOffer.brand].delivery}</dd></div>
+                <div><dt>Activation</dt><dd>{brandFacts[selectedOffer.brand].activation}</dd></div>
+                <div><dt>Included</dt><dd>{brandFacts[selectedOffer.brand].extra}</dd></div>
+              </dl>
+              <footer>
+                <span>{mapCountries.filter((country) => country.continent === selectedRegion).length} mapped destinations</span>
+                <span>Provider terms apply</span>
+              </footer>
+            </article>
+          )}
           <div className="mapLegend" aria-hidden="true">
             <span><i className="legendAvailable" /> Selectable</span>
             <span><i className="legendSelected" /> Selected</span>

@@ -64,6 +64,7 @@ h1 { max-width: 780px; margin: 0; font: 400 clamp(64px, 11vw, 150px)/.86 Georgia
 .mapWorkspace.isExploring { grid-template-columns: minmax(0, 1fr) 330px; }
 .mapCanvas { position: relative; display: grid; place-items: center; min-width: 0; padding: 118px 26px 58px; overflow: hidden; background-image: linear-gradient(rgba(22,132,214,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(22,132,214,.045) 1px, transparent 1px); background-size: 42px 42px; }
 .mapWorkspace:not(.isExploring) .mapCanvas { padding-top: 34px; }
+.mapWorkspace.isExploring .mapCanvas { padding-bottom: 164px; }
 .countryMap { display: block; width: 100%; max-height: 460px; overflow: visible; }
 .mapCountry { fill: rgba(22,132,214,.16); stroke: var(--paper); stroke-width: .8; vector-effect: non-scaling-stroke; cursor: pointer; transition: fill .14s ease, opacity .2s ease; }
 .mapCountry:hover, .mapCountry:focus { fill: var(--ocean); outline: none; }
@@ -89,6 +90,19 @@ h1 { max-width: 780px; margin: 0; font: 400 clamp(64px, 11vw, 150px)/.86 Georgia
 .mapPlanOverlay button small { overflow: hidden; color: #537088; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
 .mapPlanOverlay button:hover, .mapPlanOverlay button.selected { border-color: var(--brand-color); box-shadow: inset 3px 0 0 var(--brand-color), 0 7px 18px rgba(18,43,69,.06); }
 .noOffers { grid-column: 1 / -1; margin: 12px 0; color: #537088; font-size: 12px; }
+.mapPlanPassport { position: absolute; z-index: 2; right: 20px; bottom: 18px; width: min(510px, calc(100% - 40px)); border: 1px solid var(--line); background: rgba(248,252,255,.95); box-shadow: 0 12px 30px rgba(18,43,69,.1); }
+.mapPlanPassport header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px 10px; border-bottom: 1px solid var(--line); }
+.mapPlanPassport header span { display: flex; align-items: center; gap: 6px; color: #537088; font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; text-transform: uppercase; }
+.mapPlanPassport header i { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-color); }
+.mapPlanPassport h3 { margin: 3px 0 0; font: 500 18px/1.1 Georgia, serif; }
+.mapPlanPassport h3 small { color: #537088; font: 500 11px/1.2 "Avenir Next", Avenir, sans-serif; }
+.mapPlanPassport header > strong { font: 400 25px/1 Georgia, serif; }
+.mapPlanPassport dl { display: grid; grid-template-columns: repeat(6, 1fr); margin: 0; }
+.mapPlanPassport dl div { min-width: 0; padding: 9px 8px; border-right: 1px solid var(--line); }
+.mapPlanPassport dl div:last-child { border-right: 0; }
+.mapPlanPassport dt { margin-bottom: 4px; color: #6b8397; font: 700 7px/1.1 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+.mapPlanPassport dd { overflow: hidden; margin: 0; color: var(--ink); font-size: 9px; line-height: 1.2; text-overflow: ellipsis; }
+.mapPlanPassport footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 10px; border-top: 1px dashed var(--line); color: #6b8397; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; }
 
 .countryManifest { display: grid; grid-template-rows: auto auto auto 1fr auto; min-width: 0; max-height: 590px; padding: 24px; border-left: 1px solid var(--line); background: rgba(234,246,255,.72); animation: revealManifest .28s ease both; }
 .manifestHeader { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -156,6 +170,11 @@ footer { padding-top: 24px; border-top: 1px solid var(--line); color: #537088; }
   .mapPlanOverlay { left: 12px; right: 12px; }
   .mapPlanOverlay > div { display: flex; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
   .mapPlanOverlay button { flex: 0 0 155px; }
+  .mapWorkspace.isExploring .mapCanvas { padding-bottom: 218px; }
+  .mapPlanPassport { left: 12px; right: 12px; bottom: 46px; width: auto; }
+  .mapPlanPassport dl { grid-template-columns: repeat(3, 1fr); }
+  .mapPlanPassport dl div:nth-child(3) { border-right: 0; }
+  .mapPlanPassport dl div:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
   .mapInstruction { display: none; }
   .mapLegend { left: 15px; bottom: 16px; }
   .countryManifest { padding: 20px 16px; }
