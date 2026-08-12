@@ -360,7 +360,26 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .franceFaq > header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
 .franceFaq h2 { max-width: 760px; margin: 0; font: 400 clamp(42px, 5.5vw, 72px)/.98 Georgia, serif; letter-spacing: -.055em; }
 .franceFaq > header > span { color: #7893a7; font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.faqTabs { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 0; border: 1px solid var(--line); background: rgba(248,252,255,.62); }
+.faqTabs button { position: relative; display: grid; grid-template-columns: 28px 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 5px 10px; min-width: 0; padding: 18px 20px; border: 0; border-right: 1px solid var(--line); color: var(--ink); background: transparent; text-align: left; cursor: pointer; transition: color .18s ease, background .18s ease; }
+.faqTabs button:last-child { border-right: 0; }
+.faqTabs button::after { content: ""; position: absolute; inset: auto 0 0; height: 4px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+.faqTabs button:hover { background: rgba(255,255,255,.78); }
+.faqTabs button[aria-selected="true"] { color: var(--ocean); background: white; }
+.faqTabs button[aria-selected="true"]::after { transform: scaleX(1); }
+.faqTabs button:focus-visible { z-index: 1; outline: 2px solid var(--ocean); outline-offset: -3px; }
+.faqTabs button > span { grid-row: 1 / 3; color: #7593a9; font: 700 9px/1 "SFMono-Regular", Consolas, monospace; }
+.faqTabs button[aria-selected="true"] > span { color: var(--signal); }
+.faqTabs strong { overflow: hidden; font: 600 13px/1.2 "Avenir Next", Avenir, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.faqTabs small { overflow: hidden; color: #6f899d; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.faqTabs em { grid-column: 3; grid-row: 1 / 3; color: #86a0b3; font: normal 700 7px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+.faqPanels { border: 1px solid var(--line); border-top: 0; background: rgba(248,252,255,.38); box-shadow: 0 22px 55px rgba(18,43,69,.06); }
+.faqPanel[hidden] { display: none; }
+.faqPanel > header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 13px 20px; border-bottom: 1px solid var(--line); background: rgba(234,246,255,.48); }
+.faqPanel > header span { color: var(--ocean); font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.faqPanel > header p { margin: 0; color: #7893a7; font-size: 10px; }
 .faqList { border-top: 1px solid var(--line); }
+.faqPanel .faqList { border-top: 0; }
 .faqList details { border-bottom: 1px solid var(--line); }
 .faqList summary { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 16px; padding: 20px 8px; color: var(--ink); cursor: pointer; list-style: none; font: 500 clamp(17px, 2vw, 23px)/1.2 Georgia, serif; }
 .faqList summary::-webkit-details-marker { display: none; }
@@ -468,6 +487,9 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .franceFaq { margin-bottom: 58px; }
   .franceFaq > header { align-items: start; flex-direction: column; }
   .franceFaq h2 { font-size: 42px; }
+  .faqTabs { overflow-x: auto; grid-template-columns: repeat(3, minmax(190px, 1fr)); scrollbar-width: none; }
+  .faqTabs button { padding: 15px 14px; }
+  .faqPanel > header { align-items: flex-start; flex-direction: column; gap: 4px; }
   .faqList summary { grid-template-columns: 28px 1fr auto; gap: 9px; padding: 17px 2px; }
   .faqList details > p { margin: -3px 38px 0 37px; }
   .siteFooter { margin-inline: -10px; padding: 34px 24px; }

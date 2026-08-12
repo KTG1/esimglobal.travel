@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
 import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
+import CountryFaqTabs from "../CountryFaqTabs";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
@@ -80,15 +81,7 @@ export default async function CountryPage({ params }) {
 
       <section className="franceFaq" aria-labelledby={faqId}>
         <header><div><p className="eyebrow">{destination.name.toUpperCase()} ESIM FAQ</p><h2 id={faqId}>Questions before you connect</h2></div><span>07 practical answers</span></header>
-        <div className="faqList">
-          <details open><summary><span>01</span>What is the best eSIM for {destination.name}?<i aria-hidden="true">+</i></summary><p>The best option depends on your trip length, data use, budget and required features. Compare coverage, allowance, validity, hotspot rules and support—not only price.</p></details>
-          <details><summary><span>02</span>How much data do I need?<i aria-hidden="true">+</i></summary><p>Light navigation and messaging may use 1–3 GB per week. Regular social media, video calls or hotspot use can require 5–10 GB or an unlimited plan.</p></details>
-          <details><summary><span>03</span>When should I install and activate it?<i aria-hidden="true">+</i></summary><p>Install over Wi-Fi before departure, but check when validity begins. Some plans activate after connecting locally; others begin at installation or purchase.</p></details>
-          <details><summary><span>04</span>Can I keep my regular number?<i aria-hidden="true">+</i></summary><p>Yes. Use the travel eSIM for data while keeping your primary SIM available for calls or messages, subject to your home carrier’s roaming charges.</p></details>
-          <details><summary><span>05</span>Are calls and SMS included?<i aria-hidden="true">+</i></summary><p>Many travel eSIMs are data-only. You can use WhatsApp, FaceTime or Signal, or select a plan that explicitly includes a phone number.</p></details>
-          <details><summary><span>06</span>Can I share data through a hotspot?<i aria-hidden="true">+</i></summary><p>This depends on the product. Fixed-data plans often allow tethering, while unlimited plans may impose a daily sharing limit.</p></details>
-          <details><summary><span>07</span>Will this eSIM work in nearby countries?<i aria-hidden="true">+</i></summary><p>A country-only plan may stop working at the border. For a multi-country itinerary, compare regional plans and verify every destination in the coverage list.</p></details>
-        </div>
+        <CountryFaqTabs country={destination.name} />
       </section>
       </main>
       <SiteFooter />
