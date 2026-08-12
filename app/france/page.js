@@ -6,6 +6,20 @@ export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
   description: "Compare travel eSIM plans for France by provider, data, validity, network and price. Find prepaid France eSIM options for your trip.",
   alternates: { canonical: "https://esimglobal.travel/france/" },
+  openGraph: {
+    title: "Best eSIM for France: Compare Data Plans & Prices",
+    description: "Compare prepaid France eSIM plans, coverage, data, validity and prices before you travel.",
+    url: "https://esimglobal.travel/france/",
+    siteName: "eSIM Global Travel",
+    type: "website",
+    images: [{ url: "https://esimglobal.travel/images/france-esim-hero.jpg", width: 1200, height: 630, alt: "The Eiffel Tower illuminated at blue hour in Paris, France" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best eSIM for France",
+    description: "Compare prepaid France eSIM plans, coverage, data and prices.",
+    images: ["https://esimglobal.travel/images/france-esim-hero.jpg"],
+  },
 };
 
 export default function FrancePage() {
@@ -14,7 +28,7 @@ export default function FrancePage() {
       <SiteHeader />
       <CountryBreadcrumbs region="Europe" country="France" />
 
-      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.png")}")` }}>
+      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")` }}>
         <div className="franceHeroCopy">
           <div className="franceFlag" aria-label="Flag of France"><i /><i /><i /></div>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>

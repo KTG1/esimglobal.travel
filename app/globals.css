@@ -237,6 +237,11 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .franceDestinationHero .franceHeroCopy { background: linear-gradient(90deg, rgba(2,31,62,.68), rgba(3,32,55,.2)); }
 .franceDestinationHero .franceVisual { background: transparent; }
 .franceDestinationHero .franceVisual::after, .franceDestinationHero .eiffelMark { display: none; }
+.countryDestinationHero { background-color: #071f35; background-position: center; background-size: cover; background-repeat: no-repeat; }
+.countryDestinationHero::before { z-index: 0; background: linear-gradient(90deg, rgba(4,27,49,.98) 0%, rgba(5,32,55,.94) 42%, rgba(5,27,46,.62) 68%, rgba(5,22,38,.24) 100%); opacity: 1; }
+.countryDestinationHero .franceHeroCopy { background: linear-gradient(90deg, rgba(2,31,62,.7), rgba(3,32,55,.14)); }
+.countryDestinationHero .franceVisual { background: transparent; }
+.countryDestinationHero .franceVisual::after, .countryDestinationHero .countrySignal { display: none; }
 .franceHeroCopy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 350px; padding: clamp(24px, 3.4vw, 44px); }
 .franceFlag { display: flex; width: 48px; height: 32px; margin-bottom: 14px; overflow: hidden; border: 3px solid white; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
 .franceFlag i { flex: 1; background: #002395; }.franceFlag i:nth-child(2) { background: white; }.franceFlag i:nth-child(3) { background: #ed2939; }

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
+import { sitePath } from "../sitePath";
 
 export function generateStaticParams() {
   return countrySlugs.map((country) => ({ country }));
@@ -15,6 +16,20 @@ export async function generateMetadata({ params }) {
     title: `Best eSIM for ${destination.name}: Compare Plans & Prices | eSIM Global`,
     description: `Compare travel eSIM plans for ${destination.name} by provider, data, validity, network and price. Find the right prepaid eSIM for your trip.`,
     alternates: { canonical: `https://esimglobal.travel/${country}/` },
+    openGraph: {
+      title: `Best eSIM for ${destination.name}: Compare Plans & Prices`,
+      description: `Compare prepaid ${destination.name} eSIM plans, coverage, data, validity and prices before you travel.`,
+      url: `https://esimglobal.travel/${country}/`,
+      siteName: "eSIM Global Travel",
+      type: "website",
+      images: [{ url: `https://esimglobal.travel${destination.heroImage}`, width: destination.heroWidth, height: destination.heroHeight, alt: destination.heroAlt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Best eSIM for ${destination.name}`,
+      description: `Compare prepaid ${destination.name} eSIM plans, coverage, data and prices.`,
+      images: [`https://esimglobal.travel${destination.heroImage}`],
+    },
   };
 }
 
@@ -28,7 +43,10 @@ export default async function CountryPage({ params }) {
     <main className="countryPage">
       <SiteHeader />
       <CountryBreadcrumbs region={destination.region} country={destination.name} />
-      <section className="franceHero countryHero">
+      <section
+        className="franceHero countryHero countryDestinationHero"
+        style={{ backgroundImage: `url("${sitePath(destination.heroImage)}")` }}
+      >
         <div className="franceHeroCopy">
           <span className="countryEmojiFlag" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>
           <p className="eyebrow">{destination.name.toUpperCase()} ESIM COMPARISON / UPDATED AUGUST 2026</p>
