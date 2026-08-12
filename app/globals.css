@@ -219,11 +219,15 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 
 /* France destination page */
 .countryPage { gap: 0; }
-.breadcrumbs { display: flex; gap: 9px; margin: 24px 0; color: #7893a7; font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+.breadcrumbs { display: flex; min-height: 36px; align-items: center; gap: 4px; margin: 24px 0; color: #7893a7; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
 .breadcrumbs a { color: var(--ocean); text-decoration: none; }
 .breadcrumbMenu { position: relative; z-index: 20; align-items: center; overflow: visible; }
-.breadcrumbMenu details { position: relative; }
-.breadcrumbMenu summary { display: flex; align-items: center; gap: 7px; padding: 8px 9px; border: 1px solid transparent; color: var(--ocean); cursor: pointer; list-style: none; transition: border-color .18s ease, background .18s ease; }
+.breadcrumbMenu > .breadcrumbHome, .breadcrumbMenu > details > summary { box-sizing: border-box; min-height: 36px; }
+.breadcrumbMenu > .breadcrumbHome { display: inline-flex; align-items: center; padding: 0 9px; border: 1px solid transparent; transition: border-color .18s ease, background .18s ease; }
+.breadcrumbMenu > .breadcrumbHome:hover { border-color: var(--line); background: white; }
+.breadcrumbMenu > .breadcrumbSeparator { display: inline-grid; width: 18px; min-height: 36px; place-items: center; color: #7893a7; line-height: 1; }
+.breadcrumbMenu details { position: relative; display: flex; min-height: 36px; align-items: center; }
+.breadcrumbMenu summary { display: flex; min-height: 36px; align-items: center; gap: 7px; padding: 0 9px; border: 1px solid transparent; color: var(--ocean); cursor: pointer; line-height: 1; list-style: none; transition: border-color .18s ease, background .18s ease; }
 .breadcrumbMenu summary::-webkit-details-marker { display: none; }.breadcrumbMenu summary:hover, .breadcrumbMenu details[open] summary { border-color: var(--line); background: white; }.breadcrumbMenu summary.currentCrumb { color: #617b8f; }
 .breadcrumbMenu summary i { color: var(--signal); font: 700 11px/1 sans-serif; transition: transform .18s ease; }.breadcrumbMenu details[open] summary i { transform: rotate(180deg); }
 .crumbPopover { position: absolute; z-index: 30; top: calc(100% + 7px); left: 0; display: grid; min-width: 205px; padding: 10px; border: 1px solid var(--line); background: rgba(248,252,255,.98); box-shadow: 0 18px 45px rgba(18,43,69,.16); }
@@ -232,12 +236,12 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .countryPopover { min-width: 230px; }
 .franceHero { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); overflow: hidden; color: white; background: var(--ink); }
 .franceHero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,35,149,.35) 0 33%, transparent 33% 66%, rgba(237,41,57,.24) 66%); opacity: .5; }
-.franceDestinationHero { background-color: #071f35; background-position: center; background-size: cover; background-repeat: no-repeat; }
+.franceDestinationHero { background-color: #071f35; background-position: var(--hero-position, center); background-size: cover; background-repeat: no-repeat; }
 .franceDestinationHero::before { z-index: 0; background: linear-gradient(90deg, rgba(4,27,49,.97) 0%, rgba(5,32,55,.92) 45%, rgba(5,27,46,.58) 72%, rgba(5,22,38,.3) 100%); opacity: 1; }
 .franceDestinationHero .franceHeroCopy { background: linear-gradient(90deg, rgba(2,31,62,.68), rgba(3,32,55,.2)); }
 .franceDestinationHero .franceVisual { background: transparent; }
 .franceDestinationHero .franceVisual::after, .franceDestinationHero .eiffelMark { display: none; }
-.countryDestinationHero { background-color: #071f35; background-position: center; background-size: cover; background-repeat: no-repeat; }
+.countryDestinationHero { background-color: #071f35; background-position: var(--hero-position, center); background-size: cover; background-repeat: no-repeat; }
 .countryDestinationHero::before { z-index: 0; background: linear-gradient(90deg, rgba(4,27,49,.98) 0%, rgba(5,32,55,.94) 42%, rgba(5,27,46,.62) 68%, rgba(5,22,38,.24) 100%); opacity: 1; }
 .countryDestinationHero .franceHeroCopy { background: linear-gradient(90deg, rgba(2,31,62,.7), rgba(3,32,55,.14)); }
 .countryDestinationHero .franceVisual { background: transparent; }
@@ -400,6 +404,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .guidePanel h3 { font-size: 34px; }
   .guidePanel aside { grid-template-columns: 1fr; }
   .breadcrumbs { overflow: hidden; white-space: nowrap; }
+  .breadcrumbMenu { overflow: visible; }
   .franceHero { margin-inline: -10px; }
   .franceHeroCopy { padding: 42px 24px; }
   .franceHero h1 { font-size: 58px; }

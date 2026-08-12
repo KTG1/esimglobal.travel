@@ -45,7 +45,10 @@ export default async function CountryPage({ params }) {
       <CountryBreadcrumbs region={destination.region} country={destination.name} />
       <section
         className="franceHero countryHero countryDestinationHero"
-        style={{ backgroundImage: `url("${sitePath(destination.heroImage)}")` }}
+        style={{
+          backgroundImage: `url("${sitePath(destination.heroImage)}")`,
+          "--hero-position": destination.heroPosition,
+        }}
       >
         <div className="franceHeroCopy">
           <span className="countryEmojiFlag" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>

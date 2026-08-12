@@ -28,7 +28,7 @@ export default function FrancePage() {
       <SiteHeader />
       <CountryBreadcrumbs region="Europe" country="France" />
 
-      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")` }}>
+      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")`, "--hero-position": "center 52%" }}>
         <div className="franceHeroCopy">
           <div className="franceFlag" aria-label="Flag of France"><i /><i /><i /></div>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>

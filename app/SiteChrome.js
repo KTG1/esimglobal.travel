@@ -35,8 +35,8 @@ export function CountryBreadcrumbs({ region, country }) {
   const allDestinations = [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }, { name: "Japan", href: "/japan/" }, { name: "United States", href: "/united-states/" }];
   return (
     <nav className="breadcrumbs breadcrumbMenu" aria-label="Breadcrumb">
-      <a href={sitePath("/")}>Global eSIMs</a><span>/</span>
-      <details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details><span>/</span>
+      <a className="breadcrumbHome" href={sitePath("/")}>Global eSIMs</a><span className="breadcrumbSeparator" aria-hidden="true">/</span>
+      <details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details><span className="breadcrumbSeparator" aria-hidden="true">/</span>
       <details><summary className="currentCrumb">{country}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{allDestinations.map((item) => <a href={sitePath(item.href)} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details>
     </nav>
   );
