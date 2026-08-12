@@ -1,15 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-export const francePlans = [
-  { brand: "Saily", product: "France", data: 5, dataLabel: "5 GB", days: 30, price: 11.99, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Best overall" },
-  { brand: "Airalo", product: "Bonbon Mobile", data: 10, dataLabel: "10 GB", days: 30, price: 23, network: "5G", color: "#ff6b4a", note: "Popular data plan" },
-  { brand: "Holafly", product: "France Unlimited", data: 999, dataLabel: "Unlimited", days: 7, price: 27.5, network: "5G", color: "#7b2dff", note: "Unlimited pick" },
-  { brand: "Nomad", product: "France", data: 10, dataLabel: "10 GB", days: 30, price: 15, network: "5G", color: "#6f5cff", note: "Best price per GB" },
-  { brand: "Saily", product: "France Mini", data: 1, dataLabel: "1 GB", days: 7, price: 3.99, network: "4G / 5G", color: "#3626a7", note: "Short-trip pick" },
-  { brand: "Airalo", product: "Bonbon Mobile", data: 3, dataLabel: "3 GB", days: 30, price: 8.5, network: "5G", color: "#ff6b4a", note: "Light-use plan" },
-];
+import { francePlans } from "./plans";
 
 const filterOptions = {
   data: [{ label: "Any data", value: 0 }, { label: "3 GB+", value: 3 }, { label: "5 GB+", value: 5 }, { label: "10 GB+", value: 10 }],
@@ -30,14 +22,14 @@ export function HeroPlanStrip({ country, plans }) {
   const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <section className="heroPlanBoard" aria-labelledby={headingId}>
-      <header className="heroPlanBoardLabel"><span>LIVE SHORTLIST</span><h2 id={headingId}>Top 5 for {country}</h2><small>Preview prices · verify before purchase</small></header>
+      <header className="heroPlanBoardLabel"><span>EDITOR’S SHORTLIST</span><h2 id={headingId}>Top 5 for {country}</h2><p>Compared by data, validity, network and price.</p><small>Preview prices · verify before purchase</small></header>
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
-          <li key={`${plan.brand}-${plan.product}-${index}`}><a href="#plans" style={{ "--plan-color": plan.color }}>
-            <span className="heroPlanRank">0{index + 1}</span>
-            <div><b><i />{plan.brand}</b><small>{plan.product}</small></div>
+          <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
+            <div className="heroPlanMeta"><span className="heroPlanRank">0{index + 1}</span><small>{index === 0 ? "Best overall" : plan.note}</small></div>
+            <div className="heroPlanProvider"><b><i />{plan.brand}</b><small>{plan.product}</small></div>
             <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
-            <strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Read more <em aria-hidden="true">↗</em></span>
+            <div className="heroPlanFooter"><strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">↗</em></span></div>
           </a></li>
         ))}
       </ol>

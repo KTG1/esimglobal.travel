@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
+import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
@@ -56,16 +57,15 @@ export default async function CountryPage({ params }) {
       >
         <div className="franceHeroCopy">
           <span className="countryEmojiFlag" role="img" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>
-          <p className="eyebrow">{destination.name.toUpperCase()} ESIM COMPARISON / UPDATED AUGUST 2026</p>
+          <p className="eyebrow">{destination.name.toUpperCase()} ESIM COMPARISON / UPDATED <time dateTime="2026-08-12">AUGUST 2026</time></p>
           <h1 id={heroTitleId}>Find the best eSIM for {destination.name}.</h1>
-          <p>Compare prepaid {destination.name} eSIM plans from leading travel providers. Review mobile data, validity, network coverage, included features and price before you fly.</p>
-          <a href="#plans">Compare {destination.name} plans <span aria-hidden="true">↓</span></a>
+          <HeroQuickAnswer country={destination.name} plan={destination.plans[0]} summary={destination.heroSummary} reason={destination.pickReason} />
         </div>
         <figure className="franceVisual genericCountryVisual" data-code={destination.code}>
           <figcaption className="srOnly">{destination.heroAlt}</figcaption>
           <div className="parisStamp" aria-label={`${destination.city}: ${destination.coordinates.join(", ")}`}><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
           <div className="countrySignal" aria-hidden="true"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief" aria-labelledby={`${country}-arrival-title`}><header><h2 id={`${country}-arrival-title`}>Arrival brief</h2><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
+          <HeroArrivalBrief country={destination.name} networks={destination.networks} coverage={destination.coverage} network={destination.plans[0].network} titleId={`${country}-arrival-title`} />
           <span className="routeLabel">{destination.airport} → Connected</span>
         </figure>
         <HeroPlanStrip country={destination.name} plans={destination.plans} />

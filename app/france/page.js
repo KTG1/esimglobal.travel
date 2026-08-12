@@ -1,4 +1,6 @@
-import FrancePlans, { francePlans, HeroPlanStrip } from "./FrancePlans";
+import FrancePlans, { HeroPlanStrip } from "./FrancePlans";
+import { francePlans } from "./plans";
+import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
 
@@ -32,16 +34,15 @@ export default function FrancePage() {
       <section className="franceHero franceDestinationHero" aria-labelledby="france-hero-title" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")`, "--hero-position": "center 52%" }}>
         <div className="franceHeroCopy">
           <span className="franceFlag" role="img" aria-label="Flag of France"><i /><i /><i /></span>
-          <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>
+          <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED <time dateTime="2026-08-12">AUGUST 2026</time></p>
           <h1 id="france-hero-title">Find the best eSIM for France.</h1>
-          <p>Compare prepaid France eSIM plans from leading travel providers. Review mobile data, validity, 4G and 5G coverage, included features and price before you fly.</p>
-          <a href="#plans">Compare France plans <span aria-hidden="true">↓</span></a>
+          <HeroQuickAnswer country="France" plan={francePlans[0]} summary="Compare prepaid France eSIM plans for Paris, Lyon, Nice and travel between regions. Review data, validity, 4G and 5G access, hotspot rules and total price before choosing." reason="The 5 GB allowance is a sensible fit for maps, train bookings and everyday browsing, while 30-day validity covers most holidays without requiring an unlimited plan." />
         </div>
         <figure className="franceVisual">
           <figcaption className="srOnly">The Eiffel Tower illuminated at blue hour in Paris, France</figcaption>
           <div className="parisStamp" aria-label="Paris: 48.8566 degrees north, 2.3522 degrees east"><span>PAR</span><strong>48.8566° N</strong><small>02.3522° E</small></div>
           <div className="eiffelMark" aria-hidden="true"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief" aria-labelledby="france-arrival-title"><header><h2 id="france-arrival-title">Arrival brief</h2><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>4G / 5G</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
+          <HeroArrivalBrief country="France" networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." network="4G / 5G" titleId="france-arrival-title" />
           <span className="routeLabel">CDG → Connected</span>
         </figure>
         <HeroPlanStrip country="France" plans={francePlans} />
