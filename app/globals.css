@@ -360,6 +360,36 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .franceFaq > header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
 .franceFaq h2 { max-width: 760px; margin: 0; font: 400 clamp(42px, 5.5vw, 72px)/.98 Georgia, serif; letter-spacing: -.055em; }
 .franceFaq > header > span { color: #7893a7; font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.relatedCountryGuides { margin: 0 0 72px; padding-top: 30px; border-top: 1px solid var(--line); }
+.relatedCountryGuides > header { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .55fr); align-items: end; gap: clamp(36px, 8vw, 130px); margin-bottom: 30px; }
+.relatedCountryGuides h2 { max-width: 760px; margin: 0; font: 400 clamp(40px, 5vw, 66px)/.98 Georgia, serif; letter-spacing: -.05em; }
+.relatedCountryGuides > header > p { max-width: 520px; margin: 0 0 4px; color: #59768e; font-size: 16px; line-height: 1.6; }
+.relatedCountryGuides nav > ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.relatedCountryGuides li { min-width: 0; }
+.relatedCountryGuides a { position: relative; display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto auto 1fr auto auto; gap: 7px 11px; min-height: 258px; padding: 20px; overflow: hidden; color: var(--ink); text-decoration: none; background: rgba(255,255,255,.34); border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(16, 48, 72, 0); transition: transform .24s ease, color .24s ease, background-color .24s ease, border-color .24s ease, box-shadow .24s ease; }
+.relatedCountryGuides a::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .24s ease; }
+.relatedCountryGuides a::after { content: ""; position: absolute; right: -60px; bottom: -76px; width: 170px; height: 170px; border: 18px solid rgba(35,137,216,.055); border-radius: 50%; pointer-events: none; }
+.relatedCountryFlag { grid-column: 1; width: 34px; font-size: 22px; line-height: 1; }
+.relatedCountryCode { grid-column: 3; justify-self: end; color: var(--signal); font: 800 11px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; }
+.relatedCountryRegion { grid-column: 2; align-self: center; color: #6c879b; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; }
+.relatedCountryGuides strong { grid-column: 1 / -1; margin-top: 12px; font: 400 30px/1 Georgia, serif; letter-spacing: -.035em; }
+.relatedCountryGuides strong + small { grid-column: 1 / -1; color: #58748b; font-size: 12px; }
+.relatedCountryNetworks { grid-column: 1 / -1; align-self: start; margin-top: 9px; color: #688499; font-size: 11px; line-height: 1.45; }
+.relatedCountryPrice { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.relatedCountryPrice small { color: #7893a7; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.relatedCountryPrice b { font: 400 25px/1 Georgia, serif; }
+.relatedCountryAction { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 4px; color: var(--blue); font: 800 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+.relatedCountryAction i { color: var(--signal); font: normal 18px/1 Arial, sans-serif; transition: transform .24s ease; }
+.relatedCountryGuides a:hover { z-index: 1; color: #fff; background: var(--ink); border-color: var(--ink); box-shadow: 0 20px 42px rgba(10, 43, 68, .2); transform: translateY(-7px); }
+.relatedCountryGuides a:hover::before { transform: scaleX(1); }
+.relatedCountryGuides a:hover .relatedCountryRegion,
+.relatedCountryGuides a:hover strong + small,
+.relatedCountryGuides a:hover .relatedCountryNetworks,
+.relatedCountryGuides a:hover .relatedCountryPrice small { color: #9db5c7; }
+.relatedCountryGuides a:hover .relatedCountryPrice { border-color: rgba(157,181,199,.35); }
+.relatedCountryGuides a:hover .relatedCountryAction { color: #7dc7ff; }
+.relatedCountryGuides a:hover .relatedCountryAction i { transform: translate(4px, -4px); }
+.relatedCountryGuides a:focus-visible { z-index: 2; outline: 3px solid var(--signal); outline-offset: 3px; }
 .faqTabs { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 0; border: 1px solid var(--line); background: rgba(248,252,255,.62); }
 .faqTabs button { position: relative; display: grid; grid-template-columns: 28px 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 5px 10px; min-width: 0; padding: 18px 20px; border: 0; border-right: 1px solid var(--line); color: var(--ink); background: transparent; text-align: left; cursor: pointer; transition: color .18s ease, background .18s ease; }
 .faqTabs button:last-child { border-right: 0; }
@@ -410,6 +440,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .bestPickPanel { grid-template-columns: 1fr; }
   .planResults article { grid-template-columns: 1fr 1fr 1fr; }
   .planResults .providerName { grid-column: 1 / 3; }
+  .relatedCountryGuides > header { grid-template-columns: 1fr; gap: 16px; }
+  .relatedCountryGuides > header > p { max-width: 680px; }
   .siteFooter { grid-template-columns: 1fr; }
 }
 
@@ -487,6 +519,14 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .franceFaq { margin-bottom: 58px; }
   .franceFaq > header { align-items: start; flex-direction: column; }
   .franceFaq h2 { font-size: 42px; }
+  .relatedCountryGuides { margin-bottom: 52px; }
+  .relatedCountryGuides h2 { font-size: 42px; }
+  .relatedCountryGuides > header { margin-bottom: 22px; }
+  .relatedCountryGuides nav { margin-inline: -10px; overflow: hidden; }
+  .relatedCountryGuides nav > ul { display: flex; gap: 10px; overflow-x: auto; padding: 4px 10px 24px; scroll-padding-inline: 10px; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .relatedCountryGuides nav > ul::-webkit-scrollbar { display: none; }
+  .relatedCountryGuides li { flex: 0 0 min(76vw, 270px); scroll-snap-align: start; }
+  .relatedCountryGuides a { min-height: 246px; }
   .faqTabs { overflow-x: auto; grid-template-columns: repeat(3, minmax(190px, 1fr)); scrollbar-width: none; }
   .faqTabs button { padding: 15px 14px; }
   .faqPanel > header { align-items: flex-start; flex-direction: column; gap: 4px; }

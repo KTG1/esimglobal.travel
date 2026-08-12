@@ -2,6 +2,7 @@ import FrancePlans, { HeroPlanStrip } from "./FrancePlans";
 import { francePlans } from "./plans";
 import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
 import CountryFaqTabs from "../CountryFaqTabs";
+import RelatedCountryGuides from "../RelatedCountryGuides";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
 
@@ -63,6 +64,7 @@ export default function FrancePage() {
         </header>
         <CountryFaqTabs country="France" />
       </section>
+      <RelatedCountryGuides currentCountry="France" />
       </main>
       <SiteFooter />
     </div>

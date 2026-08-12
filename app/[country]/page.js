@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
 import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
 import CountryFaqTabs from "../CountryFaqTabs";
+import RelatedCountryGuides from "../RelatedCountryGuides";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
@@ -83,6 +84,7 @@ export default async function CountryPage({ params }) {
         <header><div><p className="eyebrow">{destination.name.toUpperCase()} ESIM FAQ</p><h2 id={faqId}>Questions before you connect</h2></div><span>07 practical answers</span></header>
         <CountryFaqTabs country={destination.name} />
       </section>
+      <RelatedCountryGuides currentCountry={destination.name} />
       </main>
       <SiteFooter />
     </div>
