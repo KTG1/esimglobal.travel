@@ -1,6 +1,6 @@
 import FrancePlans, { francePlans, HeroPlanStrip } from "./FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
-import { sitePath } from "../sitePath";
+import { sitePath, siteUrl } from "../sitePath";
 
 export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
@@ -9,16 +9,16 @@ export const metadata = {
   openGraph: {
     title: "Best eSIM for France: Compare Data Plans & Prices",
     description: "Compare prepaid France eSIM plans, coverage, data, validity and prices before you travel.",
-    url: "https://esimglobal.travel/france/",
+    url: siteUrl("/france/"),
     siteName: "eSIM Global Travel",
     type: "website",
-    images: [{ url: "https://esimglobal.travel/images/france-esim-hero.jpg", width: 1200, height: 630, alt: "The Eiffel Tower illuminated at blue hour in Paris, France" }],
+    images: [{ url: siteUrl("/images/france-esim-hero.jpg"), width: 1200, height: 630, alt: "The Eiffel Tower illuminated at blue hour in Paris, France" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Best eSIM for France",
     description: "Compare prepaid France eSIM plans, coverage, data and prices.",
-    images: ["https://esimglobal.travel/images/france-esim-hero.jpg"],
+    images: [siteUrl("/images/france-esim-hero.jpg")],
   },
 };
 

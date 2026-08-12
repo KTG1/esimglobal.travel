@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { countryPages, countrySlugs } from "../countryPages";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
-import { sitePath } from "../sitePath";
+import { sitePath, siteUrl } from "../sitePath";
 
 export function generateStaticParams() {
   return countrySlugs.map((country) => ({ country }));
@@ -19,16 +19,16 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `Best eSIM for ${destination.name}: Compare Plans & Prices`,
       description: `Compare prepaid ${destination.name} eSIM plans, coverage, data, validity and prices before you travel.`,
-      url: `https://esimglobal.travel/${country}/`,
+      url: siteUrl(`/${country}/`),
       siteName: "eSIM Global Travel",
       type: "website",
-      images: [{ url: `https://esimglobal.travel${destination.heroImage}`, width: destination.heroWidth, height: destination.heroHeight, alt: destination.heroAlt }],
+      images: [{ url: siteUrl(destination.heroImage), width: destination.heroWidth, height: destination.heroHeight, alt: destination.heroAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: `Best eSIM for ${destination.name}`,
       description: `Compare prepaid ${destination.name} eSIM plans, coverage, data and prices.`,
-      images: [`https://esimglobal.travel${destination.heroImage}`],
+      images: [siteUrl(destination.heroImage)],
     },
   };
 }
