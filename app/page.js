@@ -4,10 +4,10 @@ import { SiteFooter, SiteHeader } from "./SiteChrome";
 
 export default function Home() {
   return (
-    <main id="top">
+    <div className="pageShell" id="top">
       <SiteHeader />
-
-      <section className="hero">
+      <main id="main-content">
+      <div className="hero">
         <div className="route" aria-hidden="true">
           <span className="point pointA" />
           <span className="point pointB" />
@@ -25,14 +25,13 @@ export default function Home() {
           Explore local, regional and global eSIM data plans from established providers. Choose your destination to compare coverage, 4G and 5G availability, plan duration and price side by side.
         </p>
 
-        <div className="availability" id="how-it-works" aria-label="How eSIM Global works">
-          <div><strong>01</strong><span>Choose a destination</span></div>
-          <div><strong>02</strong><span>Compare eSIM plans</span></div>
-          <div><strong>03</strong><span>Install before landing</span></div>
-        </div>
-      </section>
-
+        <section className="availability" id="how-it-works" aria-labelledby="how-it-works-title">
+          <h2 className="srOnly" id="how-it-works-title">How eSIM Global works</h2>
+          <ol><li><strong>01</strong><span>Choose a destination</span></li><li><strong>02</strong><span>Compare eSIM plans</span></li><li><strong>03</strong><span>Install before landing</span></li></ol>
+        </section>
+      </div>
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   );
 }

@@ -19,17 +19,20 @@ body {
   font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
 }
 
-main {
+.pageShell {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: 28px clamp(24px, 6vw, 88px);
   overflow: hidden;
 }
+.pageShell > main { min-width: 0; }
+.skipLink { position: fixed; z-index: 1000; left: 20px; top: 14px; padding: 10px 14px; color: white; background: var(--ink); font: 700 9px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; transform: translateY(-180%); transition: transform .18s ease; }
+.skipLink:focus { transform: translateY(0); }
 
 .siteHeader { position: relative; z-index: 5; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 34px; padding: 14px 0 18px; border-bottom: 1px solid var(--line); }
 .siteHeader > a { color: inherit; text-decoration: none; }
-.siteHeader nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); }
+.siteHeader nav ul { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); margin: 0; padding: 0; list-style: none; }
 .siteHeader nav a { color: #537088; font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .siteHeader nav a:hover { color: var(--ocean); }
 .headerCta { justify-self: end; display: flex; align-items: center; gap: 18px; padding: 11px 13px 11px 16px; color: white !important; background: var(--ink); font: 700 9px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
@@ -89,7 +92,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .mapPlanOverlay { position: absolute; z-index: 2; top: 18px; left: 20px; right: 20px; }
 .mapPlanOverlay > p { display: flex; justify-content: space-between; margin: 0 0 8px; color: var(--ink); font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; text-transform: uppercase; }
 .mapPlanOverlay > p span { color: #6b8397; font-weight: 600; }
-.mapPlanOverlay > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.mapPlanOverlay > ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 0; padding: 0; list-style: none; }
+.mapPlanOverlay > ul > li { min-width: 0; }
 .mapPlanOverlay button { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 10px 11px; border: 1px solid var(--line); color: var(--ink); background: rgba(248,252,255,.9); box-shadow: 0 7px 18px rgba(18,43,69,.06); text-align: left; cursor: pointer; }
 .mapPlanOverlay button > span { overflow: hidden; font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .05em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
 .brandName { display: flex; align-items: center; gap: 6px; }
@@ -121,6 +125,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .manifestHeader h3 { margin: 0; font: 400 28px/1 Georgia, serif; letter-spacing: -.035em; }
 .manifestHeader > span { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; font: 700 11px/1 "SFMono-Regular", Consolas, monospace; }
 .manifestPlans { display: grid; gap: 5px; margin-top: 18px; }
+.manifestPlans ul { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none; }
 .manifestPlans button { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; width: 100%; padding: 8px 10px; border: 1px solid transparent; color: var(--ink); background: rgba(248,252,255,.62); text-align: left; cursor: pointer; }
 .manifestPlans button > span { display: flex; align-items: baseline; gap: 7px; }
 .manifestPlans button strong { display: flex; align-items: center; gap: 6px; font: 500 14px/1 Georgia, serif; }
@@ -175,9 +180,9 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .guidePanel li span { color: var(--signal); font-weight: 800; }
 .guideComparison { position: relative; margin-top: 22px; border: 1px solid var(--line); background: rgba(234,246,255,.55); }
 .guideComparison > header { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 11px; border-bottom: 1px solid var(--line); }
-.guideComparison > header strong { color: var(--ocean); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.guideComparison > header h4 { margin: 0; color: var(--ocean); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .guideComparison > header span { color: #7893a7; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .05em; text-transform: uppercase; }
-.guideComparison > div { display: grid; grid-template-columns: repeat(3, 1fr); }
+.guideComparison > ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
 .guideComparison article { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 3px 9px; min-width: 0; padding: 12px 10px; border-right: 1px solid var(--line); }
 .guideComparison article:last-child { border-right: 0; }
 .comparisonRank { grid-row: 1 / 3; color: var(--comparison-color); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; }
@@ -191,8 +196,9 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .guidePanel aside p { margin: 0; color: #537088; font-size: 11px; line-height: 1.45; }
 @keyframes guideReveal { from { opacity: 0; transform: translateY(8px); } }
 
-.availability { display: flex; gap: clamp(28px, 6vw, 76px); margin-top: 58px; padding-top: 20px; border-top: 1px solid var(--line); }
-.availability div { display: grid; gap: 4px; }
+.availability { margin-top: 58px; padding-top: 20px; border-top: 1px solid var(--line); }
+.availability ol { display: flex; gap: clamp(28px, 6vw, 76px); margin: 0; padding: 0; list-style: none; }
+.availability li { display: grid; gap: 4px; }
 .availability strong { font: 500 21px/1.1 Georgia, serif; }
 .availability span { color: #537088; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 
@@ -211,7 +217,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .footerCta:hover { border-color: var(--signal); }
 .footerCta span { color: var(--signal); font-size: 17px; }
 .footerNav { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; align-content: start; padding-top: 5px; }
-.footerNav > div { display: grid; align-content: start; gap: 12px; }
+.footerNav > nav, .footerNav > section { display: grid; align-content: start; gap: 12px; }
+.footerNav ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .footerNav h2 { margin: 0 0 8px; color: #7dc7ff; font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
 .footerNav a, .footerNav span { color: #b9ccda; font-size: 12px; line-height: 1.3; }
 .footerNav a:hover { color: white; }
@@ -221,11 +228,12 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .countryPage { gap: 0; }
 .breadcrumbs { display: flex; min-height: 36px; align-items: center; gap: 4px; margin: 24px 0; color: #7893a7; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
 .breadcrumbs a { color: var(--ocean); text-decoration: none; }
-.breadcrumbMenu { position: relative; z-index: 20; align-items: center; overflow: visible; }
-.breadcrumbMenu > .breadcrumbHome, .breadcrumbMenu > details > summary { box-sizing: border-box; min-height: 36px; }
-.breadcrumbMenu > .breadcrumbHome { display: inline-flex; align-items: center; padding: 0 9px; border: 1px solid transparent; transition: border-color .18s ease, background .18s ease; }
-.breadcrumbMenu > .breadcrumbHome:hover { border-color: var(--line); background: white; }
-.breadcrumbMenu > .breadcrumbSeparator { display: inline-grid; width: 18px; min-height: 36px; place-items: center; color: #7893a7; line-height: 1; }
+.breadcrumbMenu { position: relative; z-index: 20; display: flex; align-items: center; gap: 4px; margin: 0; padding: 0; overflow: visible; list-style: none; }
+.breadcrumbMenu > li { display: flex; min-height: 36px; align-items: center; }
+.breadcrumbMenu > li + li::before { content: "/"; display: inline-grid; width: 18px; min-height: 36px; place-items: center; color: #7893a7; line-height: 1; }
+.breadcrumbMenu > li > .breadcrumbHome, .breadcrumbMenu > li > details > summary { box-sizing: border-box; min-height: 36px; }
+.breadcrumbMenu > li > .breadcrumbHome { display: inline-flex; align-items: center; padding: 0 9px; border: 1px solid transparent; transition: border-color .18s ease, background .18s ease; }
+.breadcrumbMenu > li > .breadcrumbHome:hover { border-color: var(--line); background: white; }
 .breadcrumbMenu details { position: relative; display: flex; min-height: 36px; align-items: center; }
 .breadcrumbMenu summary { display: flex; min-height: 36px; align-items: center; gap: 7px; padding: 0 9px; border: 1px solid transparent; color: var(--ocean); cursor: pointer; line-height: 1; list-style: none; transition: border-color .18s ease, background .18s ease; }
 .breadcrumbMenu summary::-webkit-details-marker { display: none; }.breadcrumbMenu summary:hover, .breadcrumbMenu details[open] summary { border-color: var(--line); background: white; }.breadcrumbMenu summary.currentCrumb { color: #617b8f; }
@@ -254,7 +262,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .franceHeroCopy > p:not(.eyebrow) { max-width: 680px; margin: 12px 0 0; color: #c0d2df; font-size: 14px; line-height: 1.42; }
 .franceHeroCopy > a { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 14px; padding: 10px 12px; border: 1px solid #47647a; color: white; background: rgba(4,35,60,.5); font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .franceHeroCopy > a span { color: var(--signal); font-size: 16px; }
-.franceVisual { position: relative; min-height: 350px; overflow: hidden; border-left: 1px solid #365269; background: radial-gradient(circle at 40% 45%, rgba(125,199,255,.2), transparent 37%); }
+.franceVisual { position: relative; min-height: 350px; margin: 0; overflow: hidden; border-left: 1px solid #365269; background: radial-gradient(circle at 40% 45%, rgba(125,199,255,.2), transparent 37%); }
 .franceVisual::after { content: "FR"; position: absolute; right: -45px; bottom: -35px; color: rgba(255,255,255,.055); font: 400 360px/.8 Georgia, serif; letter-spacing: -.12em; }
 .countryEmojiFlag { display: grid; width: 54px; height: 38px; place-items: center; margin-bottom: 14px; border: 1px solid #47647a; background: rgba(255,255,255,.07); font-size: 24px; box-shadow: 7px 7px 0 rgba(0,0,0,.18); }
 .genericCountryVisual::after { content: attr(data-code); }
@@ -264,15 +272,16 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .heroPlanBoard { position: relative; z-index: 4; grid-column: 1 / -1; display: grid; grid-template-columns: 190px minmax(0, 1fr); border-top: 1px solid #47647a; background: #092b46; box-shadow: 0 -20px 50px rgba(0,0,0,.16); }
 .heroPlanBoardLabel { display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 18px 20px; border-right: 1px solid #47647a; background: #061f34; }
 .heroPlanBoardLabel span, .heroPlanRank { color: var(--signal); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; }
-.heroPlanBoardLabel strong { color: white; font: 500 18px/1.1 Georgia, serif; }
+.heroPlanBoardLabel h2 { margin: 0; color: white; font: 500 18px/1.1 Georgia, serif; }
 .heroPlanBoardLabel small { color: #789bb5; font: 500 7px/1.35 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }
-.heroPlanRail { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.heroPlanRail > a { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 10px 7px; min-width: 0; padding: 16px 14px; border-right: 1px solid #365269; color: white; text-decoration: none; transition: background .18s ease, transform .18s ease; }
-.heroPlanRail > a:last-child { border-right: 0; }.heroPlanRail > a:hover, .heroPlanRail > a:focus-visible { z-index: 1; outline: 0; background: radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--plan-color) 25%, transparent), transparent 42%), #103d60; box-shadow: 0 14px 30px rgba(0,0,0,.22); transform: translateY(-5px); }
-.heroPlanRail > a::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--plan-color); transform: scaleY(.28); transform-origin: bottom; transition: transform .18s ease; }.heroPlanRail > a:hover::before { transform: scaleY(1); }
-.heroPlanRank { grid-row: 1 / 3; padding-top: 2px; }.heroPlanRail > a > div { min-width: 0; }.heroPlanRail b { display: flex; align-items: center; gap: 5px; font: 600 11px/1.1 "Avenir Next", Avenir, sans-serif; }.heroPlanRail b i { flex: 0 0 auto; width: 6px; height: 6px; border-radius: 50%; background: var(--plan-color); }
+.heroPlanRail { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.heroPlanRail > li { min-width: 0; }
+.heroPlanRail > li > a { position: relative; display: grid; height: 100%; grid-template-columns: 22px minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 10px 7px; min-width: 0; padding: 16px 14px; border-right: 1px solid #365269; color: white; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.heroPlanRail > li:last-child > a { border-right: 0; }.heroPlanRail > li > a:hover, .heroPlanRail > li > a:focus-visible { z-index: 1; outline: 0; background: radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--plan-color) 25%, transparent), transparent 42%), #103d60; box-shadow: 0 14px 30px rgba(0,0,0,.22); transform: translateY(-5px); }
+.heroPlanRail > li > a::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--plan-color); transform: scaleY(.28); transform-origin: bottom; transition: transform .18s ease; }.heroPlanRail > li > a:hover::before { transform: scaleY(1); }
+.heroPlanRank { grid-row: 1 / 3; padding-top: 2px; }.heroPlanRail > li > a > div { min-width: 0; }.heroPlanRail b { display: flex; align-items: center; gap: 5px; font: 600 11px/1.1 "Avenir Next", Avenir, sans-serif; }.heroPlanRail b i { flex: 0 0 auto; width: 6px; height: 6px; border-radius: 50%; background: var(--plan-color); }
 .heroPlanRail div > small { display: block; overflow: hidden; margin-top: 4px; color: #86a7bf; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
-.heroPlanRail > a > strong { grid-column: 2; align-self: end; font: 500 19px/1 Georgia, serif; }.heroPlanAction { position: absolute; right: 12px; bottom: 15px; display: flex; align-items: center; gap: 5px; color: #8ba9bd; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .04em; text-transform: uppercase; transition: color .18s ease; }.heroPlanAction em { color: var(--signal); font: normal 16px/1 sans-serif; transition: transform .18s ease; }.heroPlanRail > a:hover .heroPlanAction, .heroPlanRail > a:focus-visible .heroPlanAction { color: white; }.heroPlanRail > a:hover .heroPlanAction em, .heroPlanRail > a:focus-visible .heroPlanAction em { transform: translate(3px,-3px); }
+.heroPlanRail > li > a > strong { grid-column: 2; align-self: end; font: 500 19px/1 Georgia, serif; }.heroPlanAction { position: absolute; right: 12px; bottom: 15px; display: flex; align-items: center; gap: 5px; color: #8ba9bd; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .04em; text-transform: uppercase; transition: color .18s ease; }.heroPlanAction em { color: var(--signal); font: normal 16px/1 sans-serif; transition: transform .18s ease; }.heroPlanRail > li > a:hover .heroPlanAction, .heroPlanRail > li > a:focus-visible .heroPlanAction { color: white; }.heroPlanRail > li > a:hover .heroPlanAction em, .heroPlanRail > li > a:focus-visible .heroPlanAction em { transform: translate(3px,-3px); }
 .heroPlanRail dl { grid-column: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; }.heroPlanRail dl div { display: grid; gap: 2px; min-width: 0; }.heroPlanRail dt { color: #6f92ac; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.heroPlanRail dd { margin: 0; font-size: 9px; overflow-wrap: anywhere; }
 .parisStamp { position: absolute; z-index: 2; top: 44px; right: 44px; display: grid; min-width: 150px; padding: 14px; border: 1px solid #55748b; color: #9eb8ca; font: 700 9px/1.4 "SFMono-Regular", Consolas, monospace; text-align: right; }
 .parisStamp span { color: var(--signal); font-size: 22px; }.parisStamp strong { color: white; }
@@ -283,7 +292,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .routeLabel { position: absolute; z-index: 2; left: 32px; bottom: 28px; color: #91acbf; font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; }
 .heroArrivalBrief { position: absolute; z-index: 3; left: 28px; bottom: 42px; width: min(310px, calc(100% - 56px)); padding: 16px; overflow: hidden; border: 1px solid rgba(125,199,255,.42); background: linear-gradient(145deg, rgba(5,40,67,.92), rgba(3,24,42,.78)); box-shadow: 12px 12px 0 rgba(3,18,31,.24), inset 0 1px rgba(255,255,255,.06); backdrop-filter: blur(9px); }
 .heroArrivalBrief::before { content: ""; position: absolute; top: -90px; right: -70px; width: 180px; height: 180px; border: 1px solid rgba(125,199,255,.12); border-radius: 50%; box-shadow: 0 0 0 24px rgba(125,199,255,.035), 0 0 0 50px rgba(125,199,255,.02); pointer-events: none; }
-.heroArrivalBrief header { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 10px; }.heroArrivalBrief header p { margin: 0; color: var(--signal); font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .1em; }.heroArrivalBrief header span { color: #7697ad; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; }
+.heroArrivalBrief header { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 10px; }.heroArrivalBrief header h2 { margin: 0; color: var(--signal); font: 700 8px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }.heroArrivalBrief header span { color: #7697ad; font: 700 6px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; }
 .heroArrivalBrief dl { position: relative; display: grid; margin: 0; border-top: 1px solid rgba(125,199,255,.24); }.heroArrivalBrief dl div { display: grid; grid-template-columns: 82px minmax(0, 1fr) 14px; align-items: center; gap: 8px; min-height: 34px; border-bottom: 1px solid rgba(125,199,255,.18); transition: background .18s ease, padding .18s ease; }.heroArrivalBrief dl div:hover { margin-inline: -7px; padding-inline: 7px; background: rgba(125,199,255,.08); }.heroArrivalBrief dt { color: #789bb5; font: 700 6px/1.2 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.heroArrivalBrief dd { display: -webkit-box; overflow: hidden; margin: 0; color: white; font-size: 9px; line-height: 1.25; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }.heroArrivalBrief dl i { color: #63849a; font: normal 11px/1 sans-serif; transition: color .18s ease, transform .18s ease; }.heroArrivalBrief dl div:hover i { color: var(--signal); transform: translate(2px,-2px); }
 .heroArrivalBrief > a { position: relative; display: flex; align-items: center; justify-content: space-between; margin: 11px -2px -2px; padding-top: 10px; color: #b8ccda; font: 700 7px/1 "SFMono-Regular", Consolas, monospace; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }.heroArrivalBrief > a span { color: var(--signal); font-size: 14px; transition: transform .18s ease; }.heroArrivalBrief > a:hover { color: white; }.heroArrivalBrief > a:hover span { transform: translateX(4px); }
 .heroArrivalBrief + .routeLabel { left: auto; right: 28px; bottom: 22px; }
@@ -300,7 +309,8 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .featuredFrancePlans > header, .francePlanExplorer > header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
 .featuredFrancePlans h2, .francePlanExplorer h2, .franceEssentials h2 { margin: 0; font: 400 clamp(38px, 5vw, 66px)/1 Georgia, serif; letter-spacing: -.05em; }
 .featuredFrancePlans > header > p { max-width: 400px; margin: 0; color: #6b8397; font-size: 12px; line-height: 1.5; }
-.featuredPlanGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.featuredPlanGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.featuredPlanGrid > li { min-width: 0; }
 .featuredPlanGrid article { position: relative; display: grid; padding: 24px; border: 1px solid var(--line); background: rgba(248,252,255,.85); box-shadow: inset 4px 0 0 var(--plan-color), 0 14px 35px rgba(18,43,69,.07); }
 .planRank { color: var(--plan-color); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .providerName { display: flex; align-items: center; gap: 7px; margin-top: 22px; font: 500 16px/1 Georgia, serif; }.providerName i { width: 8px; height: 8px; border-radius: 50%; background: var(--plan-color); }
@@ -309,18 +319,18 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .featuredPlanGrid dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .featuredPlanGrid dl div { padding: 10px 7px; border-right: 1px solid var(--line); }.featuredPlanGrid dl div:last-child { border-right: 0; }
 .featuredPlanGrid dt { color: #7893a7; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.featuredPlanGrid dd { margin: 4px 0 0; font-size: 11px; }
-.featuredPlanGrid button { display: flex; justify-content: space-between; padding: 11px 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; cursor: pointer; }
+.featuredPlanGrid article > a { display: flex; justify-content: space-between; padding: 11px 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; font: 700 8px/1 "SFMono-Regular", Consolas, monospace; text-decoration: none; text-transform: uppercase; cursor: pointer; }
 .francePlanExplorer > header > span { color: var(--ocean); font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }
 .planFilters { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); background: rgba(248,252,255,.72); }
 .planFilters fieldset { margin: 0; padding: 22px; border: 0; border-right: 1px solid var(--line); }.planFilters fieldset:last-child { border-right: 0; }
 .planFilters legend { color: var(--ocean); font: 700 9px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .planFilters fieldset > div { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
 .planFilters button { padding: 8px 10px; border: 1px solid var(--line); border-radius: 20px; color: #537088; background: white; font-size: 10px; cursor: pointer; }.planFilters button.active { color: white; background: var(--ink); border-color: var(--ink); }
-.planResults { display: grid; margin-top: 16px; border-top: 1px solid var(--line); }
+.planResults { display: grid; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
 .planResults article { display: grid; grid-template-columns: 1.15fr 1.35fr repeat(3, .75fr) .8fr 38px; align-items: center; gap: 12px; padding: 16px 12px; border-bottom: 1px solid var(--line); background: rgba(248,252,255,.52); }
 .planResults .providerName { display: grid; grid-template-columns: auto 1fr; margin: 0; }.planResults .providerName small { grid-column: 2; color: #7893a7; font: 500 8px/1.2 "Avenir Next", Avenir, sans-serif; }
 .planResults article > div:not(.providerName) { display: grid; gap: 3px; }.planResults article > div > span { color: #7893a7; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.planResults article > div > strong { font-size: 11px; }
-.resultPrice strong { font: 500 18px/1 Georgia, serif !important; }.planResults article > button { width: 34px; height: 34px; border: 1px solid var(--line); color: var(--signal); background: white; cursor: pointer; }
+.resultPrice strong { font: 500 18px/1 Georgia, serif !important; }.planResults .resultArrow { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--line); color: var(--signal); background: white; }
 .noPlanResults { padding: 34px; color: #537088; text-align: center; }
 .franceEssentials { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 9vw, 130px); margin-bottom: 88px; padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .franceEssentials dl { margin: 0; }.franceEssentials dl div { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }.franceEssentials dl div:last-child { border-bottom: 0; }.franceEssentials dt { color: var(--ocean); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; }.franceEssentials dd { margin: 0; color: #537088; font-size: 13px; line-height: 1.5; }
@@ -346,7 +356,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .mapCanvas { min-height: 400px; }
   .guideSwitcher { grid-template-columns: 230px 1fr; }
   .guidePanel ul { grid-template-columns: 1fr; }
-  .guideComparison > div { grid-template-columns: 1fr; }
+  .guideComparison > ol { grid-template-columns: 1fr; }
   .guideComparison article { border-right: 0; border-bottom: 1px solid var(--line); }
   .guideComparison article:last-child { border-bottom: 0; }
   .franceHero { grid-template-columns: 1fr; }
@@ -362,7 +372,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 }
 
 @media (max-width: 640px) {
-  main { padding: 22px; }
+  .pageShell { padding: 22px; }
   .headerCta { padding: 10px; font-size: 0; }
   .headerCta span { font-size: 16px; }
   .hero { padding: 13vh 0 9vh; }
@@ -378,7 +388,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .mapCanvas { min-height: 340px; padding: 25px 12px 52px; }
   .mapWorkspace.isExploring .mapCanvas { padding-top: 164px; }
   .mapPlanOverlay { left: 12px; right: 12px; }
-  .mapPlanOverlay > div { display: flex; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
+  .mapPlanOverlay > ul { display: flex; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
   .mapPlanOverlay button { flex: 0 0 155px; }
   .offerNarration { grid-template-columns: 1fr; gap: 4px; }
   .mapWorkspace.isExploring .mapCanvas { padding-bottom: 218px; }
@@ -422,7 +432,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .planFilters fieldset { border-right: 0; border-bottom: 1px solid var(--line); }
   .planResults article { grid-template-columns: 1fr 1fr; }
   .planResults .providerName { grid-column: 1 / -1; }
-  .planResults article > button { justify-self: end; }
+  .planResults .resultArrow { justify-self: end; }
   .franceEssentials { grid-template-columns: 1fr; }
   .franceEssentials dl div { grid-template-columns: 80px 1fr; }
   .franceFaq { margin-bottom: 58px; }
@@ -432,7 +442,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .faqList details > p { margin: -3px 38px 0 37px; }
   .siteFooter { margin-inline: -10px; padding: 34px 24px; }
   .footerNav { grid-template-columns: 1fr 1fr; }
-  .footerNav > div:last-child { grid-column: 1 / -1; }
+  .footerNav > :last-child { grid-column: 1 / -1; }
   .footerBase { align-items: start; flex-direction: column; }
 }
 

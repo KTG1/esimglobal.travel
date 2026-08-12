@@ -11,15 +11,20 @@ export function BrandLogo({ inverted = false }) {
 
 export function SiteHeader() {
   return (
-    <header className="siteHeader">
-      <a href={sitePath("/")} aria-label="eSIM Global Travel home"><BrandLogo /></a>
-      <nav aria-label="Main navigation">
-        <a href={sitePath("/#compare")}>Compare plans</a>
-        <a href={sitePath("/#how-it-works")}>How it works</a>
-        <a href={sitePath("/#about")}>About</a>
-      </nav>
-      <a className="headerCta" href={sitePath("/#compare")}>Find an eSIM <span aria-hidden="true">↘</span></a>
-    </header>
+    <>
+      <a className="skipLink" href="#main-content">Skip to main content</a>
+      <header className="siteHeader">
+        <a href={sitePath("/")} aria-label="eSIM Global Travel home"><BrandLogo /></a>
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href={sitePath("/#compare")}>Compare plans</a></li>
+            <li><a href={sitePath("/#how-it-works")}>How it works</a></li>
+            <li><a href={sitePath("/#about")}>About</a></li>
+          </ul>
+        </nav>
+        <a className="headerCta" href={sitePath("/#compare")}>Find an eSIM <span aria-hidden="true">↘</span></a>
+      </header>
+    </>
   );
 }
 
@@ -34,10 +39,12 @@ export function CountryBreadcrumbs({ region, country }) {
   const regionalDestinations = destinationGroups[region] || [];
   const allDestinations = [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }, { name: "Japan", href: "/japan/" }, { name: "United States", href: "/united-states/" }];
   return (
-    <nav className="breadcrumbs breadcrumbMenu" aria-label="Breadcrumb">
-      <a className="breadcrumbHome" href={sitePath("/")}>Global eSIMs</a><span className="breadcrumbSeparator" aria-hidden="true">/</span>
-      <details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details><span className="breadcrumbSeparator" aria-hidden="true">/</span>
-      <details><summary className="currentCrumb">{country}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{allDestinations.map((item) => <a href={sitePath(item.href)} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details>
+    <nav className="breadcrumbs" aria-label="Breadcrumb">
+      <ol className="breadcrumbMenu">
+        <li><a className="breadcrumbHome" href={sitePath("/")}>Global eSIMs</a></li>
+        <li><details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details></li>
+        <li><details><summary className="currentCrumb" aria-current="location">{country}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{allDestinations.map((item) => <a href={sitePath(item.href)} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">↗</b></a>)}</div></details></li>
+      </ol>
     </nav>
   );
 }
@@ -51,9 +58,9 @@ export function SiteFooter() {
         <a className="footerCta" href={sitePath("/#compare")}>Compare your destination <span aria-hidden="true">↗</span></a>
       </div>
       <div className="footerNav">
-        <div><h2>Explore</h2><a href={sitePath("/#compare")}>Compare eSIM plans</a><a href={sitePath("/#how-it-works")}>How travel eSIMs work</a><a href={sitePath("/#compare")}>Global coverage</a></div>
-        <div><h2>Popular countries</h2><a href={sitePath("/france/")}>France eSIMs</a><a href={sitePath("/italy/")}>Italy eSIMs</a><a href={sitePath("/spain/")}>Spain eSIMs</a><a href={sitePath("/turkey/")}>Türkiye eSIMs</a><a href={sitePath("/japan/")}>Japan eSIMs</a><a href={sitePath("/united-states/")}>United States eSIMs</a></div>
-        <div><h2>Marketplace</h2><span>Independent comparisons</span><span>Provider terms apply</span><span>Prices shown in USD</span></div>
+        <nav aria-labelledby="footer-explore-title"><h2 id="footer-explore-title">Explore</h2><ul><li><a href={sitePath("/#compare")}>Compare eSIM plans</a></li><li><a href={sitePath("/#how-it-works")}>How travel eSIMs work</a></li><li><a href={sitePath("/#compare")}>Global coverage</a></li></ul></nav>
+        <nav aria-labelledby="footer-countries-title"><h2 id="footer-countries-title">Popular countries</h2><ul><li><a href={sitePath("/france/")}>France eSIMs</a></li><li><a href={sitePath("/italy/")}>Italy eSIMs</a></li><li><a href={sitePath("/spain/")}>Spain eSIMs</a></li><li><a href={sitePath("/turkey/")}>Türkiye eSIMs</a></li><li><a href={sitePath("/japan/")}>Japan eSIMs</a></li><li><a href={sitePath("/united-states/")}>United States eSIMs</a></li></ul></nav>
+        <section aria-labelledby="footer-marketplace-title"><h2 id="footer-marketplace-title">Marketplace</h2><ul><li>Independent comparisons</li><li>Provider terms apply</li><li>Prices shown in USD</li></ul></section>
       </div>
       <div className="footerBase"><span>© {new Date().getFullYear()} eSIM Global Travel</span><span>Compare before you connect.</span><span>Istanbul · Worldwide</span></div>
     </footer>

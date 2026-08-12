@@ -27,20 +27,21 @@ function FilterGroup({ title, options, value, onChange }) {
 }
 
 export function HeroPlanStrip({ country, plans }) {
+  const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
-    <div className="heroPlanBoard" aria-label={`Top five eSIM options for ${country}`}>
-      <div className="heroPlanBoardLabel"><span>LIVE SHORTLIST</span><strong>Top 5 for {country}</strong><small>Preview prices · verify before purchase</small></div>
-      <div className="heroPlanRail">
+    <section className="heroPlanBoard" aria-labelledby={headingId}>
+      <header className="heroPlanBoardLabel"><span>LIVE SHORTLIST</span><h2 id={headingId}>Top 5 for {country}</h2><small>Preview prices · verify before purchase</small></header>
+      <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
-          <a href="#plans" key={`${plan.brand}-${plan.product}-${index}`} style={{ "--plan-color": plan.color }}>
+          <li key={`${plan.brand}-${plan.product}-${index}`}><a href="#plans" style={{ "--plan-color": plan.color }}>
             <span className="heroPlanRank">0{index + 1}</span>
             <div><b><i />{plan.brand}</b><small>{plan.product}</small></div>
             <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
             <strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Read more <em aria-hidden="true">↗</em></span>
-          </a>
+          </a></li>
         ))}
-      </div>
-    </div>
+      </ol>
+    </section>
   );
 }
 
@@ -85,18 +86,18 @@ export default function FrancePlans({ country = "France", plans = francePlans })
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
         <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title">Popular {country} eSIM plans</h2></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
-        <div className="featuredPlanGrid">
+        <ol className="featuredPlanGrid">
           {plans.slice(0, 3).map((plan, index) => (
-            <article key={plan.brand} style={{ "--plan-color": plan.color }}>
+            <li key={plan.brand}><article style={{ "--plan-color": plan.color }} aria-labelledby={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>
               <span className="planRank">0{index + 1} / {plan.note}</span>
               <div className="providerName"><i />{plan.brand}</div>
-              <h3>{plan.product}</h3>
+              <h3 id={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>{plan.product}</h3>
               <strong>${plan.price.toFixed(2)}</strong>
               <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Validity</dt><dd>{plan.days} days</dd></div><div><dt>Network</dt><dd>{plan.network}</dd></div></dl>
-              <button type="button">View plan <span aria-hidden="true">↗</span></button>
-            </article>
+              <a href="#plans">View plan <span aria-hidden="true">↗</span></a>
+            </article></li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section className="francePlanExplorer" id="plans" aria-labelledby="plans-title">
@@ -106,20 +107,20 @@ export default function FrancePlans({ country = "France", plans = francePlans })
           <FilterGroup title="Validity" options={filterOptions.days} value={days} onChange={setDays} />
           <FilterGroup title="Maximum price" options={filterOptions.price} value={price} onChange={setPrice} />
         </div>
-        <div className="planResults" aria-live="polite">
+        <ol className="planResults" aria-live="polite" aria-label={`${country} eSIM search results`}>
           {filteredPlans.map((plan) => (
-            <article key={`${plan.brand}-${plan.dataLabel}`} style={{ "--plan-color": plan.color }}>
+            <li key={`${plan.brand}-${plan.dataLabel}`}><article style={{ "--plan-color": plan.color }}>
               <div className="providerName"><i />{plan.brand}<small>{plan.note}</small></div>
               <div><span>Product</span><strong>{plan.product}</strong></div>
               <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
               <div><span>Validity</span><strong>{plan.days} days</strong></div>
               <div><span>Network</span><strong>{plan.network}</strong></div>
               <div className="resultPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
-              <button type="button" aria-label={`View ${plan.brand} ${plan.product}`}>↗</button>
-            </article>
+              <span className="resultArrow" aria-hidden="true">↗</span>
+            </article></li>
           ))}
-          {!filteredPlans.length && <p className="noPlanResults">No plans match these filters. Try increasing the price or reducing the data requirement.</p>}
-        </div>
+          {!filteredPlans.length && <li className="noPlanResults">No plans match these filters. Try increasing the price or reducing the data requirement.</li>}
+        </ol>
       </section>
     </>
   );

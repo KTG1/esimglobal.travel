@@ -24,31 +24,33 @@ export const metadata = {
 
 export default function FrancePage() {
   return (
-    <main className="countryPage">
+    <div className="pageShell countryPage">
       <SiteHeader />
+      <main id="main-content">
       <CountryBreadcrumbs region="Europe" country="France" />
 
-      <section className="franceHero franceDestinationHero" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")`, "--hero-position": "center 52%" }}>
+      <section className="franceHero franceDestinationHero" aria-labelledby="france-hero-title" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")`, "--hero-position": "center 52%" }}>
         <div className="franceHeroCopy">
-          <div className="franceFlag" aria-label="Flag of France"><i /><i /><i /></div>
+          <span className="franceFlag" role="img" aria-label="Flag of France"><i /><i /><i /></span>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED AUGUST 2026</p>
-          <h1>Find the best eSIM for France.</h1>
+          <h1 id="france-hero-title">Find the best eSIM for France.</h1>
           <p>Compare prepaid France eSIM plans from leading travel providers. Review mobile data, validity, 4G and 5G coverage, included features and price before you fly.</p>
           <a href="#plans">Compare France plans <span aria-hidden="true">↓</span></a>
         </div>
-        <div className="franceVisual">
-          <div className="parisStamp"><span>PAR</span><strong>48.8566° N</strong><small>02.3522° E</small></div>
-          <div className="eiffelMark"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief"><header><p>ARRIVAL BRIEF</p><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>4G / 5G</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
+        <figure className="franceVisual">
+          <figcaption className="srOnly">The Eiffel Tower illuminated at blue hour in Paris, France</figcaption>
+          <div className="parisStamp" aria-label="Paris: 48.8566 degrees north, 2.3522 degrees east"><span>PAR</span><strong>48.8566° N</strong><small>02.3522° E</small></div>
+          <div className="eiffelMark" aria-hidden="true"><i /><i /><i /><i /></div>
+          <aside className="heroArrivalBrief" aria-labelledby="france-arrival-title"><header><h2 id="france-arrival-title">Arrival brief</h2><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>Orange · SFR · Bouygues · Free</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>4G / 5G</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
           <span className="routeLabel">CDG → Connected</span>
-        </div>
+        </figure>
         <HeroPlanStrip country="France" plans={francePlans} />
       </section>
 
       <FrancePlans />
 
-      <section className="franceEssentials" id="country-essentials">
-        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2>Using a travel eSIM in France</h2></div>
+      <section className="franceEssentials" id="country-essentials" aria-labelledby="france-essentials-title">
+        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2 id="france-essentials-title">Using a travel eSIM in France</h2></div>
         <dl><div><dt>Networks</dt><dd>Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks.</dd></div><div><dt>Coverage</dt><dd>4G is widely available; 5G availability depends on location and the selected plan.</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>
 
@@ -67,7 +69,8 @@ export default function FrancePage() {
           <details><summary><span>07</span>Will one France eSIM work elsewhere in Europe?<i aria-hidden="true">+</i></summary><p>A France-only plan may stop working after you cross the border. If your itinerary includes multiple countries, choose a Europe regional eSIM and check that every destination is included in its coverage list.</p></details>
         </div>
       </section>
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   );
 }

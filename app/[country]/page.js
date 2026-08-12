@@ -38,38 +38,43 @@ export default async function CountryPage({ params }) {
   const destination = countryPages[country];
   if (!destination) notFound();
   const faqId = `${country}-faq-title`;
+  const heroTitleId = `${country}-hero-title`;
+  const essentialsTitleId = `${country}-essentials-title`;
 
   return (
-    <main className="countryPage">
+    <div className="pageShell countryPage">
       <SiteHeader />
+      <main id="main-content">
       <CountryBreadcrumbs region={destination.region} country={destination.name} />
       <section
         className="franceHero countryHero countryDestinationHero"
+        aria-labelledby={heroTitleId}
         style={{
           backgroundImage: `url("${sitePath(destination.heroImage)}")`,
           "--hero-position": destination.heroPosition,
         }}
       >
         <div className="franceHeroCopy">
-          <span className="countryEmojiFlag" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>
+          <span className="countryEmojiFlag" role="img" aria-label={`Flag of ${destination.name}`}>{destination.flag}</span>
           <p className="eyebrow">{destination.name.toUpperCase()} ESIM COMPARISON / UPDATED AUGUST 2026</p>
-          <h1>Find the best eSIM for {destination.name}.</h1>
+          <h1 id={heroTitleId}>Find the best eSIM for {destination.name}.</h1>
           <p>Compare prepaid {destination.name} eSIM plans from leading travel providers. Review mobile data, validity, network coverage, included features and price before you fly.</p>
           <a href="#plans">Compare {destination.name} plans <span aria-hidden="true">↓</span></a>
         </div>
-        <div className="franceVisual genericCountryVisual" data-code={destination.code}>
-          <div className="parisStamp"><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
-          <div className="countrySignal"><i /><i /><i /><i /></div>
-          <aside className="heroArrivalBrief"><header><p>ARRIVAL BRIEF</p><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
+        <figure className="franceVisual genericCountryVisual" data-code={destination.code}>
+          <figcaption className="srOnly">{destination.heroAlt}</figcaption>
+          <div className="parisStamp" aria-label={`${destination.city}: ${destination.coordinates.join(", ")}`}><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
+          <div className="countrySignal" aria-hidden="true"><i /><i /><i /><i /></div>
+          <aside className="heroArrivalBrief" aria-labelledby={`${country}-arrival-title`}><header><h2 id={`${country}-arrival-title`}>Arrival brief</h2><span>03 essentials</span></header><dl><div><dt>Local networks</dt><dd>{destination.networks}</dd><i aria-hidden="true">↗</i></div><div><dt>Expected speed</dt><dd>{destination.plans[0].network}</dd><i aria-hidden="true">↗</i></div><div><dt>Setup</dt><dd>Install before departure</dd><i aria-hidden="true">↗</i></div></dl><a href="#country-essentials">Read the connection guide <span aria-hidden="true">→</span></a></aside>
           <span className="routeLabel">{destination.airport} → Connected</span>
-        </div>
+        </figure>
         <HeroPlanStrip country={destination.name} plans={destination.plans} />
       </section>
 
       <FrancePlans country={destination.name} plans={destination.plans} />
 
-      <section className="franceEssentials" id="country-essentials">
-        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2>Using a travel eSIM in {destination.name}</h2></div>
+      <section className="franceEssentials" id="country-essentials" aria-labelledby={essentialsTitleId}>
+        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2 id={essentialsTitleId}>Using a travel eSIM in {destination.name}</h2></div>
         <dl><div><dt>Networks</dt><dd>{destination.networks}</dd></div><div><dt>Coverage</dt><dd>{destination.coverage}</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>
 
@@ -85,7 +90,8 @@ export default async function CountryPage({ params }) {
           <details><summary><span>07</span>Will this eSIM work in nearby countries?<i aria-hidden="true">+</i></summary><p>A country-only plan may stop working at the border. For a multi-country itinerary, compare regional plans and verify every destination in the coverage list.</p></details>
         </div>
       </section>
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   );
 }

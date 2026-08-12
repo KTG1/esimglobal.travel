@@ -139,7 +139,7 @@ export default function WorldMap() {
         </p>
       </div>
 
-      <nav className="continentTabs" aria-label="Filter the map by continent">
+      <div className="continentTabs" role="group" aria-label="Filter the map by continent">
         <button
           type="button"
           className={!selectedRegion ? "active" : ""}
@@ -159,17 +159,17 @@ export default function WorldMap() {
             {regionLabels[region]}
           </button>
         ))}
-      </nav>
+      </div>
 
       <div className={`mapWorkspace ${selectedRegion ? "isExploring" : ""}`}>
         <div className="mapCanvas">
           {selectedRegion && (
-            <div className="mapPlanOverlay" aria-label={`Best eSIM options for ${regionLabels[selectedRegion]}`}>
+            <section className="mapPlanOverlay" aria-labelledby="regional-options-title">
+              <h3 className="srOnly" id="regional-options-title">Best eSIM options for {regionLabels[selectedRegion]}</h3>
               <p>Best regional eSIMs <span>Preview pricing</span></p>
-              <div>
+              <ul>
                 {rankedOffers.map((offer, index) => (
-                  <button
-                    key={offer.brand}
+                  <li key={offer.brand}><button
                     type="button"
                     className={selectedOffer?.brand === offer.brand ? "selected" : ""}
                     style={{ "--brand-color": offer.color }}
@@ -183,17 +183,17 @@ export default function WorldMap() {
                     <span className="brandName"><i />{offer.brand}{selectedCountry && <em>{index === 0 ? "Best match" : `#${index + 1}`}</em>}</span>
                     <strong>${offer.price.toFixed(2)}</strong>
                     <small>{offer.product} · {offer.data} · {offer.days}d</small>
-                  </button>
+                  </button></li>
                 ))}
-                {!rankedOffers.length && <p className="noOffers">No consumer regional plans found.</p>}
-              </div>
+                {!rankedOffers.length && <li className="noOffers">No consumer regional plans found.</li>}
+              </ul>
               {!!rankedOffers.length && (
                 <div className="offerNarration" role="status" aria-live="polite">
                   <span>Comparison note</span>
                   <p>{comparisonCopy(hoveredOffer || selectedOffer)}</p>
                 </div>
               )}
-            </div>
+            </section>
           )}
           <svg
             className="countryMap"
@@ -271,10 +271,11 @@ export default function WorldMap() {
               <span>{visibleCountries.length}</span>
             </div>
 
-            <div className="manifestPlans" aria-label="Regional eSIM plan options">
+            <section className="manifestPlans" aria-labelledby="manifest-plans-title">
+              <h4 className="srOnly" id="manifest-plans-title">Regional eSIM plan options</h4>
+              <ul>
               {rankedOffers.map((offer) => (
-                <button
-                  key={offer.brand}
+                <li key={offer.brand}><button
                   type="button"
                   className={selectedOffer?.brand === offer.brand ? "selected" : ""}
                   style={{ "--brand-color": offer.color }}
@@ -287,11 +288,12 @@ export default function WorldMap() {
                 >
                   <span><strong><i />{offer.brand}</strong><small>{offer.product} · {offer.data} / {offer.days}d</small></span>
                   <b>${offer.price.toFixed(2)}</b>
-                </button>
+                </button></li>
               ))}
-              {!rankedOffers.length && <p className="noOffers">No comparable consumer offers</p>}
+              {!rankedOffers.length && <li className="noOffers">No comparable consumer offers</li>}
+              </ul>
               <p>{selectedRegion === "EU" ? "Verified provider pricing" : "Marketplace preview · verify before purchase"}</p>
-            </div>
+            </section>
 
             <label className="countrySearch">
               <span className="srOnly">Search countries in {regionLabels[selectedRegion]}</span>
@@ -304,7 +306,7 @@ export default function WorldMap() {
               <span aria-hidden="true">⌕</span>
             </label>
 
-            <div className="countryList">
+            <div className="countryList" role="group" aria-label={`Countries in ${regionLabels[selectedRegion]}`}>
               {visibleCountries.map((country) => (
                 <button
                   key={country.code}

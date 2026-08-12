@@ -73,6 +73,19 @@ const criteria = [
 export default function EsimGuide() {
   const [active, setActive] = useState(0);
 
+  function handleTabKeyDown(event, index) {
+    const lastIndex = criteria.length - 1;
+    const nextIndex = event.key === "ArrowDown" || event.key === "ArrowRight"
+      ? (index + 1) % criteria.length
+      : event.key === "ArrowUp" || event.key === "ArrowLeft"
+        ? (index - 1 + criteria.length) % criteria.length
+        : event.key === "Home" ? 0 : event.key === "End" ? lastIndex : null;
+    if (nextIndex === null) return;
+    event.preventDefault();
+    setActive(nextIndex);
+    requestAnimationFrame(() => document.getElementById(`guide-tab-${nextIndex}`)?.focus());
+  }
+
   return (
     <section className="esimGuide" aria-labelledby="guide-title">
       <header className="guideHeading">
@@ -94,7 +107,9 @@ export default function EsimGuide() {
               aria-selected={active === index}
               aria-controls={`guide-panel-${index}`}
               className={active === index ? "active" : ""}
+              tabIndex={active === index ? 0 : -1}
               onClick={() => setActive(index)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
             >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{item.label}</strong>
@@ -121,17 +136,17 @@ export default function EsimGuide() {
               <ul>
                 {item.checks.map((check) => <li key={check}><span aria-hidden="true">✓</span>{check}</li>)}
               </ul>
-              <section className="guideComparison" aria-label={`Suggested eSIM comparison for ${item.short}`}>
-                <header><strong>Suggested comparison</strong><span>Example plans · verify live prices</span></header>
-                <div>
+              <section className="guideComparison" aria-labelledby={`guide-comparison-${index}`}>
+                <header><h4 id={`guide-comparison-${index}`}>Suggested comparison</h4><span>Example plans · verify live prices</span></header>
+                <ol>
                   {item.comparisons.map((comparison, comparisonIndex) => (
-                    <article key={comparison.brand} style={{ "--comparison-color": comparison.color }}>
+                    <li key={comparison.brand}><article style={{ "--comparison-color": comparison.color }}>
                       <span className="comparisonRank">0{comparisonIndex + 1}</span>
                       <div><strong><i />{comparison.brand}</strong><small>{comparison.product}</small></div>
                       <div><b>{comparison.metric}</b><small>{comparison.detail}</small></div>
-                    </article>
+                    </article></li>
                   ))}
-                </div>
+                </ol>
               </section>
               <aside><strong>Traveler note</strong><p>{item.tip}</p></aside>
             </article>
