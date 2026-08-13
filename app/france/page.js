@@ -2,6 +2,7 @@ import FrancePlans, { HeroPlanStrip } from "./FrancePlans";
 import { francePlans } from "./plans";
 import { HeroArrivalBrief, HeroQuickAnswer } from "../CountryHeroContent";
 import CountryFaqTabs from "../CountryFaqTabs";
+import { HeadingReadMore, HeadingSignal } from "../EditorialHeading";
 import RelatedCountryGuides from "../RelatedCountryGuides";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
@@ -28,7 +29,7 @@ export const metadata = {
 
 export default function FrancePage() {
   return (
-    <div className="pageShell countryPage">
+    <div className="pageShell countryPage" id="top">
       <SiteHeader />
       <main id="main-content">
       <CountryBreadcrumbs region="Europe" country="France" />
@@ -37,7 +38,7 @@ export default function FrancePage() {
         <div className="franceHeroCopy">
           <span className="franceFlag" role="img" aria-label="Flag of France"><i /><i /><i /></span>
           <p className="eyebrow">FRANCE ESIM COMPARISON / UPDATED <time dateTime="2026-08-12">AUGUST 2026</time></p>
-          <h1 id="france-hero-title">Find the best eSIM for France.</h1>
+          <h1 id="france-hero-title"><HeadingSignal />Find the best eSIM for France.</h1>
           <HeroQuickAnswer country="France" plan={francePlans[0]} summary="Compare prepaid France eSIM plans for Paris, Lyon, Nice and travel between regions. Review data, validity, 4G and 5G access, hotspot rules and total price before choosing." reason="The 5 GB allowance is a sensible fit for maps, train bookings and everyday browsing, while 30-day validity covers most holidays without requiring an unlimited plan." />
         </div>
         <figure className="franceVisual">
@@ -53,13 +54,13 @@ export default function FrancePage() {
       <FrancePlans />
 
       <section className="franceEssentials" id="country-essentials" aria-labelledby="france-essentials-title">
-        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2 id="france-essentials-title">Using a travel eSIM in France</h2></div>
+        <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2 id="france-essentials-title"><HeadingSignal />Using a travel eSIM in France</h2><HeadingReadMore href="#country-faq" label="Read the FAQs">Review French mobile operators, expected coverage and the safest time to install and activate your travel eSIM.</HeadingReadMore></div>
         <dl><div><dt>Networks</dt><dd>Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks.</dd></div><div><dt>Coverage</dt><dd>4G is widely available; 5G availability depends on location and the selected plan.</dd></div><div><dt>Installation</dt><dd>Install on Wi-Fi before departure, then activate the data line after arrival.</dd></div></dl>
       </section>
 
-      <section className="franceFaq" aria-labelledby="france-faq-title">
+      <section className="franceFaq" id="country-faq" aria-labelledby="france-faq-title">
         <header>
-          <div><p className="eyebrow">FRANCE ESIM FAQ</p><h2 id="france-faq-title">Questions before you connect</h2></div>
+          <div><p className="eyebrow">FRANCE ESIM FAQ</p><h2 id="france-faq-title"><HeadingSignal />Questions before you connect</h2><HeadingReadMore href="#related-destinations" label="More destinations">Check plan choice, setup, calls, hotspot use and regional coverage before purchasing.</HeadingReadMore></div>
           <span>07 practical answers</span>
         </header>
         <CountryFaqTabs country="France" />

@@ -1,5 +1,7 @@
 "use client";
 
+import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
+
 import { useMemo, useState } from "react";
 import { sitePath } from "./sitePath";
 import world from "@svg-maps/world";
@@ -129,9 +131,10 @@ export default function WorldMap() {
       <div className="finderTopline">
         <div>
           <p className="finderStep">Global coverage explorer</p>
-          <h2 id="destination-title">
+          <h2 id="destination-title"><HeadingSignal />
             {selectedCountry?.name || (selectedRegion ? regionLabels[selectedRegion] : "Where are you landing?")}
           </h2>
+          <HeadingReadMore href="#map-workspace" label="Explore the map">Choose a continent, then a country, to compare available eSIM brands, allowances and preview prices.</HeadingReadMore>
         </div>
         <p className="coverageCount">
           <strong>{mapCountries.length}</strong>
@@ -161,7 +164,7 @@ export default function WorldMap() {
         ))}
       </div>
 
-      <div className={`mapWorkspace ${selectedRegion ? "isExploring" : ""}`}>
+      <div className={`mapWorkspace ${selectedRegion ? "isExploring" : ""}`} id="map-workspace">
         <div className="mapCanvas">
           {selectedRegion && (
             <section className="mapPlanOverlay" aria-labelledby="regional-options-title">

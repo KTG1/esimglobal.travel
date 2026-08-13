@@ -1,5 +1,6 @@
 import WorldMap from "./WorldMap";
 import EsimGuide from "./EsimGuide";
+import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 
 export default function Home() {
@@ -15,10 +16,10 @@ export default function Home() {
         </div>
 
         <p className="eyebrow">COMPARE TRAVEL ESIMS ACROSS 190+ DESTINATIONS</p>
-        <h1>Global eSIM plans for international travel.</h1>
-        <p className="heroLead">
+        <h1><HeadingSignal />Global eSIM plans for international travel.</h1>
+        <HeadingReadMore className="heroLead" href="#compare" label="Explore the map">
           Compare prepaid travel eSIM providers, data allowances, validity and prices for countries worldwide. Find the best international eSIM for your trip and connect as soon as you land—without roaming fees or a physical SIM card.
-        </p>
+        </HeadingReadMore>
         <WorldMap />
         <EsimGuide />
         <p className="intro">

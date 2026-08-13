@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { countryPages } from "./countryPages";
+import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
 import { francePlans } from "./france/plans";
 
 const franceGuide = {
@@ -31,10 +32,10 @@ export default function RelatedCountryGuides({ currentCountry }) {
   const headingId = `${currentCountry.toLowerCase().replaceAll(" ", "-")}-related-guides-title`;
 
   return (
-    <section className="relatedCountryGuides" aria-labelledby={headingId}>
+    <section className="relatedCountryGuides" id="related-destinations" aria-labelledby={headingId}>
       <header>
-        <div><p className="eyebrow">CONTINUE YOUR ROUTE</p><h2 id={headingId}>Compare eSIMs for other destinations</h2></div>
-        <p>Planning another stop? Open a country guide to compare local networks, plan allowances, validity and preview prices.</p>
+        <div><p className="eyebrow">CONTINUE YOUR ROUTE</p><h2 id={headingId}><HeadingSignal />Compare eSIMs for other destinations</h2><HeadingReadMore href="#top" label="Back to top">Planning another stop? Open a country guide to compare local networks, plan allowances, validity and preview prices.</HeadingReadMore></div>
+        <span className="headingMetric">06 country guides · worldwide routes</span>
       </header>
       <nav aria-label={`Other country eSIM guides from ${currentCountry}`}>
         <ul>

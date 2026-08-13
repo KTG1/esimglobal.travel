@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { HeadingReadMore, HeadingSignal } from "../EditorialHeading";
 import { francePlans } from "./plans";
 
 const filterOptions = {
@@ -22,7 +23,7 @@ export function HeroPlanStrip({ country, plans }) {
   const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <section className="heroPlanBoard" aria-labelledby={headingId}>
-      <header className="heroPlanBoardLabel"><span>EDITOR’S SHORTLIST</span><h2 id={headingId}>Top 5 for {country}</h2><p>Compared by data, validity, network and price.</p><small>Preview prices · verify before purchase</small></header>
+      <header className="heroPlanBoardLabel"><span>EDITOR’S SHORTLIST</span><h2 id={headingId}><HeadingSignal />Top 5 for {country}</h2><HeadingReadMore href="#plans" label="See all plans">Compared by data, validity, network and price.</HeadingReadMore><small>Preview prices · verify before purchase</small></header>
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
           <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
@@ -66,8 +67,8 @@ export default function FrancePlans({ country = "France", plans = francePlans })
         <div className="bestPickLead">
           <div className="bestPickSeal"><span>EDITOR’S CHOICE</span><b>01</b></div>
           <p className="eyebrow">BEST OVERALL FOR MOST TRAVELERS</p>
-          <h2 id="best-pick-title">Our best {country} eSIM pick: <em>Saily</em></h2>
-          <p>{bestPickIntro}</p>
+          <h2 id="best-pick-title"><HeadingSignal />Our best {country} eSIM pick: <em>Saily</em></h2>
+          <HeadingReadMore href="#plans" label="Review the plan">{bestPickIntro}</HeadingReadMore>
           <a href="#plans">See the Saily plan <span aria-hidden="true">↓</span></a>
         </div>
         <div className="bestPickReasons">
@@ -77,7 +78,7 @@ export default function FrancePlans({ country = "France", plans = francePlans })
         </div>
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
-        <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title">Popular {country} eSIM plans</h2></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
+        <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
         <ol className="featuredPlanGrid">
           {plans.slice(0, 3).map((plan, index) => (
             <li key={plan.brand}><article style={{ "--plan-color": plan.color }} aria-labelledby={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>
@@ -93,7 +94,7 @@ export default function FrancePlans({ country = "France", plans = francePlans })
       </section>
 
       <section className="francePlanExplorer" id="plans" aria-labelledby="plans-title">
-        <header><div><p className="eyebrow">FILTER AND COMPARE</p><h2 id="plans-title">Find a {country} eSIM for your trip</h2></div><span>{filteredPlans.length} matching plans</span></header>
+        <header><div><p className="eyebrow">FILTER AND COMPARE</p><h2 id="plans-title"><HeadingSignal />Find a {country} eSIM for your trip</h2><HeadingReadMore href="#country-essentials" label="Connection guide">Adjust data, validity and budget to qualify the plans that match how you will travel.</HeadingReadMore></div><span>{filteredPlans.length} matching plans</span></header>
         <div className="planFilters">
           <FilterGroup title="Total data" options={filterOptions.data} value={data} onChange={setData} />
           <FilterGroup title="Validity" options={filterOptions.days} value={days} onChange={setDays} />

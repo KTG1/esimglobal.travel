@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
 
 const criteria = [
   {
@@ -91,12 +92,13 @@ export default function EsimGuide() {
       <header className="guideHeading">
         <div>
           <p className="eyebrow">TRAVEL ESIM BUYER’S GUIDE</p>
-          <h2 id="guide-title">How to choose the best eSIM for your trip</h2>
+          <h2 id="guide-title"><HeadingSignal />How to choose the best eSIM for your trip</h2>
+          <HeadingReadMore href="#guide-checks" label="Start the checks">Use five practical checks to separate a low headline price from a plan that will actually keep you connected.</HeadingReadMore>
         </div>
-        <p>Five checks separate a low headline price from a plan that will actually keep you connected.</p>
+        <span className="headingMetric">05 decision checks · side-by-side examples</span>
       </header>
 
-      <div className="guideSwitcher">
+      <div className="guideSwitcher" id="guide-checks">
         <div className="guideTabs" role="tablist" aria-orientation="vertical" aria-label="eSIM selection criteria">
           {criteria.map((item, index) => (
             <button

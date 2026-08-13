@@ -1,9 +1,11 @@
+import { HeadingReadMore } from "./EditorialHeading";
+
 export function HeroQuickAnswer({ country, plan, summary, reason }) {
   const headingId = `${country.toLowerCase().replaceAll(" ", "-")}-quick-answer`;
 
   return (
     <>
-      <p className="heroIntro">{summary}</p>
+      <HeadingReadMore className="heroIntro" href="#plans" label="Compare plans">{summary}</HeadingReadMore>
       <section className="heroQuickAnswer" aria-labelledby={headingId}>
         <header>
           <span>Quick answer</span>
