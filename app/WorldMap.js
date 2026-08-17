@@ -7,8 +7,8 @@ import { sitePath } from "./sitePath";
 import world from "@svg-maps/world";
 import { continents, countries } from "countries-list";
 
-const regionOrder = ["NA", "SA", "EU", "AF", "AS", "OC", "AN"];
-const regionLabels = { ...continents, AN: "Antarctica" };
+const regionOrder = ["NA", "SA", "EU", "AF", "AS", "OC"];
+const regionLabels = continents;
 const regionViewBoxes = {
   NA: "0 20 480 390",
   SA: "170 245 330 415",
@@ -16,7 +16,6 @@ const regionViewBoxes = {
   AF: "360 245 350 410",
   AS: "480 65 530 430",
   OC: "690 300 320 330",
-  AN: "0 510 1010 156",
 };
 const brandOffers = {
   NA: [{ brand: "Saily", product: "North America", data: "5 GB", days: 30, price: 16.99, color: "#3626a7" }, { brand: "Airalo", product: "North America Regional", data: "3 GB", days: 30, price: 12, color: "#ff6b4a" }, { brand: "Holafly", product: "North America Unlimited", data: "Unlimited", days: 7, price: 29, color: "#7b2dff" }],
@@ -25,7 +24,6 @@ const brandOffers = {
   AF: [{ brand: "Saily", product: "Africa", data: "3 GB", days: 30, price: 19.99, color: "#3626a7" }, { brand: "Airalo", product: "Hello Africa", data: "3 GB", days: 30, price: 14, color: "#ff6b4a" }, { brand: "Holafly", product: "Africa Unlimited", data: "Unlimited", days: 7, price: 39, color: "#7b2dff" }],
   AS: [{ brand: "Saily", product: "Asia & Oceania", data: "3 GB", days: 30, price: 12.49, color: "#3626a7" }, { brand: "Nomad", product: "APAC", data: "5 GB", days: 30, price: 15, color: "#6f5cff" }, { brand: "Airalo", product: "Asialink", data: "10 GB", days: 30, price: 37, color: "#ff6b4a" }],
   OC: [{ brand: "Saily", product: "Oceania", data: "5 GB", days: 30, price: 19.99, color: "#3626a7" }, { brand: "Nomad", product: "Oceania", data: "5 GB", days: 30, price: 16, color: "#6f5cff" }, { brand: "Airalo", product: "Island Hopper", data: "3 GB", days: 30, price: 12, color: "#ff6b4a" }],
-  AN: [],
 };
 const brandFacts = {
   Saily: { network: "3G / 4G / 5G", delivery: "Instant QR", activation: "On arrival", extra: "Web protection" },
@@ -49,7 +47,7 @@ const mapCountries = world.locations
     const details = countries[code];
     return details ? { ...location, code, ...details } : null;
   })
-  .filter(Boolean);
+  .filter((country) => country && country.continent !== "AN");
 
 export default function WorldMap() {
   const [selectedRegion, setSelectedRegion] = useState(null);
