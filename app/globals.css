@@ -78,6 +78,7 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .finderTopline { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 24px 26px 20px; }
 .finderStep { margin: 0 0 7px; color: var(--ocean); font: 700 10px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
 .finderTopline h2 { margin: 0; font: 400 clamp(30px, 4vw, 48px)/1 Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
+.selectedCountryHeading { margin: 8px 0 0 calc(.56em + .16em); color: var(--ocean); font: 500 clamp(18px, 2.2vw, 27px)/1.1 Georgia, "Times New Roman", serif; letter-spacing: -.025em; }
 .finderTopline > div { min-width: 0; }
 .finderTopline .headingReadMore { max-width: 700px; margin-top: 9px; font-size: 11px; }
 .coverageCount { display: grid; justify-items: end; margin: 0; }

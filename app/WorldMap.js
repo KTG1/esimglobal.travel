@@ -130,8 +130,9 @@ export default function WorldMap() {
         <div>
           <p className="finderStep">Global coverage explorer</p>
           <h2 id="destination-title"><HeadingSignal />
-            {selectedCountry?.name || (selectedRegion ? regionLabels[selectedRegion] : "Where are you landing?")}
+            {selectedRegion ? regionLabels[selectedRegion] : "Where are you landing?"}
           </h2>
+          {selectedCountry && <h3 className="selectedCountryHeading">{selectedCountry.name}</h3>}
           <HeadingReadMore href="#map-workspace" label="Explore the map">Choose a continent, then a country, to compare available eSIM brands, allowances and preview prices.</HeadingReadMore>
         </div>
         <p className="coverageCount">
