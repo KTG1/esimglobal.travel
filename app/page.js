@@ -59,6 +59,45 @@ export default function Home() {
             <a href="#compare">Start with your destination <b aria-hidden="true">↗</b></a>
           </footer>
         </section>
+        <section className="databaseSection" aria-labelledby="database-title">
+          <header className="databaseHeading">
+            <div>
+              <p className="databaseKicker"><span aria-hidden="true">◎</span> Comparison methodology</p>
+              <h2 id="database-title">The Most Accurate eSIM Comparison Database</h2>
+            </div>
+            <p>One consistent view of destination coverage, allowances, validity, network support and price—so every plan can be judged by the same travel-ready criteria.</p>
+          </header>
+          <div className="databaseGrid">
+            <article>
+              <span className="databaseIndex">Coverage / 01</span>
+              <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"/><path d="M6.5 16h19M16 6c3.1 3.1 4.6 6.4 4.6 10S19.1 22.9 16 26c-3.1-3.1-4.6-6.4-4.6-10S12.9 9.1 16 6Z"/></svg>
+              <h3>Destination-first coverage</h3>
+              <p>Country and regional plans are organized around where you are traveling, not around provider marketing.</p>
+            </article>
+            <article>
+              <span className="databaseIndex">Criteria / 02</span>
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8h16M8 16h16M8 24h16"/><circle cx="12" cy="8" r="2.5"/><circle cx="20" cy="16" r="2.5"/><circle cx="15" cy="24" r="2.5"/></svg>
+              <h3>Like-for-like plan details</h3>
+              <p>Data, trip length, network generation, delivery and activation details appear in a consistent format.</p>
+            </article>
+            <article>
+              <span className="databaseIndex">Method / 03</span>
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5v22M8 10h16M10 10l-4 8h8l-4-8ZM22 10l-4 8h8l-4-8Z"/><path d="M11 27h10"/></svg>
+              <h3>Independent comparison</h3>
+              <p>Plans are presented with transparent attributes so travelers can assess value without hidden weighting.</p>
+            </article>
+            <article>
+              <span className="databaseIndex">Clarity / 04</span>
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 5h14v22H9zM12 10h8M12 15h8M12 20h5"/><path d="m20 22 2 2 4-5"/></svg>
+              <h3>Decision-ready summaries</h3>
+              <p>Comparison notes explain the practical trade-off between price, allowance, validity and included features.</p>
+            </article>
+          </div>
+          <footer className="databaseFooter">
+            <p><strong>Accuracy standard</strong> Provider terms and live checkout prices should always be verified before purchase.</p>
+            <a href="#compare">Explore the database <span aria-hidden="true">↗</span></a>
+          </footer>
+        </section>
       </div>
       </main>
       <SiteFooter />
