@@ -6,6 +6,7 @@ import { HeadingReadMore, HeadingSignal } from "../EditorialHeading";
 import RelatedCountryGuides from "../RelatedCountryGuides";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
+import CountryStructuredData from "../CountryStructuredData";
 
 export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
@@ -30,6 +31,14 @@ export const metadata = {
 export default function FrancePage() {
   return (
     <div className="pageShell countryPage" id="top">
+      <CountryStructuredData
+        slug="france"
+        name="France"
+        description="Compare travel eSIM plans for France by provider, data, validity, network and price. Find prepaid France eSIM options for your trip."
+        image="/images/france-esim-hero.jpg"
+        imageAlt="The Eiffel Tower illuminated at blue hour in Paris, France"
+        plans={francePlans}
+      />
       <SiteHeader />
       <main id="main-content">
       <CountryBreadcrumbs region="Europe" country="France" />

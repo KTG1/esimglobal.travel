@@ -7,6 +7,7 @@ import RelatedCountryGuides from "../RelatedCountryGuides";
 import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
+import CountryStructuredData from "../CountryStructuredData";
 
 export function generateStaticParams() {
   return countrySlugs.map((country) => ({ country }));
@@ -47,6 +48,14 @@ export default async function CountryPage({ params }) {
 
   return (
     <div className="pageShell countryPage" id="top">
+      <CountryStructuredData
+        slug={country}
+        name={destination.name}
+        description={`Compare travel eSIM plans for ${destination.name} by provider, data, validity, network and price. Find the right prepaid eSIM for your trip.`}
+        image={destination.heroImage}
+        imageAlt={destination.heroAlt}
+        plans={destination.plans}
+      />
       <SiteHeader />
       <main id="main-content">
       <CountryBreadcrumbs region={destination.region} country={destination.name} />
