@@ -3,8 +3,8 @@
 import { useRef, useState } from "react";
 import { buildCountryFaqGroups } from "./countryFaqData";
 
-export default function CountryFaqTabs({ country, bestPlan, networks, coverage }) {
-  const groups = buildCountryFaqGroups({ country, bestPlan, networks, coverage });
+export default function CountryFaqTabs({ country, bestPlan, networks, coverage, plans }) {
+  const groups = buildCountryFaqGroups({ country, bestPlan, networks, coverage, plans });
   const [activeTab, setActiveTab] = useState(groups[0].id);
   const tabRefs = useRef([]);
   const idPrefix = country.toLowerCase().replaceAll(" ", "-");

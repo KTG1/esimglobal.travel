@@ -8,7 +8,7 @@ export default function CountryStructuredData({ slug, name, description, image, 
   const breadcrumbId = `${pageUrl}#breadcrumb`;
   const planListId = `${pageUrl}#plans-list`;
   const faqId = `${pageUrl}#faq`;
-  const faqGroups = buildCountryFaqGroups({ country: name, bestPlan: plans[0], networks, coverage });
+  const faqGroups = buildCountryFaqGroups({ country: name, bestPlan: plans[0], networks, coverage, plans });
 
   const data = {
     "@context": "https://schema.org",

@@ -93,8 +93,8 @@ export default async function CountryPage({ params }) {
       </section>
 
       <section className="franceFaq" id="country-faq" aria-labelledby={faqId}>
-        <header><div><p className="eyebrow">{destination.name.toUpperCase()} ESIM FAQ</p><h2 id={faqId}><HeadingSignal />Questions before you connect</h2><HeadingReadMore href="#related-destinations" label="More destinations">Check plan choice, setup, calls, hotspot use and regional coverage before purchasing.</HeadingReadMore></div><span>08 practical answers</span></header>
-        <CountryFaqTabs country={destination.name} bestPlan={destination.plans[0]} networks={destination.networks} coverage={destination.coverage} />
+        <header><div><p className="eyebrow">{destination.name.toUpperCase()} ESIM FAQ</p><h2 id={faqId}><HeadingSignal />Questions before you connect</h2><HeadingReadMore href="#related-destinations" label="More destinations">Check plan choice, setup, calls, hotspot use and regional coverage before purchasing.</HeadingReadMore></div><span>18 practical answers</span></header>
+        <CountryFaqTabs country={destination.name} bestPlan={destination.plans[0]} networks={destination.networks} coverage={destination.coverage} plans={destination.plans} />
       </section>
       <RelatedCountryGuides currentCountry={destination.name} />
       </main>

@@ -72,9 +72,9 @@ export default function FrancePage() {
       <section className="franceFaq" id="country-faq" aria-labelledby="france-faq-title">
         <header>
           <div><p className="eyebrow">FRANCE ESIM FAQ</p><h2 id="france-faq-title"><HeadingSignal />Questions before you connect</h2><HeadingReadMore href="#related-destinations" label="More destinations">Check plan choice, setup, calls, hotspot use and regional coverage before purchasing.</HeadingReadMore></div>
-          <span>08 practical answers</span>
+          <span>18 practical answers</span>
         </header>
-        <CountryFaqTabs country="France" bestPlan={francePlans[0]} networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." />
+        <CountryFaqTabs country="France" bestPlan={francePlans[0]} networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." plans={francePlans} />
       </section>
       <RelatedCountryGuides currentCountry="France" />
       </main>
