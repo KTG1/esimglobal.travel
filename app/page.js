@@ -4,29 +4,85 @@ import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import { siteUrl } from "./sitePath";
 
+const organizationId = `${siteUrl("/")}#organization`;
+const websiteId = `${siteUrl("/")}#website`;
+const webpageId = `${siteUrl("/")}#webpage`;
+const logoId = `${siteUrl("/images/esim-global-logo.svg")}#logo`;
+
 const organizationStructuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${siteUrl("/")}#organization`,
-  name: "eSIM Global Travel",
-  alternateName: "eSIM Global",
-  url: siteUrl("/"),
-  description:
-    "An independent travel eSIM comparison resource covering providers, data allowances, validity, network access and prices for destinations worldwide.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Istanbul",
-    addressCountry: "TR",
-  },
-  areaServed: {
-    "@type": "Place",
-    name: "Worldwide",
-  },
-  knowsAbout: [
-    "Travel eSIMs",
-    "International mobile data",
-    "Prepaid eSIM plans",
-    "Mobile network coverage",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "eSIM Global Travel",
+      alternateName: ["eSIM Global", "esimglobal.travel"],
+      url: siteUrl("/"),
+      description:
+        "An independent travel eSIM comparison resource covering providers, data allowances, validity, network access and prices for destinations worldwide.",
+      logo: { "@id": logoId },
+      image: { "@id": logoId },
+      location: {
+        "@type": "Place",
+        name: "Istanbul, Türkiye",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Istanbul",
+          addressCountry: "TR",
+        },
+      },
+      areaServed: {
+        "@type": "Place",
+        name: "Worldwide",
+      },
+      knowsLanguage: "en",
+      knowsAbout: [
+        "Travel eSIMs",
+        "International mobile data",
+        "Prepaid eSIM plans",
+        "eSIM provider comparison",
+        "Mobile network coverage",
+        "International roaming alternatives",
+      ],
+      subjectOf: {
+        "@type": "SoftwareSourceCode",
+        name: "eSIM Global Travel website source",
+        codeRepository: "https://github.com/KTG1/esimglobal.travel",
+        programmingLanguage: "JavaScript",
+      },
+    },
+    {
+      "@type": "ImageObject",
+      "@id": logoId,
+      url: siteUrl("/images/esim-global-logo.svg"),
+      contentUrl: siteUrl("/images/esim-global-logo.svg"),
+      width: 512,
+      height: 512,
+      caption: "eSIM Global Travel logo",
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteUrl("/"),
+      name: "eSIM Global Travel",
+      alternateName: "eSIM Global",
+      description:
+        "Independent comparisons of prepaid travel eSIM providers, plans, coverage and prices.",
+      inLanguage: "en",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: siteUrl("/"),
+      name: "Compare Global eSIM Plans for International Travel",
+      description:
+        "Compare prepaid travel eSIM plans, providers, data, validity and prices for destinations worldwide.",
+      inLanguage: "en",
+      isPartOf: { "@id": websiteId },
+      about: { "@id": organizationId },
+      mainEntity: { "@id": organizationId },
+    },
   ],
 };
 
