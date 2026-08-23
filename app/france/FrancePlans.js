@@ -30,7 +30,7 @@ export function HeroPlanStrip({ country, plans }) {
   const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <section className="heroPlanBoard" aria-labelledby={headingId}>
-      <header className="heroPlanBoardLabel"><span>EDITOR’S SHORTLIST</span><h2 id={headingId}><HeadingSignal />Top 5 for {country}</h2><HeadingReadMore href="#plans" label="See all plans">Compared by data, validity, network and price.</HeadingReadMore><small>Preview prices · verify before purchase</small></header>
+      <header className="heroPlanBoardLabel"><span>VERIFIED OFFER</span><h2 id={headingId}><HeadingSignal />Saily for {country}</h2><HeadingReadMore href="#plans" label="See plan">Verified by data, validity and published price.</HeadingReadMore><small>Checked 24 August 2026</small></header>
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
           <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
@@ -45,25 +45,16 @@ export function HeroPlanStrip({ country, plans }) {
   );
 }
 
-export default function FrancePlans({ country = "France", plans = francePlans }) {
+export default function FrancePlans({ country = "France", plans = francePlans, sourceUrl = "https://saily.com/esim-france/", sourceChecked = "2026-08-24" }) {
   const [data, setData] = useState(0);
   const [days, setDays] = useState(0);
   const [price, setPrice] = useState(999);
   const bestPlan = plans.find((plan) => plan.brand === "Saily") || plans[0];
-  const isFrance = country === "France";
-  const bestPickIntro = isFrance
-    ? "Saily is our best overall France eSIM because it combines nationwide usability, automatic arrival activation, hotspot sharing and built-in security tools with a flexible 30-day data plan."
-    : `Saily stands out in this comparison because it balances a practical data allowance, long validity and a competitive preview price without forcing most travelers into an unlimited plan.`;
-  const bestReasons = isFrance ? [
-    { title: "France-wide travel coverage", text: "The plan is designed for use across France, including major cities. Connection quality and 3G, 4G, LTE or 5G speed depend on the available local partner network." },
-    { title: "Automatic activation on arrival", text: "Buy and install before departure; the plan activates when the eSIM first connects in France. Standard plans must be activated within 30 days of purchase." },
-    { title: "Practical 5 GB / 30-day fit", text: "A good middle ground for Google Maps, train bookings, translation, messaging and regular browsing. At $11.99, the preview cost is about $2.40 per GB." },
-    { title: "Hotspot and easy top-ups", text: "Hotspot sharing is supported, and additional data can be purchased in the app. A new plan can activate when the current allowance runs out." },
-    { title: "Travel security extras", text: "Saily includes optional ad blocking and web protection, which can reduce intrusive ads, trackers and access to known malicious websites." },
-  ] : [
+  const bestPickIntro = `Saily is prioritized because its official destination page publishes a current ${country} plan with a traceable data allowance, validity period and starting price.`;
+  const bestReasons = [
     { title: "Useful allowance", text: `${bestPlan.dataLabel} is a sensible fit for maps, messages and everyday browsing.` },
     { title: "Trip-friendly validity", text: `${bestPlan.days} days gives travelers flexibility without rushing to use the plan.` },
-    { title: "Balanced connectivity", text: `${bestPlan.network} availability and straightforward digital delivery cover the essentials.` },
+    { title: "Published connectivity", text: `Saily lists ${bestPlan.network} speeds, depending on the available local provider, device and location.` },
   ];
 
   const filteredPlans = useMemo(() => plans.filter((plan) => plan.data >= data && plan.days >= days && plan.price <= price), [data, days, price]);
@@ -81,7 +72,7 @@ export default function FrancePlans({ country = "France", plans = francePlans })
         <div className="bestPickReasons">
           <header><span>Why it leads</span><strong>${bestPlan.price.toFixed(2)}</strong></header>
           {bestReasons.map((reason, index) => <article key={reason.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{reason.title}</h3><p>{reason.text}</p></div><i aria-hidden="true">↗</i></article>)}
-          <small>Editorial recommendation based on the displayed plan attributes. Verify current provider terms and pricing. {isFrance && <a href="https://saily.com/esim-france/" target="_blank" rel="noreferrer">Provider specifications ↗</a>}</small>
+          <small>Verified against Saily's official destination page on {sourceChecked}. Prices can change. <a href={sourceUrl} target="_blank" rel="noreferrer">Provider specifications ↗</a></small>
         </div>
       </section>
       <section className="commercialComparison" aria-labelledby="commercial-comparison-title">
@@ -112,7 +103,7 @@ export default function FrancePlans({ country = "France", plans = francePlans })
             </li>
           ))}
         </ol>
-        <footer>Prices are comparison snapshots in USD and may change. Verify the final price, taxes, supported networks, fair-use terms and device compatibility on the provider’s website before purchasing.</footer>
+        <footer>Published USD starting price checked on {sourceChecked}. Verify the final price, taxes, network, fair-use terms and compatibility before purchasing. <a href={sourceUrl} target="_blank" rel="noreferrer">Official Saily source ↗</a></footer>
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
         <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>

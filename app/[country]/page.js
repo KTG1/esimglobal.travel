@@ -77,7 +77,7 @@ export default async function CountryPage({ params }) {
         </div>
         <figure className="franceVisual genericCountryVisual" data-code={destination.code}>
           <figcaption className="srOnly">{destination.heroAlt}</figcaption>
-          <div className="parisStamp" aria-label={`${destination.city}: ${destination.coordinates.join(", ")}`}><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.coordinates[0]}</strong><small>{destination.coordinates[1]}</small></div>
+          <div className="parisStamp" aria-label={`${destination.city}, ${destination.name}`}><span>{destination.city.slice(0, 3).toUpperCase()}</span><strong>{destination.code}</strong><small>{destination.region}</small></div>
           <div className="countrySignal" aria-hidden="true"><i /><i /><i /><i /></div>
           <HeroArrivalBrief country={destination.name} networks={destination.networks} coverage={destination.coverage} network={destination.plans[0].network} titleId={`${country}-arrival-title`} />
           <span className="routeLabel">{destination.airport} → Connected</span>
@@ -85,7 +85,7 @@ export default async function CountryPage({ params }) {
         <HeroPlanStrip country={destination.name} plans={destination.plans} />
       </section>
 
-      <FrancePlans country={destination.name} plans={destination.plans} />
+      <FrancePlans country={destination.name} plans={destination.plans} sourceUrl={destination.sourceUrl} sourceChecked={destination.sourceChecked} />
 
       <section className="franceEssentials" id="country-essentials" aria-labelledby={essentialsTitleId}>
         <div><p className="eyebrow">BEFORE YOU CONNECT</p><h2 id={essentialsTitleId}><HeadingSignal />Using a travel eSIM in {destination.name}</h2><HeadingReadMore href="#country-faq" label="Read the FAQs">Review local operators, expected coverage and the safest time to install and activate your travel eSIM.</HeadingReadMore></div>

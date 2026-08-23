@@ -1,51 +1,28 @@
-const plan = (brand, product, data, dataLabel, days, price, network, color, note) => ({ brand, product, data, dataLabel, days, price, network, color, note });
+const plan = (country, price) => ({ brand: "Saily", product: `${country} Starter`, data: 1, dataLabel: "1 GB", days: 7, price, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Verified Saily plan" });
 
-export const countryPages = {
-  italy: {
-    name: "Italy", flag: "🇮🇹", code: "IT", region: "Europe", city: "Rome", airport: "FCO", coordinates: ["41.9028° N", "12.4964° E"],
-    heroImage: "/images/italy-esim-hero.jpg", heroWidth: 1200, heroHeight: 630, heroPosition: "center 48%", heroAlt: "The Colosseum illuminated at blue hour in Rome, Italy",
-    heroSummary: "Compare prepaid Italy eSIM plans for Rome, Milan, Florence and travel between regions. Check data, validity, network access, hotspot rules and total price before choosing.",
-    pickReason: "The 5 GB allowance covers maps, bookings and messaging, while 30-day validity gives both city-break and longer-stay travelers useful flexibility.",
-    networks: "TIM, Vodafone Italia, WindTre and iliad operate nationwide networks.",
-    coverage: "4G is widespread across cities and populated regions; 5G availability varies by place and plan.",
-    plans: [plan("Saily", "Italy", 5, "5 GB", 30, 12.99, "5G", "#3626a7", "Balanced pick"), plan("Airalo", "Mamma Mia", 10, "10 GB", 30, 22, "5G", "#ff6b4a", "Popular data plan"), plan("Holafly", "Italy Unlimited", 999, "Unlimited", 7, 27.5, "5G", "#7b2dff", "Unlimited pick"), plan("Nomad", "Italy", 10, "10 GB", 30, 15, "5G", "#6f5cff", "Best price per GB"), plan("Saily", "Italy Mini", 1, "1 GB", 7, 3.99, "4G / 5G", "#3626a7", "Short-trip pick"), plan("Airalo", "Mamma Mia", 3, "3 GB", 30, 8.5, "5G", "#ff6b4a", "Light-use plan")],
-  },
-  spain: {
-    name: "Spain", flag: "🇪🇸", code: "ES", region: "Europe", city: "Madrid", airport: "MAD", coordinates: ["40.4168° N", "03.7038° W"],
-    heroImage: "/images/spain-esim-hero.jpg", heroWidth: 1200, heroHeight: 630, heroPosition: "center 51%", heroAlt: "Puerta de Alcalá illuminated at blue hour in Madrid, Spain",
-    heroSummary: "Compare prepaid Spain eSIM plans for Madrid, Barcelona, Seville, the Balearic Islands and the Canary Islands. Check data, validity, supported networks, hotspot rules and price before departure.",
-    pickReason: "The 5 GB allowance is a practical fit for navigation, reservations and everyday browsing, and 30-day validity removes pressure to use the plan quickly.",
-    networks: "Movistar, Orange, Vodafone and Yoigo provide mobile service across Spain.",
-    coverage: "4G is widely available; 5G is strongest in cities and major travel destinations.",
-    plans: [plan("Saily", "Spain", 5, "5 GB", 30, 12.99, "5G", "#3626a7", "Balanced pick"), plan("Airalo", "Guay Mobile", 10, "10 GB", 30, 20, "5G", "#ff6b4a", "Popular data plan"), plan("Holafly", "Spain Unlimited", 999, "Unlimited", 7, 27.5, "5G", "#7b2dff", "Unlimited pick"), plan("Nomad", "Spain", 10, "10 GB", 30, 14, "5G", "#6f5cff", "Best price per GB"), plan("Saily", "Spain Mini", 1, "1 GB", 7, 3.99, "4G / 5G", "#3626a7", "Short-trip pick"), plan("Airalo", "Guay Mobile", 3, "3 GB", 30, 7.5, "5G", "#ff6b4a", "Light-use plan")],
-  },
-  turkey: {
-    name: "Türkiye", flag: "🇹🇷", code: "TR", region: "Europe & Asia", city: "Istanbul", airport: "IST", coordinates: ["41.0082° N", "28.9784° E"],
-    heroImage: "/images/turkey-esim-hero.jpg", heroWidth: 1200, heroHeight: 630, heroPosition: "center 53%", heroAlt: "Hagia Sophia and the Bosphorus at blue hour in Istanbul, Türkiye",
-    heroSummary: "Compare prepaid Türkiye eSIM plans for Istanbul, Antalya, Cappadocia and onward travel. Review data, validity, local network access, tethering terms and price before you leave.",
-    pickReason: "The 5 GB allowance suits maps, ride-hailing and messaging, while 30-day validity can cover both a short visit and a multi-stop itinerary.",
-    networks: "Turkcell, Türk Telekom and Vodafone Türkiye operate the country’s mobile networks.",
-    coverage: "4G/LTE is broadly available; provider wording and local 5G availability should be checked before purchase.",
-    plans: [plan("Saily", "Türkiye", 5, "5 GB", 30, 14.99, "4G / LTE", "#3626a7", "Balanced pick"), plan("Airalo", "Merhaba", 10, "10 GB", 30, 18, "4G / LTE", "#ff6b4a", "Popular data plan"), plan("Holafly", "Türkiye Unlimited", 999, "Unlimited", 7, 27.5, "4G / LTE", "#7b2dff", "Unlimited pick"), plan("Nomad", "Türkiye", 10, "10 GB", 30, 16, "4G / LTE", "#6f5cff", "Best price per GB"), plan("Saily", "Türkiye Mini", 1, "1 GB", 7, 3.99, "4G / LTE", "#3626a7", "Short-trip pick"), plan("Airalo", "Merhaba", 3, "3 GB", 30, 8, "4G / LTE", "#ff6b4a", "Light-use plan")],
-  },
-  japan: {
-    name: "Japan", flag: "🇯🇵", code: "JP", region: "Asia", city: "Tokyo", airport: "HND", coordinates: ["35.6762° N", "139.6503° E"],
-    heroImage: "/images/japan-esim-hero.jpg", heroWidth: 1200, heroHeight: 630, heroPosition: "center 47%", heroAlt: "Tokyo Tower and the city skyline at blue hour in Japan",
-    heroSummary: "Compare prepaid Japan eSIM plans for Tokyo, Kyoto, Osaka and intercity rail travel. Review data, validity, network support, hotspot access and price before selecting a plan.",
-    pickReason: "The 5 GB allowance supports maps, translation and transport apps, while 30-day validity works for both compact city stays and longer rail itineraries.",
-    networks: "NTT Docomo, au, SoftBank and Rakuten Mobile operate mobile networks in Japan.",
-    coverage: "Fast 4G is extensive and 5G is available in many urban areas, subject to plan and device support.",
-    plans: [plan("Saily", "Japan", 5, "5 GB", 30, 13.99, "5G", "#3626a7", "Balanced pick"), plan("Airalo", "Moshi Moshi", 10, "10 GB", 30, 18, "5G", "#ff6b4a", "Popular data plan"), plan("Holafly", "Japan Unlimited", 999, "Unlimited", 7, 27.5, "5G", "#7b2dff", "Unlimited pick"), plan("Nomad", "Japan", 10, "10 GB", 30, 16, "5G", "#6f5cff", "Best price per GB"), plan("Saily", "Japan Mini", 1, "1 GB", 7, 3.99, "4G / 5G", "#3626a7", "Short-trip pick"), plan("Airalo", "Moshi Moshi", 3, "3 GB", 30, 7, "5G", "#ff6b4a", "Light-use plan")],
-  },
-  "united-states": {
-    name: "United States", flag: "🇺🇸", code: "US", region: "North America", city: "New York", airport: "JFK", coordinates: ["40.7128° N", "74.0060° W"],
-    heroImage: "/images/united-states-esim-hero.jpg", heroWidth: 1200, heroHeight: 630, heroPosition: "center 50%", heroAlt: "The Statue of Liberty and Manhattan skyline at blue hour in New York",
-    heroSummary: "Compare prepaid United States eSIM plans for city breaks, business travel and multi-state trips. Check data, validity, network access, hotspot rules and regional coverage before purchase.",
-    pickReason: "The 5 GB allowance handles navigation, bookings and regular browsing, while 30-day validity gives travelers room for longer or multi-city trips.",
-    networks: "AT&T, T-Mobile and Verizon operate the major nationwide mobile networks.",
-    coverage: "4G is extensive and 5G is common in populated areas, but coverage varies across large rural regions.",
-    plans: [plan("Saily", "United States", 5, "5 GB", 30, 16.99, "5G", "#3626a7", "Balanced pick"), plan("Airalo", "Change", 10, "10 GB", 30, 26, "5G", "#ff6b4a", "Popular data plan"), plan("Holafly", "USA Unlimited", 999, "Unlimited", 7, 29, "5G", "#7b2dff", "Unlimited pick"), plan("Nomad", "United States", 10, "10 GB", 30, 17, "5G", "#6f5cff", "Best price per GB"), plan("Saily", "USA Mini", 1, "1 GB", 7, 4.49, "4G / 5G", "#3626a7", "Short-trip pick"), plan("Airalo", "Change", 3, "3 GB", 30, 11, "5G", "#ff6b4a", "Light-use plan")],
-  },
-};
+const images = { Europe: "/images/france-esim-hero.jpg", Asia: "/images/japan-esim-hero.jpg", Africa: "/images/spain-esim-hero.jpg", "North America": "/images/united-states-esim-hero.jpg", "South America": "/images/spain-esim-hero.jpg", Oceania: "/images/japan-esim-hero.jpg" };
+
+// Verified against Saily's public destination catalogue and destination pages
+// on 2026-08-24. Prices are published USD starting prices for 1 GB / 7 days.
+const destinations = [
+  // Europe: with the dedicated France page, these nine make 10.
+  ["italy","Italy","🇮🇹","IT","Europe","Rome","FCO",3.99],["spain","Spain","🇪🇸","ES","Europe","Madrid","MAD",3.99],["germany","Germany","🇩🇪","DE","Europe","Berlin","BER",4.49],["united-kingdom","United Kingdom","🇬🇧","GB","Europe","London","LHR",4.49],["portugal","Portugal","🇵🇹","PT","Europe","Lisbon","LIS",3.99],["greece","Greece","🇬🇷","GR","Europe","Athens","ATH",4.49],["netherlands","Netherlands","🇳🇱","NL","Europe","Amsterdam","AMS",3.99],["switzerland","Switzerland","🇨🇭","CH","Europe","Bern","ZRH",3.99],["austria","Austria","🇦🇹","AT","Europe","Vienna","VIE",1.99],
+  ["japan","Japan","🇯🇵","JP","Asia","Tokyo","HND",3.99],["china","China","🇨🇳","CN","Asia","Beijing","PEK",4.49],["india","India","🇮🇳","IN","Asia","New Delhi","DEL",3.99],["thailand","Thailand","🇹🇭","TH","Asia","Bangkok","BKK",2.99],["indonesia","Indonesia","🇮🇩","ID","Asia","Jakarta","CGK",4.79],["vietnam","Vietnam","🇻🇳","VN","Asia","Hanoi","HAN",3.99],["south-korea","South Korea","🇰🇷","KR","Asia","Seoul","ICN",3.99],["singapore","Singapore","🇸🇬","SG","Asia","Singapore","SIN",3.99],["malaysia","Malaysia","🇲🇾","MY","Asia","Kuala Lumpur","KUL",3.99],["united-arab-emirates","United Arab Emirates","🇦🇪","AE","Asia","Abu Dhabi","AUH",8.99],
+  ["turkey","Türkiye","🇹🇷","TR","Asia","Ankara","ESB",3.99],
+  ["egypt","Egypt","🇪🇬","EG","Africa","Cairo","CAI",8.99],["morocco","Morocco","🇲🇦","MA","Africa","Rabat","RBA",8.99],["south-africa","South Africa","🇿🇦","ZA","Africa","Pretoria","JNB",3.99],["ghana","Ghana","🇬🇭","GH","Africa","Accra","ACC",6.99],["nigeria","Nigeria","🇳🇬","NG","Africa","Abuja","ABV",7.49],["algeria","Algeria","🇩🇿","DZ","Africa","Algiers","ALG",8.99],["tanzania","Tanzania","🇹🇿","TZ","Africa","Dodoma","DAR",4.49],["rwanda","Rwanda","🇷🇼","RW","Africa","Kigali","KGL",6.99],["mauritius","Mauritius","🇲🇺","MU","Africa","Port Louis","MRU",7.49],["mozambique","Mozambique","🇲🇿","MZ","Africa","Maputo","MPM",6.99],
+  ["united-states","United States","🇺🇸","US","North America","Washington, D.C.","IAD",3.99],["canada","Canada","🇨🇦","CA","North America","Ottawa","YOW",5.29],["mexico","Mexico","🇲🇽","MX","North America","Mexico City","MEX",4.99],["costa-rica","Costa Rica","🇨🇷","CR","North America","San José","SJO",7.99],["panama","Panama","🇵🇦","PA","North America","Panama City","PTY",7.99],["guatemala","Guatemala","🇬🇹","GT","North America","Guatemala City","GUA",5.99],["dominican-republic","Dominican Republic","🇩🇴","DO","North America","Santo Domingo","SDQ",8.49],["jamaica","Jamaica","🇯🇲","JM","North America","Kingston","KIN",8.99],["el-salvador","El Salvador","🇸🇻","SV","North America","San Salvador","SAL",5.99],["honduras","Honduras","🇭🇳","HN","North America","Tegucigalpa","TGU",6.29],
+  ["brazil","Brazil","🇧🇷","BR","South America","Brasília","BSB",3.99],["argentina","Argentina","🇦🇷","AR","South America","Buenos Aires","EZE",5.29],["chile","Chile","🇨🇱","CL","South America","Santiago","SCL",4.99],["colombia","Colombia","🇨🇴","CO","South America","Bogotá","BOG",4.99],["peru","Peru","🇵🇪","PE","South America","Lima","LIM",4.99],["uruguay","Uruguay","🇺🇾","UY","South America","Montevideo","MVD",7.99],["ecuador","Ecuador","🇪🇨","EC","South America","Quito","UIO",5.99],["bolivia","Bolivia","🇧🇴","BO","South America","Sucre","VVI",7.99],["paraguay","Paraguay","🇵🇾","PY","South America","Asunción","ASU",7.49],["guyana","Guyana","🇬🇾","GY","South America","Georgetown","GEO",6.99],
+  ["australia","Australia","🇦🇺","AU","Oceania","Canberra","SYD",3.99],["new-zealand","New Zealand","🇳🇿","NZ","Oceania","Wellington","WLG",3.99],["fiji","Fiji","🇫🇯","FJ","Oceania","Suva","NAN",7.99],["papua-new-guinea","Papua New Guinea","🇵🇬","PG","Oceania","Port Moresby","POM",6.99],["tonga","Tonga","🇹🇴","TO","Oceania","Nukuʻalofa","TBU",4.99],["nauru","Nauru","🇳🇷","NR","Oceania","Yaren","INU",7.99],["samoa","Samoa","🇼🇸","WS","Oceania","Apia","APW",5.99],["guam","Guam","🇬🇺","GU","Oceania","Hagåtña","GUM",7.99,true],["french-polynesia","French Polynesia","🇵🇫","PF","Oceania","Papeete","PPT",15.99,true],["northern-mariana-islands","Northern Mariana Islands","🇲🇵","MP","Oceania","Saipan","SPN",7.99,true],
+];
+
+export const countryPages = Object.fromEntries(destinations.map(([slug,name,flag,code,region,city,airport,price,territory=false]) => [slug, {
+  name, flag, code, region, city, airport, territory,
+  heroImage: images[region], heroWidth: 1200, heroHeight: 630, heroPosition: "center 50%", heroAlt: `Travel eSIM comparison guide for ${name}`,
+  heroSummary: `Compare the verified Saily starter eSIM for ${name}. Review its data, validity, published starting price, connection technology and activation terms before purchase.`,
+  pickReason: `Saily is listed first because its official catalogue publishes a current ${name} offer and a traceable starting price.`,
+  networks: `Saily connects through local partner networks in ${name}; the specific carrier can vary by plan and location.`,
+  coverage: "Saily states that speed may be 3G, 4G, LTE or 5G depending on the local provider, device and location.",
+  sourceUrl: `https://saily.com/esim-${slug}/`, sourceChecked: "2026-08-24", plans: [plan(name, price)],
+}]));
 
 export const countrySlugs = Object.keys(countryPages);

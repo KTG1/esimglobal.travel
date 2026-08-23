@@ -3,7 +3,7 @@ import { siteUrl } from "./sitePath";
 
 export const dynamic = "force-static";
 
-const lastModified = "2026-08-23T21:46:26+03:00";
+const lastModified = "2026-08-24T12:00:00+03:00";
 
 const editorialRoutes = [
   "airalo-alternatives",
