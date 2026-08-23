@@ -1,11 +1,14 @@
 import { siteUrl } from "./sitePath";
+import { buildCountryFaqGroups } from "./countryFaqData";
 
-export default function CountryStructuredData({ slug, name, description, image, imageAlt, plans }) {
+export default function CountryStructuredData({ slug, name, description, image, imageAlt, plans, networks, coverage }) {
   const pageUrl = siteUrl(`/${slug}/`);
   const webpageId = `${pageUrl}#webpage`;
   const imageId = `${pageUrl}#primaryimage`;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
   const planListId = `${pageUrl}#plans-list`;
+  const faqId = `${pageUrl}#faq`;
+  const faqGroups = buildCountryFaqGroups({ country: name, bestPlan: plans[0], networks, coverage });
 
   const data = {
     "@context": "https://schema.org",
@@ -22,7 +25,7 @@ export default function CountryStructuredData({ slug, name, description, image, 
         publisher: { "@id": `${siteUrl("/")}#organization` },
         primaryImageOfPage: { "@id": imageId },
         breadcrumb: { "@id": breadcrumbId },
-        mainEntity: { "@id": planListId },
+        mainEntity: [{ "@id": planListId }, { "@id": faqId }],
         about: {
           "@type": "Thing",
           name: `${name} travel eSIM plans`,
@@ -83,6 +86,18 @@ export default function CountryStructuredData({ slug, name, description, image, 
               priceCurrency: "USD",
               url: `${pageUrl}#plans`,
             },
+          },
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        "@id": faqId,
+        mainEntity: faqGroups.flatMap((group) => group.questions).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
           },
         })),
       },

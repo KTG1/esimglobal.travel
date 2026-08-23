@@ -38,6 +38,8 @@ export default function FrancePage() {
         image="/images/france-esim-hero.jpg"
         imageAlt="The Eiffel Tower illuminated at blue hour in Paris, France"
         plans={francePlans}
+        networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks."
+        coverage="4G is widely available; 5G depends on location and the selected plan."
       />
       <SiteHeader />
       <main id="main-content">
@@ -70,9 +72,9 @@ export default function FrancePage() {
       <section className="franceFaq" id="country-faq" aria-labelledby="france-faq-title">
         <header>
           <div><p className="eyebrow">FRANCE ESIM FAQ</p><h2 id="france-faq-title"><HeadingSignal />Questions before you connect</h2><HeadingReadMore href="#related-destinations" label="More destinations">Check plan choice, setup, calls, hotspot use and regional coverage before purchasing.</HeadingReadMore></div>
-          <span>07 practical answers</span>
+          <span>08 practical answers</span>
         </header>
-        <CountryFaqTabs country="France" />
+        <CountryFaqTabs country="France" bestPlan={francePlans[0]} networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." />
       </section>
       <RelatedCountryGuides currentCountry="France" />
       </main>
