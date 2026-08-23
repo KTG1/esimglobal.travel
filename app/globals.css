@@ -38,19 +38,23 @@ body {
 .headerCta { justify-self: end; display: flex; align-items: center; gap: 18px; padding: 11px 13px 11px 16px; color: white !important; background: var(--ink); font: 700 9px/1 Menlo, Monaco, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .headerCta span { color: var(--signal); font-size: 16px; }
 .brandLogo { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); }
-.simMonogram { display: grid; place-items: center; width: 42px; height: 42px; color: var(--ocean); }
-.simMonogram svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: square; stroke-linejoin: bevel; }
-.simMonogram svg rect { fill: var(--signal); stroke: none; }
+.orbitMonogram { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid currentColor; border-radius: 50%; }
+.orbitMonogram::before { content: ""; position: absolute; inset: 5px -5px; border: 1px solid var(--ocean); border-radius: 50%; transform: rotate(-31deg); }
+.orbitMonogram b { position: relative; z-index: 1; font: 700 24px/.9 "Iowan Old Style", "Palatino Linotype", Palatino, serif; }
+.orbitMonogram i { position: absolute; z-index: 2; top: 2px; right: 1px; width: 7px; height: 7px; border: 2px solid var(--paper); border-radius: 50%; background: var(--signal); }
 .logoType { display: grid; grid-template-columns: auto auto; align-items: baseline; column-gap: 3px; }
 .logoType strong, .logoType > span { font: 700 14px/1 Menlo, Monaco, monospace; letter-spacing: -.04em; }
 .logoType > span { color: var(--ocean); }
 .logoType small { grid-column: 1 / -1; margin-top: 3px; color: #718a84; font: 700 7px/1 Menlo, Monaco, monospace; letter-spacing: .28em; }
 .brandLogo.inverted { color: white; }
-.brandLogo.inverted .simMonogram { color: #a6d5ca; }
+.brandLogo.inverted .orbitMonogram::before { border-color: #a6d5ca; }
+.brandLogo.inverted .orbitMonogram i { border-color: var(--ink); }
 .brandLogo.inverted .logoType > span { color: #a6d5ca; }
 .brandLogo.inverted .logoType small { color: #8ca7bc; }
 
 .hero { position: relative; align-self: center; width: 100%; max-width: 1180px; padding: 12vh 0; }
+.destinationCanvas { isolation: isolate; background: linear-gradient(165deg, var(--paper), var(--sky)); }
+.destinationStory { display: contents; }
 .routeKicker { margin: 0 0 22px; color: var(--ocean); font: 700 11px/1.2 Menlo, Monaco, monospace; letter-spacing: .14em; }
 h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 "Iowan Old Style", "Palatino Linotype", Palatino, serif; letter-spacing: -.068em; }
 .heroLead { max-width: 800px; margin: 32px 0 0; color: #355c59; font-size: clamp(18px, 2vw, 24px); line-height: 1.5; letter-spacing: -.025em; }

@@ -8,6 +8,7 @@ import FrancePlans, { HeroPlanStrip } from "../france/FrancePlans";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
 import CountryStructuredData from "../CountryStructuredData";
+import { destinationIdentity } from "../destinationIdentity";
 
 export function generateStaticParams() {
   return countrySlugs.map((country) => ({ country }));
@@ -45,9 +46,10 @@ export default async function CountryPage({ params }) {
   const faqId = `${country}-faq-title`;
   const heroTitleId = `${country}-hero-title`;
   const essentialsTitleId = `${country}-essentials-title`;
+  const identity = destinationIdentity(country, destination.region);
 
   return (
-    <div className="pageShell countryPage" id="top">
+    <div className={`pageShell countryPage ${identity.className}`} id="top" style={identity.style} {...identity.attributes}>
       <CountryStructuredData
         slug={country}
         name={destination.name}
@@ -59,7 +61,7 @@ export default async function CountryPage({ params }) {
         coverage={destination.coverage}
       />
       <SiteHeader />
-      <main id="main-content">
+      <main id="main-content"><article className={`destinationStory destinationStory--${country}`}>
       <CountryBreadcrumbs region={destination.region} country={destination.name} />
       <section
         className="franceHero countryHero countryDestinationHero"
@@ -97,7 +99,7 @@ export default async function CountryPage({ params }) {
         <CountryFaqTabs country={destination.name} bestPlan={destination.plans[0]} networks={destination.networks} coverage={destination.coverage} plans={destination.plans} />
       </section>
       <RelatedCountryGuides currentCountry={destination.name} currentRegion={destination.region} />
-      </main>
+      </article></main>
       <SiteFooter region={destination.region} country={destination.name} />
     </div>
   );

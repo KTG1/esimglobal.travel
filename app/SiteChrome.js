@@ -4,7 +4,7 @@ import { countryPages } from "./countryPages";
 export function BrandLogo({ inverted = false }) {
   return (
     <span className={`brandLogo ${inverted ? "inverted" : ""}`}>
-      <span className="simMonogram" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 3h19l9 9v29H8z" /><path d="M14 14h8v6h8v10h-9v6M14 24h8" /><rect x="12" y="10" width="5" height="5" rx="1" /></svg></span>
+      <span className="orbitMonogram" aria-hidden="true"><b>e</b><i /></span>
       <span className="logoType"><strong>eSIM</strong><span>GLOBAL</span><small>.TRAVEL</small></span>
     </span>
   );

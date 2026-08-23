@@ -7,6 +7,7 @@ import RelatedCountryGuides from "../RelatedCountryGuides";
 import { CountryBreadcrumbs, SiteFooter, SiteHeader } from "../SiteChrome";
 import { sitePath, siteUrl } from "../sitePath";
 import CountryStructuredData from "../CountryStructuredData";
+import { destinationIdentity } from "../destinationIdentity";
 
 export const metadata = {
   title: "Best eSIM for France: Compare Data Plans & Prices | eSIM Global",
@@ -29,8 +30,9 @@ export const metadata = {
 };
 
 export default function FrancePage() {
+  const identity = destinationIdentity("france", "Europe");
   return (
-    <div className="pageShell countryPage" id="top">
+    <div className={`pageShell countryPage ${identity.className}`} id="top" style={identity.style} {...identity.attributes}>
       <CountryStructuredData
         slug="france"
         name="France"
@@ -42,7 +44,7 @@ export default function FrancePage() {
         coverage="4G is widely available; 5G depends on location and the selected plan."
       />
       <SiteHeader />
-      <main id="main-content">
+      <main id="main-content"><article className="destinationStory destinationStory--france">
       <CountryBreadcrumbs region="Europe" country="France" />
 
       <section className="franceHero franceDestinationHero" aria-labelledby="france-hero-title" style={{ backgroundImage: `url("${sitePath("/images/france-esim-hero.jpg")}")`, "--hero-position": "center 52%" }}>
@@ -77,7 +79,7 @@ export default function FrancePage() {
         <CountryFaqTabs country="France" bestPlan={francePlans[0]} networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." plans={francePlans} />
       </section>
       <RelatedCountryGuides currentCountry="France" currentRegion="Europe" />
-      </main>
+      </article></main>
       <SiteFooter region="Europe" country="France" />
     </div>
   );
