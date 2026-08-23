@@ -30,7 +30,7 @@ export function HeroPlanStrip({ country, plans }) {
   const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <section className="heroPlanBoard" aria-labelledby={headingId}>
-      <header className="heroPlanBoardLabel"><span>VERIFIED OFFER</span><h2 id={headingId}><HeadingSignal />Saily for {country}</h2><HeadingReadMore href="#plans" label="See plan">Verified by data, validity and published price.</HeadingReadMore><small>Checked 24 August 2026</small></header>
+      <header className="heroPlanBoardLabel"><span>VERIFIED OFFERS</span><h2 id={headingId}><HeadingSignal />eSIM plans for {country}</h2><HeadingReadMore href="#plans" label="See plans">Saily leads; every displayed package has a published provider price.</HeadingReadMore><small>Checked 24 August 2026</small></header>
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
           <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
@@ -96,7 +96,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
                 <div><span>Validity</span><strong>{plan.days} days</strong></div>
                 <div><span>Network</span><strong>{plan.network}</strong></div>
                 <div className="commercialPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
-                <a href={providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
+                <a href={plan.url || providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
                   Check latest price <span aria-hidden="true">⌁</span>
                 </a>
               </article>
@@ -109,7 +109,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
         <header><div><p className="routeKicker">PLAN SNAPSHOT</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
         <ol className="featuredPlanGrid">
           {plans.slice(0, 3).map((plan, index) => (
-            <li key={plan.brand}><article style={{ "--plan-color": plan.color }} aria-labelledby={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>
+            <li key={`${plan.brand}-${plan.product}-${plan.days}`}><article style={{ "--plan-color": plan.color }} aria-labelledby={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>
               <span className="planRank">0{index + 1} / {plan.note}</span>
               <div className="providerName"><i />{plan.brand}</div>
               <h3 id={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>{plan.product}</h3>
@@ -130,7 +130,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
         </div>
         <ol className="planResults" aria-live="polite" aria-label={`${country} eSIM search results`}>
           {filteredPlans.map((plan) => (
-            <li key={`${plan.brand}-${plan.dataLabel}`}><article style={{ "--plan-color": plan.color }}>
+            <li key={`${plan.brand}-${plan.product}-${plan.days}`}><article style={{ "--plan-color": plan.color }}>
               <div className="providerName"><i />{plan.brand}<small>{plan.note}</small></div>
               <div><span>Product</span><strong>{plan.product}</strong></div>
               <div><span>Data</span><strong>{plan.dataLabel}</strong></div>

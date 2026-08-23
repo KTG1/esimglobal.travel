@@ -1,4 +1,16 @@
-const plan = (country, price) => ({ brand: "Saily", product: `${country} Starter`, data: 1, dataLabel: "1 GB", days: 7, price, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Verified Saily plan" });
+const plan = (country, price, overrides = {}) => ({ brand: "Saily", product: `${country} Starter`, data: 1, dataLabel: "1 GB", days: 7, price, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Verified Saily plan", ...overrides });
+
+const verifiedPlanOverrides = {
+  fiji: [
+    plan("Fiji", 7.99, { url: "https://saily.com/esim-fiji/", note: "Best overall · official Saily price" }),
+    plan("Fiji", 19.99, { product: "Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 30, url: "https://saily.com/esim-fiji/", note: "Official Saily price" }),
+    plan("Fiji", 29.99, { product: "Fiji 5 GB", data: 5, dataLabel: "5 GB", days: 30, url: "https://saily.com/esim-fiji/", note: "Official Saily price" }),
+    { brand: "Airalo", product: "Vinaka Fiji 1 GB", data: 1, dataLabel: "1 GB", days: 3, price: 7.5, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
+    { brand: "Airalo", product: "Vinaka Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 3, price: 18, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
+    { brand: "Airalo", product: "Vinaka Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 7, price: 19.5, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
+    { brand: "Airalo", product: "Vinaka Fiji 5 GB", data: 5, dataLabel: "5 GB", days: 7, price: 28, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
+  ],
+};
 
 const images = { Europe: "/images/france-esim-hero.jpg", Asia: "/images/japan-esim-hero.jpg", Africa: "/images/spain-esim-hero.jpg", "North America": "/images/united-states-esim-hero.jpg", "South America": "/images/spain-esim-hero.jpg", Oceania: "/images/japan-esim-hero.jpg" };
 
@@ -18,11 +30,11 @@ const destinations = [
 export const countryPages = Object.fromEntries(destinations.map(([slug,name,flag,code,region,city,airport,price,territory=false]) => [slug, {
   name, flag, code, region, city, airport, territory,
   heroImage: images[region], heroWidth: 1200, heroHeight: 630, heroPosition: "center 50%", heroAlt: `Travel eSIM comparison guide for ${name}`,
-  heroSummary: `Compare the verified Saily starter eSIM for ${name}. Review its data, validity, published starting price, connection technology and activation terms before purchase.`,
+  heroSummary: `Compare verified travel eSIM plans for ${name}. Review data, validity, published prices, connection technology and activation terms before purchase.`,
   pickReason: `Saily is listed first because its official catalogue publishes a current ${name} offer and a traceable starting price.`,
   networks: `Saily connects through local partner networks in ${name}; the specific carrier can vary by plan and location.`,
   coverage: "Saily states that speed may be 3G, 4G, LTE or 5G depending on the local provider, device and location.",
-  sourceUrl: `https://saily.com/esim-${slug}/`, sourceChecked: "2026-08-24", plans: [plan(name, price)],
+  sourceUrl: `https://saily.com/esim-${slug}/`, sourceChecked: "2026-08-24", plans: verifiedPlanOverrides[slug] || [plan(name, price, { url: `https://saily.com/esim-${slug}/` })],
 }]));
 
 export const countrySlugs = Object.keys(countryPages);
