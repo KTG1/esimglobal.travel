@@ -1,7 +1,9 @@
-import { countrySlugs } from "./countryPages";
+import { countryPages, countrySlugs } from "./countryPages";
 import { siteUrl } from "./sitePath";
 
 export const dynamic = "force-static";
+
+const lastModified = "2026-08-23T21:46:26+03:00";
 
 const editorialRoutes = [
   "airalo-alternatives",
@@ -16,23 +18,27 @@ const editorialRoutes = [
 ];
 
 export default function sitemap() {
-  const countryRoutes = ["france", ...countrySlugs];
+  const countryRoutes = [
+    { route: "france", image: "/images/france-esim-hero.jpg" },
+    ...countrySlugs.map((route) => ({
+      route,
+      image: countryPages[route].heroImage,
+    })),
+  ];
 
   return [
     {
       url: siteUrl("/"),
-      changeFrequency: "weekly",
-      priority: 1,
+      lastModified,
     },
-    ...countryRoutes.map((route) => ({
+    ...countryRoutes.map(({ route, image }) => ({
       url: siteUrl(`/${route}/`),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified,
+      images: [siteUrl(image)],
     })),
     ...editorialRoutes.map((route) => ({
       url: siteUrl(`/${route}/`),
-      changeFrequency: "monthly",
-      priority: 0.7,
+      lastModified,
     })),
   ];
 }
