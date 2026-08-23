@@ -10,7 +10,8 @@ const countryProfiles = {
 export function buildCountryFaqGroups({ country, bestPlan, networks, coverage, plans = [] }) {
   const profile = countryProfiles[country] || { places: `major destinations across ${country}`, geography: "cities and populated areas, with possible variation in remote regions", onward: "a neighbouring country", arrival: "before departure while reliable Wi-Fi is available" };
   const displayedPlans = plans.length ? plans : [bestPlan];
-  const lowestPrice = Math.min(...displayedPlans.map((plan) => plan.price));
+  const publishedPrices = displayedPlans.map((plan) => plan.price).filter(Number.isFinite);
+  const lowestPrice = Math.min(...publishedPrices);
   const hasUnlimited = displayedPlans.some((plan) => plan.data >= 999);
 
   return [

@@ -42,7 +42,7 @@ export default function RelatedCountryGuides({ currentCountry, currentRegion }) 
       <nav aria-label={`Other country eSIM guides from ${currentCountry}`}>
         <ul>
           {relatedGuides.map((guide) => {
-            const startingPrice = Math.min(...guide.plans.map((plan) => plan.price));
+            const startingPrice = Math.min(...guide.plans.map((plan) => plan.price).filter(Number.isFinite));
             return (
               <li key={guide.slug}>
                 <Link href={`/${guide.slug}/`} aria-label={`Compare eSIM plans for ${guide.name}`}>

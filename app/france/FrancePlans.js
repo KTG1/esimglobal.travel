@@ -17,6 +17,8 @@ const providerUrls = {
   Nomad: "https://www.nomadesim.com/",
 };
 
+const priceText = (plan) => Number.isFinite(plan.price) ? `$${plan.price.toFixed(2)}` : "Check live price";
+
 function FilterGroup({ title, options, value, onChange }) {
   return (
     <fieldset>
@@ -33,11 +35,11 @@ export function HeroPlanStrip({ country, plans }) {
       <header className="heroPlanBoardLabel"><span>VERIFIED OFFERS</span><h2 id={headingId}><HeadingSignal />eSIM plans for {country}</h2><HeadingReadMore href="#plans" label="See plans">Saily leads; every displayed package has a published provider price.</HeadingReadMore><small>Checked 24 August 2026</small></header>
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
-          <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
+          <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, ${priceText(plan)}`}>
             <div className="heroPlanMeta"><span className="heroPlanRank">0{index + 1}</span><small>{index === 0 ? "Source checked" : plan.note}</small></div>
             <div className="heroPlanProvider"><b><i />{plan.brand}</b><small>{plan.product}</small></div>
             <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
-            <div className="heroPlanFooter"><strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">⌁</em></span></div>
+            <div className="heroPlanFooter"><strong>{priceText(plan)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">⌁</em></span></div>
           </a></li>
         ))}
       </ol>
@@ -57,7 +59,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
     { title: "Published connectivity", text: `Saily lists ${bestPlan.network} speeds, depending on the available local provider, device and location.` },
   ];
 
-  const filteredPlans = useMemo(() => plans.filter((plan) => plan.data >= data && plan.days >= days && plan.price <= price), [data, days, price]);
+  const filteredPlans = useMemo(() => plans.filter((plan) => plan.data >= data && plan.days >= days && (Number.isFinite(plan.price) ? plan.price <= price : price === 999)), [data, days, price]);
 
   return (
     <>
@@ -95,7 +97,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
                 <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
                 <div><span>Validity</span><strong>{plan.days} days</strong></div>
                 <div><span>Network</span><strong>{plan.network}</strong></div>
-                <div className="commercialPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
+                <div className="commercialPrice"><span>{Number.isFinite(plan.price) ? "Preview price" : "Current price"}</span><strong>{priceText(plan)}</strong></div>
                 <a href={plan.url || providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
                   Check latest price <span aria-hidden="true">⌁</span>
                 </a>
@@ -113,7 +115,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <span className="planRank">0{index + 1} / {plan.note}</span>
               <div className="providerName"><i />{plan.brand}</div>
               <h3 id={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>{plan.product}</h3>
-              <strong>${plan.price.toFixed(2)}</strong>
+              <strong>{priceText(plan)}</strong>
               <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Validity</dt><dd>{plan.days} days</dd></div><div><dt>Network</dt><dd>{plan.network}</dd></div></dl>
               <a href="#plans">View plan <span aria-hidden="true">⌁</span></a>
             </article></li>
@@ -136,7 +138,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
               <div><span>Validity</span><strong>{plan.days} days</strong></div>
               <div><span>Network</span><strong>{plan.network}</strong></div>
-              <div className="resultPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
+              <div className="resultPrice"><span>{Number.isFinite(plan.price) ? "Preview price" : "Current price"}</span><strong>{priceText(plan)}</strong></div>
               <span className="resultArrow" aria-hidden="true">⌁</span>
             </article></li>
           ))}
