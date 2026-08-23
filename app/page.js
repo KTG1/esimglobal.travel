@@ -98,29 +98,23 @@ export default function Home() {
       <SiteHeader />
       <main id="main-content">
       <div className="hero">
-        <div className="route" aria-hidden="true">
-          <span className="point pointA" />
-          <span className="point pointB" />
-          <span className="plane">✦</span>
-        </div>
-
-        <p className="eyebrow">COMPARE TRAVEL ESIMS ACROSS 190+ DESTINATIONS</p>
-        <h1><HeadingSignal />Global eSIM plans for international travel.</h1>
-        <HeadingReadMore className="heroLead" href="#compare" label="Explore the map">
-          Compare prepaid travel eSIM providers, data allowances, validity and prices for countries worldwide. Find the best international eSIM for your trip and connect as soon as you land—without roaming fees or a physical SIM card.
+        <p className="routeKicker">DESTINATION-INDEXED MOBILE DATA</p>
+        <h1><HeadingSignal />Travel data plans, laid out by destination.</h1>
+        <HeadingReadMore className="heroLead" href="#compare" label="Open destination index">
+          See the published allowance, validity and starting price before choosing a travel eSIM. Each country guide keeps the source close to the claim.
         </HeadingReadMore>
         <WorldMap />
         <EsimGuide />
         <section className="availability" id="how-it-works" aria-labelledby="how-it-works-title">
           <header className="availabilityHeading">
-            <p className="availabilityKicker"><span aria-hidden="true">✦</span> Your eSIM departure brief</p>
-            <h2 id="how-it-works-title">From destination to data in three clear steps.</h2>
+            <p className="availabilityKicker">Your eSIM departure brief</p>
+            <h2 id="how-it-works-title">Choose the place. Check the terms. Install once.</h2>
             <p>Compare established providers, choose the right allowance for your trip, and arrive ready to connect—without roaming surprises.</p>
           </header>
           <ol>
             <li>
               <div className="availabilityIcon" aria-hidden="true">
-                <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><path d="M6.5 15.5h19M16 6c3.2 3 4.7 6.3 4.7 10S19.2 23 16 26c-3.2-3-4.7-6.3-4.7-10S12.8 9 16 6Z"/></svg>
+                <svg viewBox="0 0 32 32"><path d="M7 4h13l5 5v19H7zM11 10h6v5h5v7h-6v6M11 19h5"/></svg>
               </div>
               <span className="availabilityStep">01 / Destination</span>
               <h3>Choose where you’re landing</h3>
@@ -145,14 +139,14 @@ export default function Home() {
           </ol>
           <footer className="availabilityFooter">
             <span>Instant digital delivery</span>
-            <a href="#compare">Start with your destination <b aria-hidden="true">↗</b></a>
+            <a href="#compare">Start with your destination <b aria-hidden="true">⌁</b></a>
           </footer>
         </section>
         <section className="databaseSection" aria-labelledby="database-title">
           <header className="databaseHeading">
             <div>
               <p className="databaseKicker"><span aria-hidden="true">◎</span> Comparison methodology</p>
-              <h2 id="database-title">The Most Accurate eSIM Comparison Database</h2>
+              <h2 id="database-title">How the destination index is assembled</h2>
             </div>
             <p>One consistent view of destination coverage, allowances, validity, network support and price—so every plan can be judged by the same travel-ready criteria.</p>
           </header>
@@ -184,7 +178,7 @@ export default function Home() {
           </div>
           <footer className="databaseFooter">
             <p><strong>Accuracy standard</strong> Provider terms and live checkout prices should always be verified before purchase.</p>
-            <a href="#compare">Explore the database <span aria-hidden="true">↗</span></a>
+            <a href="#compare">Explore the database <span aria-hidden="true">⌁</span></a>
           </footer>
         </section>
       </div>

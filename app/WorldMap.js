@@ -128,12 +128,12 @@ export default function WorldMap() {
     <section className="destinationFinder" id="compare" aria-labelledby="destination-title">
       <div className="finderTopline">
         <div>
-          <p className="finderStep">Global coverage explorer</p>
+          <p className="finderStep">Destination index</p>
           <h2 id="destination-title"><HeadingSignal />
-            {selectedRegion ? regionLabels[selectedRegion] : "Where are you landing?"}
+            {selectedRegion ? regionLabels[selectedRegion] : "Where will you use mobile data?"}
           </h2>
           {selectedCountry && <h3 className="selectedCountryHeading">{selectedCountry.name}</h3>}
-          <HeadingReadMore href="#map-workspace" label="Explore the map">Choose a continent, then a country, to compare available eSIM brands, allowances and preview prices.</HeadingReadMore>
+          <HeadingReadMore href="#map-workspace" label="Open the index">Choose a continent and destination to inspect published allowances, validity and starting prices.</HeadingReadMore>
         </div>
         <p className="coverageCount">
           <strong>{mapCountries.length}</strong>
@@ -321,7 +321,7 @@ export default function WorldMap() {
                   <span>{country.name}</span>
                   <span className="countryPrice">{countryPrice(country) ? <>from <b>${countryPrice(country)}</b></> : "Coverage check"}</span>
                   <span className="countryArrow" aria-hidden="true">
-                    {selectedCountry?.code === country.code ? "✓" : "↗"}
+                    {selectedCountry?.code === country.code ? "✓" : "⌁"}
                   </span>
                 </button>
               ))}
@@ -333,7 +333,7 @@ export default function WorldMap() {
                 <span>Selected destination</span>
                 <strong>{selectedCountry.name}</strong>
                 <small>{selectedOffer ? `${selectedOffer.brand} ${selectedOffer.product} · ${selectedOffer.data} · ${selectedOffer.days} days · $${selectedOffer.price.toFixed(2)}` : "No comparable consumer plan found"}</small>
-                {({ FR: "france", IT: "italy", ES: "spain", TR: "turkey", JP: "japan", US: "united-states" })[selectedCountry.code] && <a href={sitePath(`/${({ FR: "france", IT: "italy", ES: "spain", TR: "turkey", JP: "japan", US: "united-states" })[selectedCountry.code]}/`)}>Open the complete {selectedCountry.name} comparison <b aria-hidden="true">↗</b></a>}
+                {({ FR: "france", IT: "italy", ES: "spain", TR: "turkey", JP: "japan", US: "united-states" })[selectedCountry.code] && <a href={sitePath(`/${({ FR: "france", IT: "italy", ES: "spain", TR: "turkey", JP: "japan", US: "united-states" })[selectedCountry.code]}/`)}>Open the complete {selectedCountry.name} comparison <b aria-hidden="true">⌁</b></a>}
               </div>
             )}
           </aside>

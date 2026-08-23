@@ -34,9 +34,9 @@ export default function RelatedCountryGuides({ currentCountry, currentRegion }) 
   const headingId = `${currentCountry.toLowerCase().replaceAll(" ", "-")}-related-guides-title`;
 
   return (
-    <section className="relatedCountryGuides" id="related-destinations" aria-labelledby={headingId}>
+    <section className="onwardDeck" id="related-destinations" aria-labelledby={headingId}>
       <header>
-        <div><p className="eyebrow">MORE IN {currentRegion.toUpperCase()}</p><h2 id={headingId}><HeadingSignal />Continue your route in {currentRegion}</h2><p className="relatedCountryIntro">Compare verified Saily starting prices for nearby destinations with live guides.</p></div>
+        <div><p className="routeKicker">MORE IN {currentRegion.toUpperCase()}</p><h2 id={headingId}><HeadingSignal />Continue your route in {currentRegion}</h2><p className="onwardIntro">Compare verified Saily starting prices for nearby destinations with live guides.</p></div>
         <span className="headingMetric">{relatedGuides.length} relevant guides</span>
       </header>
       <nav aria-label={`Other country eSIM guides from ${currentCountry}`}>
@@ -46,14 +46,14 @@ export default function RelatedCountryGuides({ currentCountry, currentRegion }) 
             return (
               <li key={guide.slug}>
                 <Link href={`/${guide.slug}/`} aria-label={`Compare eSIM plans for ${guide.name}`}>
-                  <span className="relatedCountryFlag" role="img" aria-label={`Flag of ${guide.name}`}>{guide.flag}</span>
-                  <span className="relatedCountryCode">{guide.code}</span>
-                  <span className="relatedCountryRegion">{guide.region}</span>
+                  <span className="routeCardFlag" role="img" aria-label={`Flag of ${guide.name}`}>{guide.flag}</span>
+                  <span className="routeCardCode">{guide.code}</span>
+                  <span className="routeCardRegion">{guide.region}</span>
                   <strong>{guide.name}</strong>
                   <small>{guide.city} connection guide</small>
-                  <span className="relatedCountryNetworks">{operatorNames(guide.networks)}</span>
-                  <span className="relatedCountryPrice"><small>Plans from</small><b>${startingPrice.toFixed(2)}</b></span>
-                  <span className="relatedCountryAction">Compare {guide.name} <i aria-hidden="true">↗</i></span>
+                  <span className="routeCardNetworks">{operatorNames(guide.networks)}</span>
+                  <span className="routeCardPrice"><small>Plans from</small><b>${startingPrice.toFixed(2)}</b></span>
+                  <span className="routeCardAction">Compare {guide.name} <i aria-hidden="true">⌁</i></span>
                 </Link>
               </li>
             );

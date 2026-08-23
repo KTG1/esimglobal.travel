@@ -1,29 +1,28 @@
 export function HeadingSignal() {
   return (
-    <span className="headingSignal" aria-hidden="true">
-      <svg viewBox="0 0 36 36" focusable="false">
-        <circle className="headingSignalOrbit" cx="18" cy="18" r="11.5" />
-        <path className="headingSignalRoute" d="M3.5 22.5C10 13 24 7.5 32.5 13.5" />
-        <path className="headingSignalRoute" d="M6.5 28C15 29.5 26.5 24 30 15" />
-        <circle className="headingSignalPoint" cx="31" cy="12.5" r="2.7" />
+    <span className="simTraceMark" aria-hidden="true">
+      <svg viewBox="0 0 40 40" focusable="false">
+        <path className="simTraceFrame" d="M9 3h16l8 8v26H9z" />
+        <path className="simTraceCircuit" d="M14 12h7v6h6v9h-8v6M14 21h7" />
+        <rect className="simTraceContact" x="11.5" y="9.5" width="5" height="5" rx="1" />
       </svg>
     </span>
   );
 }
 
-export function ReadMoreArrow() {
+export function TraceArrow() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-      <path d="M4 16L16 4M8 4h8v8" />
+      <path d="M3 14h6V8h8M13 4l4 4-4 4" />
     </svg>
   );
 }
 
 export function HeadingReadMore({ children, href, label = "Read more", className = "" }) {
   return (
-    <p className={`headingReadMore ${className}`.trim()}>
+    <p className={`contextThread ${className}`.trim()}>
       <span>{children}</span>
-      <a href={href}>{label}<ReadMoreArrow /></a>
+      <a href={href}>{label}<TraceArrow /></a>
     </p>
   );
 }

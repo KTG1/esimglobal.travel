@@ -91,7 +91,7 @@ export default function EsimGuide() {
     <section className="esimGuide" aria-labelledby="guide-title">
       <header className="guideHeading">
         <div>
-          <p className="eyebrow">TRAVEL ESIM BUYER’S GUIDE</p>
+          <p className="routeKicker">TRAVEL ESIM BUYER’S GUIDE</p>
           <h2 id="guide-title"><HeadingSignal />How to choose the best eSIM for your trip</h2>
           <HeadingReadMore href="#guide-checks" label="Start the checks">Use five practical checks to separate a low headline price from a plan that will actually keep you connected.</HeadingReadMore>
         </div>
@@ -116,7 +116,7 @@ export default function EsimGuide() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{item.label}</strong>
               <small>{item.short}</small>
-              <i aria-hidden="true">↗</i>
+              <i aria-hidden="true">⌁</i>
             </button>
           ))}
         </div>

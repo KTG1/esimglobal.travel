@@ -34,10 +34,10 @@ export function HeroPlanStrip({ country, plans }) {
       <ol className="heroPlanRail">
         {plans.slice(0, 5).map((plan, index) => (
           <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, $${plan.price.toFixed(2)}`}>
-            <div className="heroPlanMeta"><span className="heroPlanRank">0{index + 1}</span><small>{index === 0 ? "Best overall" : plan.note}</small></div>
+            <div className="heroPlanMeta"><span className="heroPlanRank">0{index + 1}</span><small>{index === 0 ? "Source checked" : plan.note}</small></div>
             <div className="heroPlanProvider"><b><i />{plan.brand}</b><small>{plan.product}</small></div>
             <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
-            <div className="heroPlanFooter"><strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">↗</em></span></div>
+            <div className="heroPlanFooter"><strong>${plan.price.toFixed(2)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">⌁</em></span></div>
           </a></li>
         ))}
       </ol>
@@ -63,22 +63,22 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
     <>
       <section className="bestPickPanel" aria-labelledby="best-pick-title" style={{ "--plan-color": bestPlan.color }}>
         <div className="bestPickLead">
-          <div className="bestPickSeal"><span>EDITOR’S CHOICE</span><b>01</b></div>
-          <p className="eyebrow">BEST OVERALL FOR MOST TRAVELERS</p>
+          <div className="bestPickSeal"><span>VERIFIED SOURCE</span><b>01</b></div>
+          <p className="routeKicker">PUBLISHED STARTING OFFER</p>
           <h2 id="best-pick-title"><HeadingSignal />Our best {country} eSIM pick: <em>Saily</em></h2>
           <HeadingReadMore href="#plans" label="Review the plan">{bestPickIntro}</HeadingReadMore>
           <a href="#plans">See the Saily plan <span aria-hidden="true">↓</span></a>
         </div>
         <div className="bestPickReasons">
           <header><span>Why it leads</span><strong>${bestPlan.price.toFixed(2)}</strong></header>
-          {bestReasons.map((reason, index) => <article key={reason.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{reason.title}</h3><p>{reason.text}</p></div><i aria-hidden="true">↗</i></article>)}
-          <small>Verified against Saily's official destination page on {sourceChecked}. Prices can change. <a href={sourceUrl} target="_blank" rel="noreferrer">Provider specifications ↗</a></small>
+          {bestReasons.map((reason, index) => <article key={reason.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{reason.title}</h3><p>{reason.text}</p></div><i aria-hidden="true">⌁</i></article>)}
+          <small>Verified against Saily's official destination page on {sourceChecked}. Prices can change. <a href={sourceUrl} target="_blank" rel="noreferrer">Provider specifications ⌁</a></small>
         </div>
       </section>
       <section className="commercialComparison" aria-labelledby="commercial-comparison-title">
         <header>
           <div>
-            <p className="eyebrow">COMMERCIAL PLAN COMPARISON</p>
+            <p className="routeKicker">PUBLISHED PLAN RECORD</p>
             <h2 id="commercial-comparison-title"><HeadingSignal />Compare {country} eSIM offers</h2>
           </div>
           <p>Compare the displayed allowance, validity, network access and preview price before checking the provider’s current offer.</p>
@@ -97,16 +97,16 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
                 <div><span>Network</span><strong>{plan.network}</strong></div>
                 <div className="commercialPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
                 <a href={providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
-                  Check latest price <span aria-hidden="true">↗</span>
+                  Check latest price <span aria-hidden="true">⌁</span>
                 </a>
               </article>
             </li>
           ))}
         </ol>
-        <footer>Published USD starting price checked on {sourceChecked}. Verify the final price, taxes, network, fair-use terms and compatibility before purchasing. <a href={sourceUrl} target="_blank" rel="noreferrer">Official Saily source ↗</a></footer>
+        <footer>Published USD starting price checked on {sourceChecked}. Verify the final price, taxes, network, fair-use terms and compatibility before purchasing. <a href={sourceUrl} target="_blank" rel="noreferrer">Official Saily source ⌁</a></footer>
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
-        <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
+        <header><div><p className="routeKicker">PLAN SNAPSHOT</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>
         <ol className="featuredPlanGrid">
           {plans.slice(0, 3).map((plan, index) => (
             <li key={plan.brand}><article style={{ "--plan-color": plan.color }} aria-labelledby={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>
@@ -115,14 +115,14 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <h3 id={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>{plan.product}</h3>
               <strong>${plan.price.toFixed(2)}</strong>
               <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Validity</dt><dd>{plan.days} days</dd></div><div><dt>Network</dt><dd>{plan.network}</dd></div></dl>
-              <a href="#plans">View plan <span aria-hidden="true">↗</span></a>
+              <a href="#plans">View plan <span aria-hidden="true">⌁</span></a>
             </article></li>
           ))}
         </ol>
       </section>
 
       <section className="francePlanExplorer" id="plans" aria-labelledby="plans-title">
-        <header><div><p className="eyebrow">FILTER AND COMPARE</p><h2 id="plans-title"><HeadingSignal />Find a {country} eSIM for your trip</h2><HeadingReadMore href="#country-essentials" label="Connection guide">Adjust data, validity and budget to qualify the plans that match how you will travel.</HeadingReadMore></div><span>{filteredPlans.length} matching plans</span></header>
+        <header><div><p className="routeKicker">SET YOUR REQUIREMENTS</p><h2 id="plans-title"><HeadingSignal />Find a {country} eSIM for your trip</h2><HeadingReadMore href="#country-essentials" label="Connection guide">Adjust data, validity and budget to qualify the plans that match how you will travel.</HeadingReadMore></div><span>{filteredPlans.length} matching plans</span></header>
         <div className="planFilters">
           <FilterGroup title="Total data" options={filterOptions.data} value={data} onChange={setData} />
           <FilterGroup title="Validity" options={filterOptions.days} value={days} onChange={setDays} />
@@ -137,7 +137,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <div><span>Validity</span><strong>{plan.days} days</strong></div>
               <div><span>Network</span><strong>{plan.network}</strong></div>
               <div className="resultPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
-              <span className="resultArrow" aria-hidden="true">↗</span>
+              <span className="resultArrow" aria-hidden="true">⌁</span>
             </article></li>
           ))}
           {!filteredPlans.length && <li className="noPlanResults">No plans match these filters. Try increasing the price or reducing the data requirement.</li>}

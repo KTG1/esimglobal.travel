@@ -9,7 +9,7 @@ export function HeroQuickAnswer({ country, plan, summary, reason }) {
       <section className="heroQuickAnswer" aria-labelledby={headingId}>
         <header>
           <span>Quick answer</span>
-          <small>Best overall for most travelers</small>
+          <small>Source checked for most travelers</small>
         </header>
         <div className="heroQuickAnswerTitle">
           <h2 id={headingId}>Our {country} pick: {plan.brand}</h2>
@@ -32,10 +32,10 @@ export function HeroArrivalBrief({ country, networks, coverage, network, titleId
     <aside className="heroArrivalBrief" aria-labelledby={titleId}>
       <header><h2 id={titleId}>{country} connection brief</h2><span>04 trip checks</span></header>
       <dl>
-        <div><dt>Local operators</dt><dd>{networks}</dd><i aria-hidden="true">↗</i></div>
-        <div><dt>Typical coverage</dt><dd>{coverage}</dd><i aria-hidden="true">↗</i></div>
-        <div><dt>Plan speed</dt><dd>{network}</dd><i aria-hidden="true">↗</i></div>
-        <div><dt>Setup</dt><dd>Install over Wi-Fi before departure; activate after arrival.</dd><i aria-hidden="true">↗</i></div>
+        <div><dt>Local operators</dt><dd>{networks}</dd><i aria-hidden="true">⌁</i></div>
+        <div><dt>Typical coverage</dt><dd>{coverage}</dd><i aria-hidden="true">⌁</i></div>
+        <div><dt>Plan speed</dt><dd>{network}</dd><i aria-hidden="true">⌁</i></div>
+        <div><dt>Setup</dt><dd>Install over Wi-Fi before departure; activate after arrival.</dd><i aria-hidden="true">⌁</i></div>
       </dl>
       <a href="#country-essentials">Read the full connection guide <span aria-hidden="true">→</span></a>
     </aside>
