@@ -29,22 +29,26 @@ export function SiteHeader() {
   );
 }
 
-const destinationGroups = {
-  Europe: [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }],
-  Asia: [{ name: "Japan", href: "/japan/" }, { name: "Türkiye", href: "/turkey/" }],
-  "Europe & Asia": [{ name: "Türkiye", href: "/turkey/" }, { name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Japan", href: "/japan/" }],
-  "North America": [{ name: "United States", href: "/united-states/" }],
-};
+const destinationDirectory = [
+  { name: "France", href: "/france/", region: "Europe" },
+  ...Object.entries(countryPages).map(([slug, destination]) => ({ name: destination.name, href: `/${slug}/`, region: destination.region })),
+];
+
+const continentOrder = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania"];
+const continentCodes = { Europe: "EU", Asia: "AS", Africa: "AF", "North America": "NA", "South America": "SA", Oceania: "OC" };
 
 export function CountryBreadcrumbs({ region, country }) {
-  const regionalDestinations = destinationGroups[region] || [];
-  const allDestinations = [{ name: "France", href: "/france/" }, { name: "Italy", href: "/italy/" }, { name: "Spain", href: "/spain/" }, { name: "Türkiye", href: "/turkey/" }, { name: "Japan", href: "/japan/" }, { name: "United States", href: "/united-states/" }];
+  const regionalDestinations = destinationDirectory.filter((item) => item.region === region);
+  const continentDestinations = continentOrder.map((name) => {
+    const landingPage = destinationDirectory.find((item) => item.region === name);
+    return { name, href: landingPage.href, code: continentCodes[name], count: destinationDirectory.filter((item) => item.region === name).length };
+  });
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
       <ol className="breadcrumbMenu">
         <li><a className="breadcrumbHome" href={sitePath("/")}>Global eSIMs</a></li>
-        <li><details><summary>{region}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover"><small>Browse this region</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href}>{item.name}<b aria-hidden="true">⌁</b></a>)}</div></details></li>
-        <li><details><summary className="currentCrumb" aria-current="location">{country}<i aria-hidden="true">⌄</i></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{allDestinations.map((item) => <a href={sitePath(item.href)} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">⌁</b></a>)}</div></details></li>
+        <li><details><summary>{region}<i aria-hidden="true" /></summary><div className="crumbPopover regionPopover"><small>Switch continent</small>{continentDestinations.map((item) => <a href={sitePath(item.href)} key={item.name} aria-current={item.name === region ? "page" : undefined}><span>{item.name}<em>{item.count} guides</em></span><b aria-hidden="true">{item.code}</b></a>)}</div></details></li>
+        <li><details><summary className="currentCrumb" aria-current="location">{country}<i aria-hidden="true" /></summary><div className="crumbPopover countryPopover"><small>Switch destination</small>{regionalDestinations.map((item) => <a href={sitePath(item.href)} key={item.href} aria-current={item.name === country ? "page" : undefined}>{item.name}<b aria-hidden="true">⌁</b></a>)}</div></details></li>
       </ol>
     </nav>
   );
