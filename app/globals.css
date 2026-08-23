@@ -625,3 +625,90 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 }
 
 :focus-visible { outline: 3px solid var(--signal); outline-offset: 4px; }
+
+/* Mobile usability pass: keep interactive controls reachable and horizontal
+   workspaces contained without flattening the site's editorial layout. */
+@media (max-width: 640px) {
+  .pageShell { padding-inline: clamp(16px, 5.5vw, 22px); }
+  .siteHeader { gap: 12px; padding-top: 8px; }
+  .siteHeader > a:first-of-type { display: inline-flex; min-height: 44px; align-items: center; }
+  .headerCta { min-width: 44px; min-height: 44px; justify-content: center; }
+
+  .hero { padding-block: clamp(64px, 12vh, 100px) clamp(56px, 9vh, 76px); }
+  h1 { font-size: clamp(46px, 14.5vw, 68px); line-height: .94; overflow-wrap: anywhere; }
+  .headingReadMore > a { min-height: 44px; margin: 8px 0 0; padding-block: 10px; }
+
+  .continentTabs,
+  .guideTabs,
+  .heroPlanRail,
+  .faqTabs { overscroll-behavior-inline: contain; }
+  .continentTabs { scroll-snap-type: x proximity; }
+  .continentTabs button { min-width: 92px; min-height: 44px; scroll-snap-align: start; }
+  .guideTabs { grid-template-columns: repeat(5, minmax(92px, 1fr)); scroll-snap-type: x mandatory; }
+  .guideTabs button { scroll-snap-align: start; }
+
+  .breadcrumbs { position: relative; z-index: 25; min-height: 44px; overflow: visible; }
+  .breadcrumbMenu { width: 100%; overflow: visible; }
+  .breadcrumbMenu > li,
+  .breadcrumbMenu details,
+  .breadcrumbMenu > li > .breadcrumbHome,
+  .breadcrumbMenu > li > details > summary,
+  .breadcrumbMenu summary,
+  .breadcrumbMenu > li + li::before { min-height: 44px; }
+  .crumbPopover { width: min(230px, calc(100vw - 32px)); min-width: 0; }
+  .breadcrumbMenu > li:last-child .crumbPopover { right: 0; left: auto; }
+  .breadcrumbMenu > li:last-child .crumbPopover::before { right: 18px; left: auto; }
+  .crumbPopover a { min-height: 44px; align-items: center; }
+
+  .franceHeroCopy { min-height: 0; padding-block: 38px; }
+  .franceHero h1 { font-size: clamp(42px, 12.5vw, 54px); overflow-wrap: normal; }
+  .heroPlanRail {
+    grid-template-columns: repeat(5, minmax(min(78vw, 230px), 1fr));
+    padding-right: 18px;
+    overflow-x: auto;
+    scroll-padding-inline: 0 18px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .heroPlanRail::-webkit-scrollbar { display: none; }
+  .heroPlanRail > li { scroll-snap-align: start; }
+  .heroPlanRail > li > a { min-height: 188px; }
+
+  .planFilters button { min-height: 44px; padding: 10px 14px; }
+  .featuredPlanGrid article > a { min-height: 44px; align-items: center; }
+  .planResults .resultArrow { width: 44px; height: 44px; }
+  .availabilityFooter a,
+  .databaseFooter a,
+  .heroArrivalBrief > a,
+  .bestPickReasons > small a { display: inline-flex; min-height: 44px; align-items: center; }
+  .faqTabs { scroll-snap-type: x mandatory; }
+  .faqTabs button { min-height: 68px; scroll-snap-align: start; }
+
+  .footerLead > a:first-child { display: inline-flex; min-height: 44px; align-items: center; }
+  .footerCta { min-width: 0; width: 100%; min-height: 48px; }
+  .footerNav ul { gap: 2px; }
+  .footerNav a { display: inline-flex; min-height: 44px; align-items: center; }
+}
+
+@media (max-width: 380px) {
+  .logoType { display: none; }
+  .siteHeader { grid-template-columns: auto auto; }
+  .hero { padding-top: 56px; }
+  .eyebrow { font-size: 9px; line-height: 1.45; }
+  .finderTopline h2 { font-size: 30px; }
+  .mapLegend { gap: 10px; font-size: 8px; }
+  .heroQuickAnswer dl { grid-template-columns: 1fr; }
+  .heroQuickAnswer dl div,
+  .heroQuickAnswer dl div:first-child,
+  .heroQuickAnswer dl div:last-child {
+    grid-column: auto;
+    padding: 10px 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgba(125,199,255,.18);
+  }
+  .heroQuickAnswer dl div:last-child { border-bottom: 0; }
+  .franceEssentials dl div { grid-template-columns: 1fr; gap: 8px; }
+  .footerNav { grid-template-columns: 1fr; }
+  .footerNav > :last-child { grid-column: auto; }
+}
