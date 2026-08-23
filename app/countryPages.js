@@ -1,28 +1,4 @@
-const plan = (country, price, overrides = {}) => ({ brand: "Saily", product: `${country} Starter`, data: 1, dataLabel: "1 GB", days: 7, price, network: "3G / 4G / LTE / 5G", color: "#3626a7", note: "Verified Saily plan", ...overrides });
-
-const sailyCataloguePlans = (country, slug, starterPrice) => {
-  const url = `https://saily.com/esim-${slug}/`;
-  return [
-    plan(country, starterPrice, { url, note: "Best overall · published price" }),
-    plan(country, null, { product: `${country} 3 GB`, data: 3, dataLabel: "3 GB", days: 30, url, note: "Official tier · check live price" }),
-    plan(country, null, { product: `${country} 5 GB`, data: 5, dataLabel: "5 GB", days: 30, url, note: "Official tier · check live price" }),
-    plan(country, null, { product: `${country} 10 GB`, data: 10, dataLabel: "10 GB", days: 30, url, note: "Official tier · check live price" }),
-    plan(country, null, { product: `${country} 20 GB`, data: 20, dataLabel: "20 GB", days: 30, url, note: "Official tier · check live price" }),
-    plan(country, null, { product: `${country} unlimited`, data: 999, dataLabel: "Unlimited", days: 15, url, note: "Selectable validity · check live price" }),
-  ];
-};
-
-const verifiedPlanOverrides = {
-  fiji: [
-    plan("Fiji", 7.99, { url: "https://saily.com/esim-fiji/", note: "Best overall · official Saily price" }),
-    plan("Fiji", 19.99, { product: "Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 30, url: "https://saily.com/esim-fiji/", note: "Official Saily price" }),
-    plan("Fiji", 29.99, { product: "Fiji 5 GB", data: 5, dataLabel: "5 GB", days: 30, url: "https://saily.com/esim-fiji/", note: "Official Saily price" }),
-    { brand: "Airalo", product: "Vinaka Fiji 1 GB", data: 1, dataLabel: "1 GB", days: 3, price: 7.5, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
-    { brand: "Airalo", product: "Vinaka Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 3, price: 18, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
-    { brand: "Airalo", product: "Vinaka Fiji 3 GB", data: 3, dataLabel: "3 GB", days: 7, price: 19.5, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
-    { brand: "Airalo", product: "Vinaka Fiji 5 GB", data: 5, dataLabel: "5 GB", days: 7, price: 28, network: "Digicel · 4G / LTE", color: "#0f766e", note: "Official Airalo price", url: "https://www.airalo.com/fiji-esim/vinaka-fiji-in-7days-10gb" },
-  ],
-};
+import { buildProviderPlanCatalog } from "./providerPlanCatalog";
 
 const images = { Europe: "/images/france-esim-hero.jpg", Asia: "/images/japan-esim-hero.jpg", Africa: "/images/spain-esim-hero.jpg", "North America": "/images/united-states-esim-hero.jpg", "South America": "/images/spain-esim-hero.jpg", Oceania: "/images/japan-esim-hero.jpg" };
 
@@ -46,7 +22,7 @@ export const countryPages = Object.fromEntries(destinations.map(([slug,name,flag
   pickReason: `Saily is listed first because its official catalogue publishes a current ${name} offer and a traceable starting price.`,
   networks: `Saily connects through local partner networks in ${name}; the specific carrier can vary by plan and location.`,
   coverage: "Saily states that speed may be 3G, 4G, LTE or 5G depending on the local provider, device and location.",
-  sourceUrl: `https://saily.com/esim-${slug}/`, sourceChecked: "2026-08-24", plans: verifiedPlanOverrides[slug] || sailyCataloguePlans(name, slug, price),
+  sourceUrl: `https://saily.com/esim-${slug}/`, sourceChecked: "2026-08-24", plans: buildProviderPlanCatalog(name, slug, price),
 }]));
 
 export const countrySlugs = Object.keys(countryPages);

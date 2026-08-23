@@ -18,6 +18,7 @@ const providerUrls = {
 };
 
 const priceText = (plan) => Number.isFinite(plan.price) ? `$${plan.price.toFixed(2)}` : "Check live price";
+const validityText = (plan) => plan.daysLabel || `${plan.days} days`;
 
 function FilterGroup({ title, options, value, onChange }) {
   return (
@@ -32,13 +33,13 @@ export function HeroPlanStrip({ country, plans }) {
   const headingId = `top-plans-${country.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <section className="heroPlanBoard" aria-labelledby={headingId}>
-      <header className="heroPlanBoardLabel"><span>VERIFIED OFFERS</span><h2 id={headingId}><HeadingSignal />eSIM plans for {country}</h2><HeadingReadMore href="#plans" label="See plans">Saily leads; every displayed package has a published provider price.</HeadingReadMore><small>Checked 24 August 2026</small></header>
+      <header className="heroPlanBoardLabel"><span>PROVIDER OPTIONS</span><h2 id={headingId}><HeadingSignal />eSIM providers for {country}</h2><HeadingReadMore href="#plans" label="See providers">Saily leads with a published price; other firms link to their live catalogues.</HeadingReadMore><small>Checked 24 August 2026</small></header>
       <ol className="heroPlanRail">
-        {plans.slice(0, 5).map((plan, index) => (
-          <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel} for ${plan.days} days, ${priceText(plan)}`}>
+        {plans.slice(0, 6).map((plan, index) => (
+          <li key={`${plan.brand}-${plan.product}-${index}`} className={index === 0 ? "recommended" : undefined}><a href="#plans" style={{ "--plan-color": plan.color }} aria-label={`${plan.brand} ${plan.product}: ${plan.dataLabel}, ${validityText(plan)}, ${priceText(plan)}`}>
             <div className="heroPlanMeta"><span className="heroPlanRank">0{index + 1}</span><small>{index === 0 ? "Source checked" : plan.note}</small></div>
             <div className="heroPlanProvider"><b><i />{plan.brand}</b><small>{plan.product}</small></div>
-            <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days}d</dd></div></dl>
+            <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Valid</dt><dd>{plan.days ? `${plan.days}d` : "Varies"}</dd></div></dl>
             <div className="heroPlanFooter"><strong>{priceText(plan)}</strong><span className="heroPlanAction">Compare <em aria-hidden="true">⌁</em></span></div>
           </a></li>
         ))}
@@ -95,7 +96,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
                 </div>
                 <div><span>Plan</span><strong>{plan.product}</strong></div>
                 <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
-                <div><span>Validity</span><strong>{plan.days} days</strong></div>
+                <div><span>Validity</span><strong>{validityText(plan)}</strong></div>
                 <div><span>Network</span><strong>{plan.network}</strong></div>
                 <div className="commercialPrice"><span>{Number.isFinite(plan.price) ? "Preview price" : "Current price"}</span><strong>{priceText(plan)}</strong></div>
                 <a href={plan.url || providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
@@ -116,7 +117,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <div className="providerName"><i />{plan.brand}</div>
               <h3 id={`featured-${country.toLowerCase().replaceAll(" ", "-")}-${index}`}>{plan.product}</h3>
               <strong>{priceText(plan)}</strong>
-              <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Validity</dt><dd>{plan.days} days</dd></div><div><dt>Network</dt><dd>{plan.network}</dd></div></dl>
+              <dl><div><dt>Data</dt><dd>{plan.dataLabel}</dd></div><div><dt>Validity</dt><dd>{validityText(plan)}</dd></div><div><dt>Network</dt><dd>{plan.network}</dd></div></dl>
               <a href="#plans">View plan <span aria-hidden="true">⌁</span></a>
             </article></li>
           ))}
@@ -136,7 +137,7 @@ export default function FrancePlans({ country = "France", plans = francePlans, s
               <div className="providerName"><i />{plan.brand}<small>{plan.note}</small></div>
               <div><span>Product</span><strong>{plan.product}</strong></div>
               <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
-              <div><span>Validity</span><strong>{plan.days} days</strong></div>
+              <div><span>Validity</span><strong>{validityText(plan)}</strong></div>
               <div><span>Network</span><strong>{plan.network}</strong></div>
               <div className="resultPrice"><span>{Number.isFinite(plan.price) ? "Preview price" : "Current price"}</span><strong>{priceText(plan)}</strong></div>
               <span className="resultArrow" aria-hidden="true">⌁</span>

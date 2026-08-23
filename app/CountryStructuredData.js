@@ -79,7 +79,7 @@ export default function CountryStructuredData({ slug, name, description, image, 
               "@type": "Country",
               name,
             },
-            description: `${plan.dataLabel} for ${plan.days} days with ${plan.network} network access.`,
+            description: `${plan.dataLabel}; validity ${plan.daysLabel || `${plan.days} days`}; ${plan.network}.`,
             ...(Number.isFinite(plan.price) ? { offers: {
               "@type": "Offer",
               price: plan.price.toFixed(2),
