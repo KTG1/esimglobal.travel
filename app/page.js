@@ -2,10 +2,43 @@ import WorldMap from "./WorldMap";
 import EsimGuide from "./EsimGuide";
 import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
+import { siteUrl } from "./sitePath";
+
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl("/")}#organization`,
+  name: "eSIM Global Travel",
+  alternateName: "eSIM Global",
+  url: siteUrl("/"),
+  description:
+    "An independent travel eSIM comparison resource covering providers, data allowances, validity, network access and prices for destinations worldwide.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Istanbul",
+    addressCountry: "TR",
+  },
+  areaServed: {
+    "@type": "Place",
+    name: "Worldwide",
+  },
+  knowsAbout: [
+    "Travel eSIMs",
+    "International mobile data",
+    "Prepaid eSIM plans",
+    "Mobile network coverage",
+  ],
+};
 
 export default function Home() {
   return (
     <div className="pageShell" id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationStructuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <SiteHeader />
       <main id="main-content">
       <div className="hero">
