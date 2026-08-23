@@ -1,4 +1,5 @@
 import { sitePath } from "./sitePath";
+import { countryPages } from "./countryPages";
 
 export function BrandLogo({ inverted = false }) {
   return (
@@ -49,17 +50,27 @@ export function CountryBreadcrumbs({ region, country }) {
   );
 }
 
-export function SiteFooter() {
+const footerDestinations = [
+  { slug: "france", name: "France", region: "Europe" },
+  ...Object.entries(countryPages).map(([slug, destination]) => ({ slug, name: destination.name, region: destination.region })),
+];
+
+export function SiteFooter({ region, country }) {
+  const contextualDestinations = region
+    ? footerDestinations.filter((item) => item.region === region && item.name !== country).slice(0, 6)
+    : footerDestinations.filter((item) => ["France", "Japan", "United States", "Australia", "Brazil", "South Africa"].includes(item.name));
+  const destinationTitle = region ? `${region} guides` : "Popular destinations";
   return (
     <footer className="siteFooter" id="about">
       <div className="footerLead">
         <a href={sitePath("/")} aria-label="eSIM Global Travel home"><BrandLogo inverted /></a>
-        <p>One clear view of the world’s travel eSIM options.</p>
+        <p>Independent travel eSIM research, organized for clearer decisions.</p>
+        <small className="footerCompanyDefinition">eSIM Global Travel is an Istanbul-based comparison publisher. We organize provider-published plan data, destination coverage and practical setup guidance for international travelers.</small>
         <a className="footerCta" href={sitePath("/#compare")}>Compare your destination <span aria-hidden="true">↗</span></a>
       </div>
       <div className="footerNav">
         <nav aria-labelledby="footer-explore-title"><h2 id="footer-explore-title">Explore</h2><ul><li><a href={sitePath("/#compare")}>Compare eSIM plans</a></li><li><a href={sitePath("/#how-it-works")}>How travel eSIMs work</a></li><li><a href={sitePath("/#compare")}>Global coverage</a></li></ul></nav>
-        <nav aria-labelledby="footer-countries-title"><h2 id="footer-countries-title">Popular countries</h2><ul><li><a href={sitePath("/france/")}>France eSIMs</a></li><li><a href={sitePath("/italy/")}>Italy eSIMs</a></li><li><a href={sitePath("/spain/")}>Spain eSIMs</a></li><li><a href={sitePath("/turkey/")}>Türkiye eSIMs</a></li><li><a href={sitePath("/japan/")}>Japan eSIMs</a></li><li><a href={sitePath("/united-states/")}>United States eSIMs</a></li></ul></nav>
+        <nav aria-labelledby="footer-countries-title"><h2 id="footer-countries-title">{destinationTitle}</h2><ul>{contextualDestinations.map((item) => <li key={item.slug}><a href={sitePath(`/${item.slug}/`)}>{item.name} eSIMs</a></li>)}</ul></nav>
         <section aria-labelledby="footer-marketplace-title"><h2 id="footer-marketplace-title">Marketplace</h2><ul><li>Independent comparisons</li><li>Provider terms apply</li><li>Prices shown in USD</li></ul></section>
       </div>
       <div className="footerBase"><span>© {new Date().getFullYear()} eSIM Global Travel</span><span>Compare before you connect.</span><span>Istanbul · Worldwide</span></div>

@@ -76,9 +76,9 @@ export default function FrancePage() {
         </header>
         <CountryFaqTabs country="France" bestPlan={francePlans[0]} networks="Orange, SFR, Bouygues Telecom and Free Mobile operate nationwide networks." coverage="4G is widely available; 5G depends on location and the selected plan." plans={francePlans} />
       </section>
-      <RelatedCountryGuides currentCountry="France" />
+      <RelatedCountryGuides currentCountry="France" currentRegion="Europe" />
       </main>
-      <SiteFooter />
+      <SiteFooter region="Europe" country="France" />
     </div>
   );
 }

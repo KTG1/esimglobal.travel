@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { countryPages } from "./countryPages";
-import { HeadingReadMore, HeadingSignal } from "./EditorialHeading";
+import { HeadingSignal } from "./EditorialHeading";
 import { francePlans } from "./france/plans";
 
 const franceGuide = {
@@ -27,15 +27,17 @@ function operatorNames(text) {
     .replaceAll(", ", " · ");
 }
 
-export default function RelatedCountryGuides({ currentCountry }) {
-  const relatedGuides = countryGuides.filter((guide) => guide.name !== currentCountry);
+export default function RelatedCountryGuides({ currentCountry, currentRegion }) {
+  const relatedGuides = countryGuides
+    .filter((guide) => guide.name !== currentCountry && guide.region === currentRegion)
+    .slice(0, 6);
   const headingId = `${currentCountry.toLowerCase().replaceAll(" ", "-")}-related-guides-title`;
 
   return (
     <section className="relatedCountryGuides" id="related-destinations" aria-labelledby={headingId}>
       <header>
-        <div><p className="eyebrow">CONTINUE YOUR ROUTE</p><h2 id={headingId}><HeadingSignal />Compare eSIMs for other destinations</h2><HeadingReadMore href="#top" label="Back to top">Planning another stop? Open a country guide to compare local networks, plan allowances, validity and preview prices.</HeadingReadMore></div>
-        <span className="headingMetric">{relatedGuides.length} destination guides · worldwide routes</span>
+        <div><p className="eyebrow">MORE IN {currentRegion.toUpperCase()}</p><h2 id={headingId}><HeadingSignal />Continue your route in {currentRegion}</h2><p className="relatedCountryIntro">Compare verified Saily starting prices for nearby destinations with live guides.</p></div>
+        <span className="headingMetric">{relatedGuides.length} relevant guides</span>
       </header>
       <nav aria-label={`Other country eSIM guides from ${currentCountry}`}>
         <ul>
