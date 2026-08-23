@@ -10,6 +10,13 @@ const filterOptions = {
   price: [{ label: "Any price", value: 999 }, { label: "Under $10", value: 10 }, { label: "Under $20", value: 20 }, { label: "Under $30", value: 30 }],
 };
 
+const providerUrls = {
+  Saily: "https://saily.com/",
+  Airalo: "https://www.airalo.com/",
+  Holafly: "https://esim.holafly.com/",
+  Nomad: "https://www.nomadesim.com/",
+};
+
 function FilterGroup({ title, options, value, onChange }) {
   return (
     <fieldset>
@@ -76,6 +83,36 @@ export default function FrancePlans({ country = "France", plans = francePlans })
           {bestReasons.map((reason, index) => <article key={reason.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{reason.title}</h3><p>{reason.text}</p></div><i aria-hidden="true">↗</i></article>)}
           <small>Editorial recommendation based on the displayed plan attributes. Verify current provider terms and pricing. {isFrance && <a href="https://saily.com/esim-france/" target="_blank" rel="noreferrer">Provider specifications ↗</a>}</small>
         </div>
+      </section>
+      <section className="commercialComparison" aria-labelledby="commercial-comparison-title">
+        <header>
+          <div>
+            <p className="eyebrow">COMMERCIAL PLAN COMPARISON</p>
+            <h2 id="commercial-comparison-title"><HeadingSignal />Compare {country} eSIM offers</h2>
+          </div>
+          <p>Compare the displayed allowance, validity, network access and preview price before checking the provider’s current offer.</p>
+        </header>
+        <ol className="commercialPlanList">
+          {plans.map((plan, index) => (
+            <li key={`${plan.brand}-${plan.product}-${plan.dataLabel}`}>
+              <article style={{ "--plan-color": plan.color }}>
+                <div className="commercialProvider">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div><strong><i />{plan.brand}</strong><small>{plan.note}</small></div>
+                </div>
+                <div><span>Plan</span><strong>{plan.product}</strong></div>
+                <div><span>Data</span><strong>{plan.dataLabel}</strong></div>
+                <div><span>Validity</span><strong>{plan.days} days</strong></div>
+                <div><span>Network</span><strong>{plan.network}</strong></div>
+                <div className="commercialPrice"><span>Preview price</span><strong>${plan.price.toFixed(2)}</strong></div>
+                <a href={providerUrls[plan.brand]} target="_blank" rel="noreferrer" aria-label={`Check the latest ${plan.brand} offer for ${country}`}>
+                  Check latest price <span aria-hidden="true">↗</span>
+                </a>
+              </article>
+            </li>
+          ))}
+        </ol>
+        <footer>Prices are comparison snapshots in USD and may change. Verify the final price, taxes, supported networks, fair-use terms and device compatibility on the provider’s website before purchasing.</footer>
       </section>
       <section className="featuredFrancePlans" aria-labelledby="featured-title">
         <header><div><p className="eyebrow">EDITOR’S SHORTLIST</p><h2 id="featured-title"><HeadingSignal />Popular {country} eSIM plans</h2><HeadingReadMore href="#plans" label="View every plan">Compare the leading choices by allowance, validity, network access and total preview price.</HeadingReadMore></div><p>Example marketplace pricing. Verify the provider’s current rate and terms before purchasing.</p></header>

@@ -380,6 +380,27 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
 .heroArrivalBrief + .routeLabel { left: auto; right: 28px; bottom: 22px; }
 .featuredFrancePlans, .francePlanExplorer, .franceEssentials { margin-top: 72px; }
 .featuredFrancePlans { margin-top: 46px; }
+.commercialComparison { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--line); }
+.commercialComparison > header { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .6fr); align-items: end; gap: 30px clamp(40px, 7vw, 96px); margin-bottom: 24px; }
+.commercialComparison > header h2 { max-width: 760px; margin: 0; font: 400 clamp(40px, 5.2vw, 68px)/.98 Georgia, serif; letter-spacing: -.05em; }
+.commercialComparison > header > p { margin: 0 0 4px; color: #537088; font-size: 13px; line-height: 1.6; }
+.commercialPlanList { display: grid; margin: 0; padding: 0; border: 1px solid var(--line); list-style: none; background: rgba(248,252,255,.58); }
+.commercialPlanList > li { min-width: 0; border-bottom: 1px solid var(--line); }
+.commercialPlanList > li:last-child { border-bottom: 0; }
+.commercialPlanList article { display: grid; grid-template-columns: 1.2fr 1.25fr repeat(3, .72fr) .78fr minmax(142px, .72fr); align-items: center; gap: 14px; min-width: 0; padding: 15px 16px; box-shadow: inset 4px 0 0 var(--plan-color); }
+.commercialPlanList article > div { display: grid; min-width: 0; gap: 4px; }
+.commercialPlanList article > div > span { color: #7893a7; font: 700 7px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .04em; text-transform: uppercase; }
+.commercialPlanList article > div > strong { overflow-wrap: anywhere; font-size: 11px; }
+.commercialProvider { grid-template-columns: 26px minmax(0, 1fr); align-items: center; }
+.commercialProvider > span { grid-row: 1 / 3; color: var(--signal) !important; font-size: 9px !important; }
+.commercialProvider > div { display: grid; min-width: 0; gap: 4px; }
+.commercialProvider strong { display: flex; align-items: center; gap: 7px; font: 500 15px/1 Georgia, serif; }
+.commercialProvider strong i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--plan-color); }
+.commercialProvider small { color: #7893a7; font-size: 8px; }
+.commercialPrice strong { font: 500 19px/1 Georgia, serif !important; }
+.commercialPlanList article > a { display: inline-flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--ink); color: white; background: var(--ink); font: 700 8px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
+.commercialPlanList article > a span { color: var(--signal); font-size: 15px; }
+.commercialComparison > footer { padding: 13px 16px; border: 1px solid var(--line); border-top: 0; color: #6b8397; font-size: 10px; line-height: 1.5; }
 .bestPickPanel { position: relative; display: grid; grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr); margin-top: 46px; overflow: hidden; border: 1px solid var(--line); background: rgba(248,252,255,.88); box-shadow: 0 22px 55px rgba(18,43,69,.08); }
 .bestPickPanel::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--plan-color); }
 .bestPickLead { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(30px, 4vw, 52px); color: white; background: linear-gradient(145deg, #092c49, #061f34); }
@@ -502,6 +523,10 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .featuredPlanGrid { grid-template-columns: 1fr; }
   .bestPickPanel { grid-template-columns: 1fr; }
   .planResults article { grid-template-columns: 1fr 1fr 1fr; }
+  .commercialComparison > header { grid-template-columns: 1fr; gap: 14px; }
+  .commercialPlanList article { grid-template-columns: 1fr 1fr 1fr; }
+  .commercialProvider { grid-column: 1 / 3; }
+  .commercialPlanList article > a { grid-column: 3; grid-row: 1 / 3; align-self: stretch; }
   .planResults .providerName { grid-column: 1 / 3; }
   .relatedCountryGuides > header { grid-template-columns: 1fr; gap: 16px; }
   .relatedCountryGuides .headingMetric { text-align: left; }
@@ -586,6 +611,11 @@ h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 Georg
   .heroPlanBoardLabel { display: flex; align-items: flex-start; padding: 16px; }.heroPlanBoardLabel small { text-align: left; }
   .eiffelMark { height: 280px; transform: translateX(-50%) scale(.72); transform-origin: bottom; }
   .featuredFrancePlans, .francePlanExplorer, .franceEssentials { margin-top: 58px; }
+  .commercialComparison { margin-top: 58px; }
+  .commercialComparison > header h2 { font-size: 42px; }
+  .commercialPlanList article { grid-template-columns: 1fr 1fr; padding: 16px; }
+  .commercialProvider { grid-column: 1 / -1; }
+  .commercialPlanList article > a { grid-column: 1 / -1; grid-row: auto; width: 100%; }
   .bestPickPanel { margin-top: 36px; }
   .bestPickLead, .bestPickReasons { padding: 28px 22px; }
   .bestPickSeal { position: static; margin-bottom: 22px; }
