@@ -53,8 +53,23 @@ body {
 .brandLogo.inverted .logoType small { color: #8ca7bc; }
 
 .hero { position: relative; align-self: center; width: 100%; max-width: 1180px; padding: 12vh 0; }
-.destinationCanvas { isolation: isolate; background: linear-gradient(165deg, var(--paper), var(--sky)); }
+.destinationCanvas { isolation: isolate; background:
+  radial-gradient(circle at 92% 8%, var(--sunwash), transparent 26rem),
+  radial-gradient(circle at 8% 42%, color-mix(in srgb, var(--ocean) 11%, transparent), transparent 31rem),
+  linear-gradient(165deg, var(--paper), var(--sky)); }
 .destinationStory { display: contents; }
+.destinationCanvas .countryDestinationHero { background-color: var(--ink); }
+.destinationCanvas .countryDestinationHero::before { background: linear-gradient(90deg,
+  color-mix(in srgb, var(--ink) 96%, black) 0%,
+  color-mix(in srgb, var(--ink) 88%, transparent) 43%,
+  color-mix(in srgb, var(--ocean) 48%, transparent) 72%,
+  transparent 100%); }
+.destinationCanvas .countryDestinationHero .franceHeroCopy { background: linear-gradient(90deg, color-mix(in srgb, var(--ink) 64%, transparent), transparent); }
+.destinationCanvas .heroPlanBoard { background: color-mix(in srgb, var(--ocean) 66%, var(--ink)); border-color: color-mix(in srgb, white 24%, var(--ocean)); }
+.destinationCanvas .heroPlanBoardLabel { background: color-mix(in srgb, var(--ink) 84%, var(--ocean)); border-color: color-mix(in srgb, white 24%, var(--ocean)); }
+.destinationCanvas .bestPickLead { background: linear-gradient(145deg, color-mix(in srgb, var(--ocean) 72%, var(--ink)), var(--ink)); }
+.destinationCanvas .bestPickPanel, .destinationCanvas .commercialPlanList, .destinationCanvas .planFilters { background-color: color-mix(in srgb, var(--paper) 88%, var(--sunwash)); }
+.destinationCanvas .atlasFooter { background: linear-gradient(120deg, var(--ink), color-mix(in srgb, var(--ink) 72%, var(--ocean))); }
 .routeKicker { margin: 0 0 22px; color: var(--ocean); font: 700 11px/1.2 Menlo, Monaco, monospace; letter-spacing: .14em; }
 h1 { max-width: 1050px; margin: 0; font: 400 clamp(56px, 8.2vw, 112px)/.91 "Iowan Old Style", "Palatino Linotype", Palatino, serif; letter-spacing: -.068em; }
 .heroLead { max-width: 800px; margin: 32px 0 0; color: #355c59; font-size: clamp(18px, 2vw, 24px); line-height: 1.5; letter-spacing: -.025em; }

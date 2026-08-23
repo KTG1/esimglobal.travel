@@ -20,12 +20,13 @@ export function destinationIdentity(slug, region) {
       "data-continent": region.toLowerCase().replaceAll(" ", "-"),
     },
     style: {
-      "--ink": `hsl(${hue} 35% 20%)`,
-      "--ocean": `hsl(${hue} 34% 36%)`,
-      "--signal": `hsl(${(hue + 151) % 360} 78% 48%)`,
-      "--line": `hsl(${hue} 25% 76%)`,
-      "--sky": `hsl(${hue} 29% 92%)`,
-      "--paper": `hsl(${hue} 24% 98%)`,
+      "--ink": `hsl(${hue} 40% 24%)`,
+      "--ocean": `hsl(${hue} 52% 43%)`,
+      "--signal": `hsl(${(hue + 151) % 360} 86% 58%)`,
+      "--line": `hsl(${hue} 38% 79%)`,
+      "--sky": `hsl(${hue} 64% 94%)`,
+      "--paper": `hsl(${hue} 70% 99%)`,
+      "--sunwash": `hsl(${(hue + 151) % 360} 92% 94%)`,
     },
   };
 }
